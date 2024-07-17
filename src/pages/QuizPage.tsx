@@ -10,7 +10,7 @@ function QuizPage() {
       <a onClick={()=>(navigate("/main"))}><img className='logo' src="mathmagik_logo.png" alt="Logotipo Mathmagik"/></a>
 
       <div className='question'>
-        <h1>9 x 7</h1>
+        <h1>4 x 7</h1>
       </div>
       <div className="btn">
         <div className='btn'>
@@ -26,7 +26,7 @@ function QuizPage() {
       <div className="gap">
         <div className='progress-bar-text'>
           <div>00:23</div>
-          <div>23/70</div>
+          <div>35/70</div>
         </div>
         <div className='progress-bar-background'>
           <div className='progress-bar-background bar'></div>

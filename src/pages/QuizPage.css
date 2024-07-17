@@ -22,9 +22,6 @@
   }
   
 /* Different */
-a {
-    margin: 0px;
-}
   #root {
     display: flex;
     flex-direction: column;
@@ -35,7 +32,7 @@ a {
     height: 100%;
     background-color: #A5A4FF;
     gap: 10px;
-    padding-top: 50px;
+    padding-top: 70px;
     padding-left: 0px;
     padding-right: 0px;
     padding-bottom: 0px;
@@ -43,8 +40,8 @@ a {
 
   .question {
     height:150px;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     padding-left: 0%;
     padding-right: 0%;
   }
@@ -60,13 +57,13 @@ a {
     margin-top: 20px;
     margin-left: 0px;
     margin-right: 0px;
-    margin-bottom: 0px;
+    margin-bottom: 30px;
 
   }
 
   .gap {
     margin-bottom: 5px;
-    margin-top:18px;
+    margin-top:15px;
     display: flex;
     flex-direction: column;
     align-items: center;
