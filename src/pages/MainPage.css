@@ -27,15 +27,19 @@ body {
   align-items: center;
   width: 20%;
   min-width: 400px;
-  max-width: 400px;
+  max-width: 500px;
   height: 100%;
   background-color: #A5A4FF;
   padding: 5%;
-  gap: 40px;
+  gap: 90px;
+}
 
+.logo {
+  margin-top: 50%;
 }
 
 button {
+  margin: 10px;
   background-color: white;
   color: #5F57E0;
   font-size: 20px;
@@ -52,9 +56,4 @@ button {
 button:active {
   transform: translateY(4px);
   filter: drop-shadow(6px 6px 0px #5F57E0);
-}
-
-.logo {
-  margin-bottom: 40px;
-  margin-top: 20%;
 }
