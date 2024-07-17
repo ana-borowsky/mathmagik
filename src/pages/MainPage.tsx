@@ -7,9 +7,9 @@ function MainPage() {
   return (
     <>
       <img className='logo' src="mathmagik_logo.png" alt="Logotipo Mathmagik"/>
-      <div className="btn">
-        <button onClick={()=>(navigate("/settings"))}>OPÇÕES</button>
-        <button onClick={()=>(navigate("/quiz"))}>JOGAR</button>
+      <div className='btn'>
+        <button className='button-main' onClick={()=>(navigate("/settings"))}>OPÇÕES</button>
+        <button className='button-main' onClick={()=>(navigate("/quiz"))}>JOGAR</button>
       </div>
     </>
   )
