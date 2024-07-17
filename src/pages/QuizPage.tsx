@@ -7,7 +7,7 @@ function QuizPage() {
 
   return (
     <>
-      <a onClick={()=>(navigate("/main"))}><img className='logo' src="mathmagik_logo.png" alt="Logotipo Mathmagik"/></a>
+      <a onClick={()=>(navigate("/main"))}><img className='logo-quiz' src="mathmagik_logo.png" alt="Logotipo Mathmagik"/></a>
 
       <div className='question'>
         <h1>4 x 7</h1>
