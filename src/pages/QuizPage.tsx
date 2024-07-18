@@ -14,12 +14,12 @@ function QuizPage() {
     //   </div>
     //   <div className='btn'>
     //     <div className='btn'>
-    //       <button className='quiz-button pink-button'>23</button>
-    //       <button className='quiz-button blue-button'>27</button>
+    //       <button className='quiz-button pink'>23</button>
+    //       <button className='quiz-button blue'>27</button>
     //     </div>
     //     <div className='btn'>
-    //       <button className='quiz-button orange-button'>32</button>
-    //       <button className='quiz-button yellow-button'>28</button>
+    //       <button className='quiz-button orange'>32</button>
+    //       <button className='quiz-button yellow'>28</button>
     //     </div>
     //   </div>
 
@@ -42,27 +42,48 @@ function ScorePage() {
 
   return (
     <>
-      <a onClick={()=>(navigate('/main'))}><img className='logo-quiz' src='mathmagik_logo.png' alt='Logotipo Mathmagik'/></a>
+      <a onClick={()=>(navigate('/main'))}><img className='logo-score' src='mathmagik_logo.png' alt='Logotipo Mathmagik'/></a>
       <div className='score-title'>
         <img src='Star.png' alt='Estrela'/>
         <h1>Pontuação</h1>
         <img src='Star.png' alt='Estrela'/>
       </div>
-      <div className='rectangle'>
-        <div className='correct-answers'>52</div>
-        <div className='slash'>/</div>
-        <div className='total'>70</div>
+      <div className="btn">
+        <div className='rectangle'>
+          <div className='pink'>52</div>
+          <div className='purple'>/</div>
+          <div className='yellow'>70</div>
+        </div>
+
+        <div className="details">
+          <div className='rectangle small'>
+            <div className='text blue'>3:47</div>
+          </div>
+          <div>
+            <h2>Tempo total</h2>
+          </div>
+        </div>
+
+        <div className="details">
+          <div className='rectangle small'>
+            <div className='text pink'>74%</div>
+          </div>
+          <div>
+            <h2>de acertos</h2>
+          </div>
+        </div>
+
+        <div className="details">
+          <div className='rectangle small'>
+            <div className='text yellow'>32s</div>
+          </div>
+          <div>
+            <h2>por questão</h2>
+          </div>
+        </div>
+
       </div>
-      
-      <div className='rectangle small'>
-        <div className='text'>3:47</div>
-      </div>
-      <div className='rectangle small'>
-        <div className='text'>74%</div>
-      </div>
-      <div className='rectangle small'>
-        <div className='text'>32s</div>
-      </div>
+      <button className='button-main' onClick={()=>(navigate("/quiz"))}>REPLAY</button>
     </>
   )
 }

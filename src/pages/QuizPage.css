@@ -6,12 +6,12 @@
     padding-right: 0%;
   }
 
-.logo-quiz {
+.logo-score {
     cursor: pointer;
     margin-top: 20px;
     margin-left: 0px;
     margin-right: 0px;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
   
   }
   
@@ -50,62 +50,41 @@
     font-size: 40px;
   }
   
-  .pink-button {
-    color: #F59CED;
-  }
-  
-  .blue-button {
-    color: #58B2FF;
-  }
-  
-  .orange-button {
-    color: #FFAF95;
-  }
-  
-  .yellow-button {
-    color: #FFD371;
-  }
-
-  .rectangle {
+.rectangle {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 155px;
+    height: 135px;
     width: 270px;
     background-color: white;
     color: #5F57E0;
     border-radius: 20px;
     border-color: white;
     border-style: none;
-    filter: drop-shadow(10px 10px 0px #918FFF);
+    filter: drop-shadow(6px 6px 0px #918FFF);
     font-size: 48px;
     font-weight: bold;
     gap: 10px;
+    margin-bottom: 20px;
   }
 
-  .correct-answers {
-    color: #F59CED;
-  }
-
-  .slash {
-    color: #A5A4FF;
-  }
-
-  .total {
-    color: #FFD371;
-  }
-
-  .score-title {
+.score-title {
     display: flex;
     align-items: center;
     gap: 10px;
   }
 
-  .small {
+.small {
     width: 100px;
-    height: 80px;
+    height: 60px;
   }
 
-  .text {
+.text {
     font-size: 24px;
   }
+
+.details {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
