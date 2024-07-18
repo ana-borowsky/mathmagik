@@ -37,22 +37,25 @@ body {
   padding-right: 0px;
   padding-bottom: 0px;
   margin-bottom: 0%;
+  color: white;
 }
 
 h1 {
   font-size: 40px;
   color: white;
   filter: drop-shadow(4px 4px 0px #918FFF);
+  margin: 0px;
 }
 
 h2 {
   font-size: 24px;
   color: white;
   filter: drop-shadow(4px 4px 0px #918FFF);
+  margin: 0px;
 }
 
 button {
-  margin: 15px;
+  margin: 0px;
   background-color: white;
   color: #5F57E0;
   border-radius: 20px;
