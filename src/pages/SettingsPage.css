@@ -1,0 +1,14 @@
+.logo-settings {
+  cursor: pointer;
+  margin-top: 20px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  height: 150px;
+}
+
+.settings {
+  display: flex;
+  align-items: first baseline;
+  justify-content: flex-start;
+}
