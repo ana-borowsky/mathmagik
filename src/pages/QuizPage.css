@@ -65,3 +65,47 @@
   .yellow-button {
     color: #FFD371;
   }
+
+  .rectangle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 155px;
+    width: 270px;
+    background-color: white;
+    color: #5F57E0;
+    border-radius: 20px;
+    border-color: white;
+    border-style: none;
+    filter: drop-shadow(10px 10px 0px #918FFF);
+    font-size: 48px;
+    font-weight: bold;
+    gap: 10px;
+  }
+
+  .correct-answers {
+    color: #F59CED;
+  }
+
+  .slash {
+    color: #A5A4FF;
+  }
+
+  .total {
+    color: #FFD371;
+  }
+
+  .score-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .small {
+    width: 100px;
+    height: 80px;
+  }
+
+  .text {
+    font-size: 24px;
+  }
