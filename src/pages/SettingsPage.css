@@ -1,26 +1,52 @@
 .logo-settings {
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 40px;
   margin-left: 0px;
   margin-right: 0px;
-  margin-bottom: 0px;
-  height: 150px;
+  margin-bottom: 40px;
 }
 
 .settings {
   min-width: 370px;
   display: flex;
   align-items: first baseline;
-  justify-content: flex-start;
+  justify-content: center;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.difficulty-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .range {
+  display: flex;
+  flex-direction: column;
   height: 80px;
-  width: 250px;
-  padding: 0 65px 0 65px;
+  width: 100%;
 }
+
+.range .field input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background: #5F57E0;
+}
+
+.range .field .value {
+  position: absolute;
+  font-size: 18px;
+  color: white;
+}
+
+
+
 
 .timer {
   display: flex;
