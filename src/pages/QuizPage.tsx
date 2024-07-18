@@ -7,7 +7,9 @@ function QuizPage() {
 
   return (
     <>
-      <a onClick={()=>(navigate('/main'))}><img className='logo-quiz' src='mathmagik_logo.png' alt='Logotipo Mathmagik'/></a>
+      <a onClick={()=>(navigate('/main'))}>
+        <img className='logo logo-quiz' src='mathmagik_logo.png' alt='Logotipo Mathmagik'/>
+      </a>
 
       <div className='question'>
         <h1>4 x 7</h1>
@@ -41,7 +43,9 @@ function ScorePage() {
 
   return (
     <>
-      <a onClick={()=>(navigate('/main'))}><img className='logo-score' src='mathmagik_logo.png' alt='Logotipo Mathmagik'/></a>
+      <a onClick={()=>(navigate('/main'))}>
+        <img className='logo logo-score' src='mathmagik_logo.png' alt='Logotipo Mathmagik'/>
+      </a>
       <div className='score-title'>
         <img src='Star.png' alt='Estrela'/>
         <h1>Pontuação</h1>

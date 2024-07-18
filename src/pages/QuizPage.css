@@ -17,16 +17,16 @@
 
 .logo-quiz {
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 60px;
   margin-left: 0px;
   margin-right: 0px;
-  margin-bottom: 0px;
+  margin-bottom: 60px;
   height: 150px;
 }
   
 .progress-bar-section {
   margin-bottom: 25px;
-  margin-top:40px;
+  margin-top:50px;
   display: flex;
   flex-direction: column;
   align-items: center;

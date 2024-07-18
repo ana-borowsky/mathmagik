@@ -1,0 +1,113 @@
+#root {
+  height: 125%;
+}
+
+.logo-settings {
+  cursor: pointer;
+  margin-top: 60px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 40px;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.settings {
+  min-width: 370px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.setting {
+  min-width: 370px;
+  display: flex;
+  align-items: first baseline;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.difficulty-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.range {
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+  width: 100%;
+}
+
+.range .field input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+
+
+
+
+.timer {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  justify-content: center;
+  width: 100%;
+}
+
+.timer-rectangle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 95px;
+  height: 55px;
+  background-color: white;
+  border-radius: 20px;
+  font-size: 24px;
+}
+
+.round-btn {
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(6px 6px 0px #5F57E0);
+}
+
+.round-btn:active {
+  transform: translateY(3px);
+  filter: drop-shadow(3px 3px 0px #5F57E0);
+  margin: 0px;
+}
+
+.question-types {
+  width: 370px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+/*.round-btn types serve para quando inativar o tipo de questão, o botão ficar diferente.
+O fundo muda de branco para roxo claro, e o sinal da conta deve mudar para a cor roxa.
+Pra isso é preciso mudar a imagem.
+As imagens roxas estão no public.
+
+.types {
+  background-color: #CDCDFF;
+}
+*/
