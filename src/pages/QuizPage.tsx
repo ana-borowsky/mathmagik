@@ -7,23 +7,23 @@ function QuizPage() {
 
   return (
     <>
-      <a onClick={()=>(navigate("/main"))}><img className='logo-quiz' src="mathmagik_logo.png" alt="Logotipo Mathmagik"/></a>
+      <a onClick={()=>(navigate('/main'))}><img className='logo-quiz' src='mathmagik_logo.png' alt='Logotipo Mathmagik'/></a>
 
       <div className='question'>
         <h1>4 x 7</h1>
       </div>
-      <div className="btn">
-        <div className='btn'>
-          <button className='quiz-button pink-button'>23</button>
-          <button className='quiz-button blue-button'>27</button>
+      <div className='quiz-buttons-section'>
+        <div className='quiz-buttons'>
+          <button className='quiz-button pink'>23</button>
+          <button className='quiz-button blue'>27</button>
         </div>
-        <div className='btn'>
-          <button className='quiz-button orange-button'>32</button>
-          <button className='quiz-button yellow-button'>28</button>
+        <div className='quiz-buttons'>
+          <button className='quiz-button orange'>32</button>
+          <button className='quiz-button yellow'>28</button>
         </div>
       </div>
 
-      <div className="gap">
+      <div className='progress-bar-section'>
         <div className='progress-bar-text'>
           <div>00:23</div>
           <div>35/70</div>
@@ -31,6 +31,60 @@ function QuizPage() {
         <div className='progress-bar-background'>
           <div className='progress-bar-background bar'></div>
         </div>
+      </div>
+    </>
+  )
+}
+
+function ScorePage() {
+  const navigate = useNavigate();
+
+  return (
+    <>
+      <a onClick={()=>(navigate('/main'))}><img className='logo-score' src='mathmagik_logo.png' alt='Logotipo Mathmagik'/></a>
+      <div className='score-title'>
+        <img src='Star.png' alt='Estrela'/>
+        <h1>Pontuação</h1>
+        <img src='Star.png' alt='Estrela'/>
+      </div>
+      <div className='points'>
+        <div className='rectangle'>
+          <div className='pink'>52</div>
+          <div className='purple'>/</div>
+          <div className='yellow'>70</div>
+        </div>
+
+        <div className='details'>
+          <div className='rectangle small'>
+            <div className='text blue'>3:47</div>
+          </div>
+          <div>
+            <h2>Tempo total</h2>
+          </div>
+        </div>
+
+        <div className='details'>
+          <div className='rectangle small'>
+            <div className='text pink'>74%</div>
+          </div>
+          <div>
+            <h2>de acertos</h2>
+          </div>
+        </div>
+
+        <div className='details'>
+          <div className='rectangle small'>
+            <div className='text orange'>32s</div>
+          </div>
+          <div>
+            <h2>por questão</h2>
+          </div>
+        </div>
+
+      </div>
+      <div className="buttons">
+        <button className='button-std' onClick={()=>(navigate('/quiz'))}>ERROS</button>
+        <button className='button-std' onClick={()=>(navigate('/quiz'))}>REPLAY</button>
       </div>
     </>
   )

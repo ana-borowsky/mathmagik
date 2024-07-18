@@ -42,7 +42,13 @@ body {
 h1 {
   font-size: 40px;
   color: white;
-  filter: drop-shadow(4px 4px 0px #5F57E0);
+  filter: drop-shadow(4px 4px 0px #918FFF);
+}
+
+h2 {
+  font-size: 24px;
+  color: white;
+  filter: drop-shadow(4px 4px 0px #918FFF);
 }
 
 button {
@@ -62,6 +68,42 @@ button:active {
   filter: drop-shadow(6px 6px 0px #5F57E0);
 }
 
+.pink {
+  color: #F59CED;
+}
 
+.blue {
+  color: #58B2FF;
+}
 
+.orange {
+  color: #FFAF95;
+}
 
+.yellow {
+  color: #FFD371;
+}
+
+.purple {
+  color: #A5A4FF;
+}
+
+.points {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-top: 35px;
+}
+
+.button-std {
+  font-size: 20px;
+  height: 70px;
+  width: 170px;
+  margin: 0px;
+}
