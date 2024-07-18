@@ -12,6 +12,7 @@
     margin-left: 0px;
     margin-right: 0px;
     margin-bottom: 0px;
+    height: 150px;
   
   }
   
@@ -65,13 +66,13 @@
     font-size: 48px;
     font-weight: bold;
     gap: 10px;
-    margin-bottom: 20px;
   }
 
 .score-title {
     display: flex;
     align-items: center;
     gap: 10px;
+    height: 130px;
   }
 
 .small {
@@ -87,4 +88,5 @@
     display: flex;
     align-items: center;
     gap: 20px;
+    height: 62px;
 }

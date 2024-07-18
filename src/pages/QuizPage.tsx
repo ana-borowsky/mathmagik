@@ -48,14 +48,14 @@ function ScorePage() {
         <h1>Pontuação</h1>
         <img src='Star.png' alt='Estrela'/>
       </div>
-      <div className="btn">
+      <div className='points'>
         <div className='rectangle'>
           <div className='pink'>52</div>
           <div className='purple'>/</div>
           <div className='yellow'>70</div>
         </div>
 
-        <div className="details">
+        <div className='details'>
           <div className='rectangle small'>
             <div className='text blue'>3:47</div>
           </div>
@@ -64,7 +64,7 @@ function ScorePage() {
           </div>
         </div>
 
-        <div className="details">
+        <div className='details'>
           <div className='rectangle small'>
             <div className='text pink'>74%</div>
           </div>
@@ -73,9 +73,9 @@ function ScorePage() {
           </div>
         </div>
 
-        <div className="details">
+        <div className='details'>
           <div className='rectangle small'>
-            <div className='text yellow'>32s</div>
+            <div className='text orange'>32s</div>
           </div>
           <div>
             <h2>por questão</h2>
@@ -83,7 +83,10 @@ function ScorePage() {
         </div>
 
       </div>
-      <button className='button-main' onClick={()=>(navigate("/quiz"))}>REPLAY</button>
+      <div className="buttons">
+        <button className='button-std' onClick={()=>(navigate('/quiz'))}>ERROS</button>
+        <button className='button-std' onClick={()=>(navigate('/quiz'))}>REPLAY</button>
+      </div>
     </>
   )
 }

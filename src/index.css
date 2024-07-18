@@ -87,3 +87,23 @@ button:active {
 .purple {
   color: #A5A4FF;
 }
+
+.points {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-top: 35px;
+}
+
+.button-std {
+  font-size: 20px;
+  height: 70px;
+  width: 170px;
+  margin: 0px;
+}
