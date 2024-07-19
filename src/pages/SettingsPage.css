@@ -4,10 +4,7 @@
 
 .logo-settings {
   cursor: pointer;
-  margin-top: 60px;
-  margin-left: 0px;
-  margin-right: 0px;
-  margin-bottom: 40px;
+  margin: 60px 0 0 10px;
 }
 
 .title {
@@ -81,12 +78,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: drop-shadow(6px 6px 0px var(--color-dark-purple));
+  filter: drop-shadow(6px 6px 0 var(--color-dark-purple));
 }
 
 .round-btn:active {
   transform: translateY(3px);
-  filter: drop-shadow(3px 3px 0px var(--color-dark-purple));
+  filter: drop-shadow(3px 3px 0 var(--color-dark-purple));
   margin: 0px;
 }
 
@@ -96,6 +93,11 @@
   align-items: center;
   justify-content: center;
   gap: 40px;
+}
+
+.gap {
+  min-height: 20px;
+  width: 100%;
 }
 
 /*.round-btn types serve para quando inativar o tipo de questão, o botão ficar diferente.

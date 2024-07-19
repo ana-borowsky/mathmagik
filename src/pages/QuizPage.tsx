@@ -7,12 +7,16 @@ function QuizPage() {
 
   return (
     <>
-      {/* <a onClick={()=>(navigate('/main'))}>
+      <a onClick={()=>(navigate('/main'))}>
         <img className='logo-quiz' src='mathmagik_logo.png' alt='Logotipo Mathmagik'/>
       </a>
-
+      <h1>Questão</h1>
       <div className='question'>
-        <h1>4 x 7</h1>
+        <div className='rectangle question-rectangle'>
+          <div className='pink'>7</div>
+          <div className='purple'>x</div>
+          <div className='yellow'>9</div>
+        </div>
       </div>
       <div className='quiz-buttons-section'>
         <div className='quiz-buttons'>
@@ -33,8 +37,7 @@ function QuizPage() {
         <div className='progress-bar-background'>
           <div className='progress-bar-background bar'></div>
         </div>
-      </div> */}
-      <QuizPageTest></QuizPageTest>
+      </div>
     </>
   )
 }
@@ -47,13 +50,11 @@ function ScorePage() {
       <a onClick={()=>(navigate('/main'))}>
         <img className='logo-score' src='mathmagik_logo.png' alt='Logotipo Mathmagik'/>
       </a>
-      <div className="gap"></div>
       <div className='score-title'>
         <img src='Star.png' alt='Estrela'/>
         <h1>Pontuação</h1>
         <img src='Star.png' alt='Estrela'/>
       </div>
-      <div className="gap"></div>
       <div className='points'>
         <div className='rectangle'>
           <div className='pink'>52</div>
@@ -89,7 +90,6 @@ function ScorePage() {
         </div>
       </div>
       <div className="gap"></div>
-      <div className="gap"></div>
       <div className="buttons">
         <button className='button-std' onClick={()=>(navigate('/quiz'))}>ERROS</button>
         <button className='button-std' onClick={()=>(navigate('/quiz'))}>REPLAY</button>
@@ -106,7 +106,6 @@ function WrongAnswersPage() {
       <a onClick={()=>(navigate('/main'))}>
         <img className='logo-score' src='mathmagik_logo.png' alt='Logotipo Mathmagik'/>
       </a>
-      <div className="gap"></div>
       <div className='score-title'>
         <img src='Star.png' alt='Estrela'/>
         <h1>Erros: 4</h1>
@@ -171,50 +170,11 @@ function WrongAnswersPage() {
           </div>
         </div>
        </div>
-      <div className="gap"></div>
       <div className="buttons">
         <button className='button-std' onClick={()=>(navigate('/quiz'))}>VOLTAR</button>
         <button className='button-std' onClick={()=>(navigate('/quiz'))}>REPLAY</button>
       </div>
       <div className="gap"></div>
-    </>
-  )
-}
-
-function QuizPageTest() {
-  const navigate = useNavigate();
-
-  return (
-    <>
-      <a onClick={()=>(navigate('/main'))}>
-        <img className='logo-quiz' src='mathmagik_logo.png' alt='Logotipo Mathmagik'/>
-      </a>
-      <h1>Questão</h1>
-      <div className='quiz-buttons-section'>
-        <div className='rectangle question-rectangle'>
-          <div className='pink'>7</div>
-          <div className='purple'>x</div>
-          <div className='yellow'>9</div>
-        </div>
-        <div className='quiz-buttons'>
-          <button className='quiz-button pink'>23</button>
-          <button className='quiz-button blue'>27</button>
-        </div>
-        <div className='quiz-buttons'>
-          <button className='quiz-button orange'>32</button>
-          <button className='quiz-button yellow'>28</button>
-        </div>
-      </div>
-
-      <div className='progress-bar-section'>
-        <div className='progress-bar-text'>
-          <div>00:23</div>
-          <div>35/70</div>
-        </div>
-        <div className='progress-bar-background'>
-          <div className='progress-bar-background bar'></div>
-        </div>
-      </div>
     </>
   )
 }

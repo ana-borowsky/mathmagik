@@ -72,7 +72,6 @@ function SettingsPage() {
         </div>
       </div>
       <div className='gap'></div>
-      <div className='gap'></div>
       <div className='buttons'>
         <button className='button-std' onClick={()=>(navigate('/main'))}>MENU</button>
         <button className='button-std' onClick={()=>(navigate('/main'))}>SALVAR</button>
