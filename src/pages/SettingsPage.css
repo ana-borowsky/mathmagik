@@ -54,10 +54,6 @@
   width: 100%;
 }
 
-
-
-
-
 .timer {
   display: flex;
   align-items: center;
@@ -85,12 +81,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: drop-shadow(6px 6px 0px #5F57E0);
+  filter: drop-shadow(6px 6px 0px var(--color-dark-purple));
 }
 
 .round-btn:active {
   transform: translateY(3px);
-  filter: drop-shadow(3px 3px 0px #5F57E0);
+  filter: drop-shadow(3px 3px 0px var(--color-dark-purple));
   margin: 0px;
 }
 
