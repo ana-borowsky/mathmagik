@@ -1,3 +1,7 @@
+#root {
+  height: 140%;
+}
+
 .question {
   height:150px;
   padding-top: 20px;
@@ -8,7 +12,7 @@
 
 .logo-score {
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 60px;
   margin-left: 0px;
   margin-right: 0px;
   margin-bottom: 0px;
@@ -95,7 +99,6 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  height: 130px;
 }
 
 .small {
@@ -112,4 +115,23 @@
   align-items: center;
   gap: 20px;
   height: 62px;
+}
+
+.long {
+  height: 80px;
+  width: 100%;
+}
+
+.wrong-answers {
+  display: flex;
+  flex-direction: column;
+  width: 370px;
+  gap: 50px;
+}
+
+.wrong-answer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  height: auto;
 }

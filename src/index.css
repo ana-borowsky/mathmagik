@@ -66,11 +66,6 @@ button:active {
   filter: drop-shadow(6px 6px 0px #5F57E0);
 }
 
-.logo {
-  margin-top: 50%;
-  margin-bottom: 60px;
-}
-
 .pink {
   color: #F59CED;
 }
