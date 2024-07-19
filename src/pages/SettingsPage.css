@@ -104,6 +104,6 @@ Pra isso é preciso mudar a imagem.
 As imagens roxas estão no public.
 
 .types {
-  background-color: #CDCDFF;
+  background-color: var(--color-light-purple);
 }
 */
