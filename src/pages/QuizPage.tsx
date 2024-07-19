@@ -7,7 +7,7 @@ function QuizPage() {
 
   return (
     <>
-      <a onClick={()=>(navigate('/main'))}>
+      {/* <a onClick={()=>(navigate('/main'))}>
         <img className='logo-quiz' src='mathmagik_logo.png' alt='Logotipo Mathmagik'/>
       </a>
 
@@ -33,7 +33,8 @@ function QuizPage() {
         <div className='progress-bar-background'>
           <div className='progress-bar-background bar'></div>
         </div>
-      </div>
+      </div> */}
+      <QuizPageTest></QuizPageTest>
     </>
   )
 }
@@ -176,6 +177,46 @@ function WrongAnswersPage() {
         <button className='button-std' onClick={()=>(navigate('/quiz'))}>REPLAY</button>
       </div>
       <div className="gap"></div>
+    </>
+  )
+}
+
+function QuizPageTest() {
+  const navigate = useNavigate();
+
+  return (
+    <>
+      <a onClick={()=>(navigate('/main'))}>
+        <img className='logo-quiz' src='mathmagik_logo.png' alt='Logotipo Mathmagik'/>
+      </a>
+      <h1>Questão</h1>
+      <div className="question">
+          <div className='rectangle long'>
+            <div className='pink'>7</div>
+            <div className='purple'>x</div>
+            <div className='yellow'>9</div>
+          </div>
+        </div>
+      <div className='quiz-buttons-section'>
+        <div className='quiz-buttons'>
+          <button className='quiz-button pink'>23</button>
+          <button className='quiz-button blue'>27</button>
+        </div>
+        <div className='quiz-buttons'>
+          <button className='quiz-button orange'>32</button>
+          <button className='quiz-button yellow'>28</button>
+        </div>
+      </div>
+
+      <div className='progress-bar-section'>
+        <div className='progress-bar-text'>
+          <div>00:23</div>
+          <div>35/70</div>
+        </div>
+        <div className='progress-bar-background'>
+          <div className='progress-bar-background bar'></div>
+        </div>
+      </div>
     </>
   )
 }
