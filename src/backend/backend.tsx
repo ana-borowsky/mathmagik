@@ -8,7 +8,9 @@ export enum OperationType{
 export type Question = {
     difficulty: number,
     operations: OperationType[], // +, -, *, /, %
-    generatedValues: Function[] 
+    generatedValues: Function[],
+    questionOperation: Function,
+    questionText: string,
     result: number
 }
 
