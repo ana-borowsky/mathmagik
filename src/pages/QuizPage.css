@@ -47,14 +47,14 @@
 .progress-bar-background{
   height: 12px;
   width: 330px;
-  background-color: #CDCDFF;
+  background-color: var(--color-light-purple);
   display: flex;
   border-radius: 7.5px;
 }
   
 .bar{
   width: 50%;
-  background-color: #5F57E0;;
+  background-color: var(--color-dark-purple);
 }  
 
 .quiz-button {
@@ -85,11 +85,11 @@
   height: 135px;
   width: 270px;
   background-color: white;
-  color: #5F57E0;
+  color: var(--color-dark-purple);
   border-radius: 20px;
   border-color: white;
   border-style: none;
-  filter: drop-shadow(6px 6px 0px #918FFF);
+  filter: drop-shadow(6px 6px 0px var(--color-purple));
   font-size: 48px;
   font-weight: bold;
   gap: 10px;
