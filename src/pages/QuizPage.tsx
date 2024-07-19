@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './QuizPage.css'
 import { useNavigate } from 'react-router-dom';
 
 function QuizPage() {
   const navigate = useNavigate();
-  const [count, setCount] = useState(0);
 
   return (
     <>
@@ -21,7 +20,7 @@ function QuizPage() {
       </div>
       <div className='quiz-buttons-section'>
         <div className='quiz-buttons'>
-          <button onClick={() => (setCount(count + 1))} className='quiz-button pink'>{count}</button>
+          <button className='quiz-button pink'>23</button>
           <button className='quiz-button blue'>27</button>
         </div>
         <div className='quiz-buttons'>
