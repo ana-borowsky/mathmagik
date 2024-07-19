@@ -1,6 +1,6 @@
 #root {
   height: 140%;
-  gap: 35px;
+  gap: 30px;
 }
 
 .question {
@@ -119,6 +119,11 @@
 
 .long {
   height: 80px;
+  width: 100%;
+}
+
+.question-rectangle {
+  height: 150px;
   width: 100%;
 }
 

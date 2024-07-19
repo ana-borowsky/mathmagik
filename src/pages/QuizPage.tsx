@@ -190,14 +190,12 @@ function QuizPageTest() {
         <img className='logo-quiz' src='mathmagik_logo.png' alt='Logotipo Mathmagik'/>
       </a>
       <h1>Questão</h1>
-      <div className="question">
-          <div className='rectangle long'>
-            <div className='pink'>7</div>
-            <div className='purple'>x</div>
-            <div className='yellow'>9</div>
-          </div>
-        </div>
       <div className='quiz-buttons-section'>
+        <div className='rectangle question-rectangle'>
+          <div className='pink'>7</div>
+          <div className='purple'>x</div>
+          <div className='yellow'>9</div>
+        </div>
         <div className='quiz-buttons'>
           <button className='quiz-button pink'>23</button>
           <button className='quiz-button blue'>27</button>
