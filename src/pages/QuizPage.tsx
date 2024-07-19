@@ -7,7 +7,7 @@ function QuizPage() {
 
   return (
     <>
-      {/* <a onClick={()=>(navigate('/main'))}>
+      <a onClick={()=>(navigate('/main'))}>
         <img className='logo-quiz' src='mathmagik_logo.png' alt='Logotipo Mathmagik'/>
       </a>
 
@@ -33,8 +33,7 @@ function QuizPage() {
         <div className='progress-bar-background'>
           <div className='progress-bar-background bar'></div>
         </div>
-      </div> */}
-      <WrongAnswersPage></WrongAnswersPage>
+      </div>
     </>
   )
 }
