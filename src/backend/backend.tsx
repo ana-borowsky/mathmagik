@@ -5,12 +5,19 @@ export enum OperationType{
     Division
 }
 
-export type Question = {
+export type QuestionTemplate = {
     difficulty: number,
     operations: OperationType[], // +, -, *, /, %
     generatedValues: Function[],
     questionOperation: Function,
     questionText: string,
+    result: number
+}
+
+export type Question = {
+    values: number[],
+    questionText: string,
+    options: number[],
     result: number
 }
 

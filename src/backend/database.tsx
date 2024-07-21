@@ -1,5 +1,5 @@
-import { Question } from "./backend";
+import { QuestionTemplate, Question } from "./backend";
 
-const questions = [
+const questionTemplates: QuestionTemplate[] = [
     
 ]
