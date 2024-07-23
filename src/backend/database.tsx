@@ -1,7 +1,7 @@
 import { QuestionTemplate, Question, OperationType } from "./backend";
 import { GetRandomValue } from "./util";
 
-//Template Array and Meta Data
+//Template Arrays
 const questionTemplates: QuestionTemplate[] = [
     {
     difficulty: 0,
@@ -10,6 +10,6 @@ const questionTemplates: QuestionTemplate[] = [
     questionOperation: function(){
         return this.generatedValues[0] + this.generatedValues[1];
     },
-    questionText: "Quanto é %1 + %2?" 
+    questionText: "%1 + %2" 
     }
 ]
