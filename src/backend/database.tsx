@@ -1,7 +1,7 @@
 import { QuestionTemplate, Question, OperationType } from "./backend";
 import { GetRandomValue } from "./util";
 
-//Template Arrays
+//Template Arrays   
 const questionTemplates: QuestionTemplate[] = [
     {
     difficulty: 0,
