@@ -1,9 +1,9 @@
 import React from 'react'
 import './QuizPage.css'
+import { GenerateQuestion, OperationType, QuestionTemplate } from '../backend/backend';
 import { useNavigate } from 'react-router-dom';
 
 function QuizPage() {
-  const navigate = useNavigate();
 
   return (
     <QuizDisplay/>

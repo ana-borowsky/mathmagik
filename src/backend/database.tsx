@@ -5,7 +5,7 @@ import { GetRandomValue } from "./util";
 const questionTemplates: QuestionTemplate[] = [
     {
     difficulty: 0,
-    operations: [OperationType.Plus], // +, -, *, /, %
+    operations: [OperationType.Sum], // +, -, *, /, %
     generatedValues: [GetRandomValue(0,100,1),GetRandomValue(0,100,1)],
     questionOperation: function(){
         return this.generatedValues[0] + this.generatedValues[1];
