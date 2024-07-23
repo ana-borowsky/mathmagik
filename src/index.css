@@ -15,6 +15,10 @@ html, body {
   height: 100%;
 }
 
+html {
+  font-size: 62.5%;
+}
+
 * {
   font-family: "Baloo Bhaijaan 2", sans-serif;
   font-optical-sizing: auto;
@@ -25,7 +29,7 @@ html, body {
 body {
   background-color: var(--color-medium-light-purple);
   background-image: url("../public/background_texture.png");
-  background-repeat:repeat; 
+  background-repeat:repeat;
   padding: 0px;
   margin: 0px;
   display: flex;
