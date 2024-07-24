@@ -34,12 +34,12 @@ function QuizDisplay({question} : QuizDIsplayInterface){
       </div>
       <div className='quiz-buttons-section'>
         <div className='quiz-buttons'>
-          <button className='quiz-button pink'>23</button>
-          <button className='quiz-button blue'>27</button>
+          <button className='quiz-button pink'>{question.options[0]}</button>
+          <button className='quiz-button blue'>{question.options[1]}</button>
         </div>
         <div className='quiz-buttons'>
-          <button className='quiz-button orange'>32</button>
-          <button className='quiz-button yellow'>28</button>
+          <button className='quiz-button orange'>{question.options[2]}</button>
+          <button className='quiz-button yellow'>{question.options[3]}</button>
         </div>
       </div>
 
