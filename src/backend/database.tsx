@@ -1,15 +1,23 @@
-import { QuestionTemplate, Question, OperationType } from "./backend";
+import { QuestionTemplate, OperationType , Question} from "./backend";
 import { GetRandomValue } from "./util";
 
-//Template Arrays   
-const questionTemplates: QuestionTemplate[] = [
-    {
-    difficulty: 0,
-    operations: [OperationType.Sum], // +, -, *, /, %
-    generatedValues: [GetRandomValue(0,100,1),GetRandomValue(0,100,1)],
-    questionOperation: function(){
-        return this.generatedValues[0] + this.generatedValues[1];
-    },
-    questionText: "%1 + %2" 
-    }
-]
+// Define the questionTemplates array
+export const questionTemplates: QuestionTemplate[] = [
+    new QuestionTemplate(
+        0,
+        [OperationType.Sum],
+        [
+            () => GetRandomValue(0, 100, 0),
+            () => GetRandomValue(0, 100, 0)
+        ],
+        (values: number[]) => 
+        (values[0] + values[1]), // Sum operation
+        "%1 + %2" // Format string for the question
+    )
+];
+
+export function GenerateQuestion(difficulty: number[], operations: OperationType[]): Question {
+    // Temporary implementation for debug purposes, function NOT finished!
+
+    return questionTemplates[0].ToQuestion();
+}

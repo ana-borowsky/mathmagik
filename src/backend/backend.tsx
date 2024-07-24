@@ -1,4 +1,4 @@
-export enum OperationType{
+export enum OperationType {
     Sum,
     Subtraction,
     Multiplication,
@@ -8,15 +8,15 @@ export enum OperationType{
 export class QuestionTemplate {
     difficulty: number;
     operations: OperationType[];
-    generatedValues: number[];
-    questionOperation: Function;
+    generatedValues: (() => number)[];
+    questionOperation: (values: number[]) => number;
     questionText: string;
 
     constructor(
         difficulty: number,
         operations: OperationType[],
-        generatedValues: number[],
-        questionOperation: Function,
+        generatedValues: (() => number)[],
+        questionOperation: (values: number[]) => number,
         questionText: string
     ) {
         this.difficulty = difficulty;
@@ -25,16 +25,38 @@ export class QuestionTemplate {
         this.questionOperation = questionOperation;
         this.questionText = questionText;
     }
+
+    // Methods
+    ToQuestion(): Question {
+        let chosenValues: number[] = []
+
+        this.generatedValues.forEach(element => {
+            chosenValues.push(element());
+        });
+
+        let result = this.questionOperation(chosenValues);
+
+        let temp: Question = new Question(chosenValues, this.questionText, [0, 1, 2, 3], result);
+        temp.questionText = this.questionText;
+        return temp;
+    }
 }
 
-export type Question = {
-    values: number[],
-    questionText: string,
-    options: number[],
-    result: number
-}
+export class Question {
+    questionValues: number[];
+    questionText: string;
+    options: number[];
+    result: number;
 
-export function GenerateQuestion(difficulty: number[], operations: OperationType[]){
-    //Temporary implementation for debug purposes, function NOT finished!
-    return 
+    constructor(
+        questionValues: number[],
+        questionText: string,
+        options: number[],
+        result: number
+    ) {
+        this.questionValues = questionValues;
+        this.questionText = questionText;
+        this.options = options;
+        this.result = result;
+    }
 }

@@ -1,16 +1,23 @@
 import React from 'react'
 import './QuizPage.css'
-import { GenerateQuestion, OperationType, QuestionTemplate } from '../backend/backend';
+import {OperationType, QuestionTemplate, Question } from '../backend/backend';
+import { GenerateQuestion } from '../backend/database';
 import { useNavigate } from 'react-router-dom';
 
 function QuizPage() {
+  let currentQuestion = GenerateQuestion([0], [OperationType.Sum]);
 
   return (
-    <QuizDisplay/>
+    <QuizDisplay question={currentQuestion}/>
   )
 }
 
-function QuizDisplay(){
+
+interface QuizDIsplayInterface{
+  question: Question;
+}
+
+function QuizDisplay({question} : QuizDIsplayInterface){
   const navigate = useNavigate();
   return(
     <div>
@@ -20,9 +27,9 @@ function QuizDisplay(){
       <h1>Questão</h1>
       <div className='question'>
         <div className='rectangle question-rectangle'>
-          <div className='pink'>7</div>
-          <div className='purple'>x</div>
-          <div className='yellow'>9</div>
+          <div className='pink'>{question.questionValues[0]}</div>
+          <div className='purple'>+</div>
+          <div className='yellow'>{question.questionValues[1]}</div>
         </div>
       </div>
       <div className='quiz-buttons-section'>
