@@ -8,7 +8,7 @@ function SettingsPage() {
   return (
     <>
       <a onClick={()=>(navigate('/main'))}>
-        <img className='logo logo-settings' src='mathmagik_logo.png' alt='Logotipo Mathmagik'/>
+        <img className='logo logo-settings' src='mathmagik_logo.svg' alt='Logotipo Mathmagik'/>
       </a>
       <div className='settings'>
         <div className='title'>
@@ -18,11 +18,15 @@ function SettingsPage() {
           <h2>Timer:</h2>
           <div className='timer'>
             <button className='round-btn minus'>
-              <img src='subtraction_blue.png' alt='subtração'/>
+              <div className='signal'>
+              -
+              </div>
             </button>
             <div className='timer-rectangle purple'>30s</div>
             <button className='round-btn sum'>
-              <img src='sum_blue.png' alt='adição'/>
+              <div className='signal'>
+              +
+              </div>
             </button>
           </div>
         </div>
@@ -54,19 +58,29 @@ function SettingsPage() {
           <h2>Tipos de questões:</h2>
           <div className='question-types'>
             <button className='round-btn types'>
-              <img src='subtraction_green.png' alt='contas de subtração'/>
+              <div className='signal-small green'>
+              -
+              </div>
             </button>
             <button className='round-btn types'>
-              <img src='division_purple.png' alt='contas de divisão'/>
+              <div className='signal purple'>
+              ÷
+              </div>
             </button>
             <button className='round-btn types'>
-              <img src='sum_blue.png' alt='contas de soma'/>
+              <div className='signal pink'>
+                +
+              </div>
             </button>
             <button className='round-btn types'>
-              <img src='multiplication_pink.png' alt='contas de multiplicação'/>
+              <div className='signal blue'>
+              ×
+              </div>
             </button>
             <button className='round-btn types'>
-              <img src='percentage_yellow.png' alt='contas de porcentagem'/>
+              <div className='signal-big yellow'>
+              %
+              </div>
             </button>
           </div>
         </div>

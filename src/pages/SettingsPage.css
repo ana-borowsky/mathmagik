@@ -79,12 +79,27 @@
   align-items: center;
   justify-content: center;
   filter: drop-shadow(0.6rem 0.6rem 0 var(--color-dark-purple));
+  font-size: 3.8rem;
 }
 
 .round-btn:active {
   transform: translateY(0.3rem);
   filter: drop-shadow(0.3rem 0.3rem 0 var(--color-dark-purple));
   margin: 0px;
+}
+
+.signal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signal-big {
+  font-size: 3rem;
+}
+
+.signal-small {
+  font-size: 4rem;
 }
 
 .question-types {

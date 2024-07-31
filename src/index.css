@@ -8,6 +8,7 @@
   --color-blue: #58B2FF;
   --color-yellow: #FFD371;
   --color-pink: #F59CED;
+  --color-green: #7AE274;
 }
 
 html, body {
@@ -28,7 +29,7 @@ html {
 
 body {
   background-color: var(--color-medium-light-purple);
-  background-image: url("../public/background_texture.png");
+  background-image: url("../public/background_texture.svg");
   background-repeat:repeat;
   padding: 0px;
   margin: 0px;
@@ -102,6 +103,11 @@ button:active {
 .purple {
   color: var(--color-medium-light-purple);
 }
+
+.green {
+  color: var(--color-green);
+}
+
 
 .points {
   display: flex;

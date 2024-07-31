@@ -12,7 +12,6 @@ function QuizPage() {
   )
 }
 
-
 interface QuizDIsplayInterface{
   question: Question;
 }
@@ -20,9 +19,9 @@ interface QuizDIsplayInterface{
 function QuizDisplay({question} : QuizDIsplayInterface){
   const navigate = useNavigate();
   return(
-    <div>
+    <div className="quiz-container">
       <a onClick={()=>(navigate('/main'))}>
-        <img className='logo-quiz' src='mathmagik_logo.png' alt='Logotipo Mathmagik'/>
+        <img className='logo-quiz' src='mathmagik_logo.svg' alt='Logotipo Mathmagik'/>
       </a>
       <h1>Questão</h1>
       <div className='question'>
@@ -62,7 +61,7 @@ function ScoreDisplay() {
   return (
     <div>
       <a onClick={()=>(navigate('/main'))}>
-        <img className='logo-score' src='mathmagik_logo.png' alt='Logotipo Mathmagik'/>
+        <img className='logo-score' src='mathmagik_logo.svg' alt='Logotipo Mathmagik'/>
       </a>
       <div className='score-title'>
         <img src='Star.png' alt='Estrela'/>
@@ -118,7 +117,7 @@ function WrongAnswerDisplay() {
   return (
     <div>
       <a onClick={()=>(navigate('/main'))}>
-        <img className='logo-score' src='mathmagik_logo.png' alt='Logotipo Mathmagik'/>
+        <img className='logo-score' src='mathmagik_logo.svg' alt='Logotipo Mathmagik'/>
       </a>
       <div className='score-title'>
         <img src='Star.png' alt='Estrela'/>

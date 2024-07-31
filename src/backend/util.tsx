@@ -1,4 +1,4 @@
-export function GenerateLotteryTickets(possibleValues: number[], selectionSize:number = 1){
+export function GenerateLotteryTickets(possibleValues: number[], selectionSize: number = 1){
 
 }
 
