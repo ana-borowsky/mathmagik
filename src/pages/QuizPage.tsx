@@ -1,31 +1,44 @@
 import React from 'react'
 import './QuizPage.css'
+import {OperationType, QuestionTemplate, Question } from '../backend/backend';
+import { GenerateQuestion } from '../backend/database';
 import { useNavigate } from 'react-router-dom';
 
 function QuizPage() {
-  const navigate = useNavigate();
+  let currentQuestion = GenerateQuestion([0], [OperationType.Sum]);
 
   return (
-    <>
+    <QuizDisplay question={currentQuestion}/>
+  )
+}
+
+interface QuizDIsplayInterface{
+  question: Question;
+}
+
+function QuizDisplay({question} : QuizDIsplayInterface){
+  const navigate = useNavigate();
+  return(
+    <div className="quiz-container">
       <a onClick={()=>(navigate('/main'))}>
-        <img className='logo-quiz' src='mathmagik_logo.png' alt='Logotipo Mathmagik'/>
+        <img className='logo-quiz' src='mathmagik_logo.svg' alt='Logotipo Mathmagik'/>
       </a>
       <h1>Questão</h1>
       <div className='question'>
         <div className='rectangle question-rectangle'>
-          <div className='pink'>7</div>
-          <div className='purple'>x</div>
-          <div className='yellow'>9</div>
+          <div className='pink'>{question.questionValues[0]}</div>
+          <div className='purple'>+</div>
+          <div className='yellow'>{question.questionValues[1]}</div>
         </div>
       </div>
       <div className='quiz-buttons-section'>
         <div className='quiz-buttons'>
-          <button className='quiz-button pink'>23</button>
-          <button className='quiz-button blue'>27</button>
+          <button className='quiz-button pink'>{question.options[0]}</button>
+          <button className='quiz-button blue'>{question.options[1]}</button>
         </div>
         <div className='quiz-buttons'>
-          <button className='quiz-button orange'>32</button>
-          <button className='quiz-button yellow'>28</button>
+          <button className='quiz-button orange'>{question.options[2]}</button>
+          <button className='quiz-button yellow'>{question.options[3]}</button>
         </div>
       </div>
 
@@ -38,17 +51,17 @@ function QuizPage() {
           <div className='progress-bar-background bar'></div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
-function ScorePage() {
+function ScoreDisplay() {
   const navigate = useNavigate();
 
   return (
-    <>
+    <div>
       <a onClick={()=>(navigate('/main'))}>
-        <img className='logo-score' src='mathmagik_logo.png' alt='Logotipo Mathmagik'/>
+        <img className='logo-score' src='mathmagik_logo.svg' alt='Logotipo Mathmagik'/>
       </a>
       <div className='score-title'>
         <img src='Star.png' alt='Estrela'/>
@@ -94,17 +107,17 @@ function ScorePage() {
         <button className='button-std' onClick={()=>(navigate('/quiz'))}>ERROS</button>
         <button className='button-std' onClick={()=>(navigate('/quiz'))}>REPLAY</button>
       </div>
-    </>
+    </div>
   )
 }
 
-function WrongAnswersPage() {
+function WrongAnswerDisplay() {
   const navigate = useNavigate();
 
   return (
-    <>
+    <div>
       <a onClick={()=>(navigate('/main'))}>
-        <img className='logo-score' src='mathmagik_logo.png' alt='Logotipo Mathmagik'/>
+        <img className='logo-score' src='mathmagik_logo.svg' alt='Logotipo Mathmagik'/>
       </a>
       <div className='score-title'>
         <img src='Star.png' alt='Estrela'/>
@@ -175,7 +188,7 @@ function WrongAnswersPage() {
         <button className='button-std' onClick={()=>(navigate('/quiz'))}>REPLAY</button>
       </div>
       <div className="gap"></div>
-    </>
+    </div>
   )
 }
 
