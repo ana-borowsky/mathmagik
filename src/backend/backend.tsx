@@ -1,3 +1,5 @@
+import { getRandomValue } from "./util";
+
 export enum OperationType {
     Sum,
     Subtraction,
@@ -36,11 +38,19 @@ export class QuestionTemplate {
 
         let result = this.questionOperation(chosenValues);
 
-        let temp: Question = new Question(chosenValues, this.questionText, [0, 1, 2, 3], result);
+        let temp: Question = new Question(chosenValues, this.questionText, this.generateOptions(result), result);
         temp.questionText = this.questionText;
         return temp;
     }
+
+    generateOptions(result: number) {
+        // const getRandomInt = (max: number) => Math.floor(Math.random() * max);
+
+        return  [result, getRandomValue(1, 200, 0), getRandomValue(1, 200, 0), getRandomValue(1, 200, 0)];
+    }
 }
+
+
 
 export class Question {
     questionValues: number[];

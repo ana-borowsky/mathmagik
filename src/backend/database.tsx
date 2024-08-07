@@ -1,5 +1,5 @@
 import { QuestionTemplate, OperationType , Question} from "./backend";
-import { GetRandomValue } from "./util";
+import { getRandomValue } from "./util";
 
 // Define the questionTemplates array
 export const questionTemplates: QuestionTemplate[] = [
@@ -7,8 +7,8 @@ export const questionTemplates: QuestionTemplate[] = [
         0,
         [OperationType.Sum],
         [
-            () => GetRandomValue(0, 100, 0),
-            () => GetRandomValue(0, 100, 0)
+            () => getRandomValue(0, 100, 0),
+            () => getRandomValue(0, 100, 0)
         ],
         (values: number[]) => 
         (values[0] + values[1]), // Sum operation
