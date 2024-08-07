@@ -1,4 +1,6 @@
 import { getRandomValue } from "./util";
+import { shuffle } from "./util";
+
 
 export enum OperationType {
     Sum,
@@ -46,7 +48,7 @@ export class QuestionTemplate {
     generateOptions(result: number) {
         // const getRandomInt = (max: number) => Math.floor(Math.random() * max);
 
-        return  [result, getRandomValue(1, 200, 0), getRandomValue(1, 200, 0), getRandomValue(1, 200, 0)];
+        return  shuffle([result, getRandomValue(1, 200, 0), getRandomValue(1, 200, 0), getRandomValue(1, 200, 0)]);
     }
 }
 

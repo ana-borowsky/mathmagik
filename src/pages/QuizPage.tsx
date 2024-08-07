@@ -18,6 +18,16 @@ interface QuizDIsplayInterface{
 
 function QuizDisplay({question} : QuizDIsplayInterface){
   const navigate = useNavigate();
+
+  function checkAnswer(option: number) {
+    
+    if (option === question.result) {
+        console.log("Acertou!", option);
+    } else {
+        console.log("Errou!")
+    }
+  }
+
   return(
     <div className="quiz-container">
       <a onClick={()=>(navigate('/main'))}>
@@ -33,12 +43,12 @@ function QuizDisplay({question} : QuizDIsplayInterface){
       </div>
       <div className='quiz-buttons-section'>
         <div className='quiz-buttons'>
-          <button className='quiz-button pink'>{question.options[0]}</button>
-          <button className='quiz-button blue'>{question.options[1]}</button>
+          <button onClick={() => checkAnswer(question.options[0])} className='quiz-button pink'>{question.options[0]}</button>
+          <button onClick={() => checkAnswer(question.options[1])}  className='quiz-button blue'>{question.options[1]}</button>
         </div>
         <div className='quiz-buttons'>
-          <button className='quiz-button orange'>{question.options[2]}</button>
-          <button className='quiz-button yellow'>{question.options[3]}</button>
+          <button onClick={() => checkAnswer(question.options[2])} className='quiz-button orange'>{question.options[2]}</button>
+          <button onClick={() => checkAnswer(question.options[3])} className='quiz-button yellow'>{question.options[3]}</button>
         </div>
       </div>
 
