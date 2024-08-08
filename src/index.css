@@ -109,7 +109,6 @@ button:active {
   color: var(--color-green);
 }
 
-
 .points {
   display: flex;
   flex-direction: column;

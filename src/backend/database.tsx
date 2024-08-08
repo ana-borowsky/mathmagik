@@ -13,6 +13,7 @@ export const questionTemplates: QuestionTemplate[] = [
         (values: number[]) => 
         (values[0] + values[1]), // Sum operation
         "%1 + %2" // Format string for the question
+
     )
 ];
 

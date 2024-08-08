@@ -1,31 +1,70 @@
-import React from 'react'
-import './QuizPage.css'
-import {OperationType, QuestionTemplate, Question } from '../backend/backend';
+import { useState, useEffect } from 'react';
+import './QuizPage.css';
+import { OperationType, QuestionTemplate, Question } from '../backend/backend';
 import { GenerateQuestion } from '../backend/database';
 import { useNavigate } from 'react-router-dom';
+import { tsParticles } from '@tsparticles/engine';
+import { loadConfettiPreset } from '@tsparticles/preset-confetti';
 
 function QuizPage() {
-  let currentQuestion = GenerateQuestion([0], [OperationType.Sum]);
+  let initialQuestion = GenerateQuestion([0], [OperationType.Sum]);
+  const [currentQuestion, setCurrentQuestion] = useState(initialQuestion)
+
+  const handleQuestionDone = () => {
+    let currentQuestion = GenerateQuestion([0], [OperationType.Sum]);
+    setCurrentQuestion(currentQuestion)
+  }
 
   return (
-    <QuizDisplay question={currentQuestion}/>
+    <QuizDisplay question={currentQuestion} onQuestionDone={handleQuestionDone}/>
   )
 }
 
-interface QuizDIsplayInterface{
+interface Props {
   question: Question;
+  onQuestionDone: () => void;
 }
 
-function QuizDisplay({question} : QuizDIsplayInterface){
-  const navigate = useNavigate();
+enum QuestionState {
+  Unanswered,
+  Correct,
+  Wrong
+}
 
-  function checkAnswer(option: number) {
-    
+function QuizDisplay({question, onQuestionDone} : Props) {
+  const navigate = useNavigate();
+  const [questionValidation, setQuestionValidation] = useState(QuestionState.Unanswered);
+  
+  useEffect(() => {
+    setQuestionValidation(QuestionState.Unanswered)
+  }, [question])
+
+  async function checkAnswer(option: number) {
     if (option === question.result) {
-        console.log("Acertou!", option);
+      setQuestionValidation(QuestionState.Correct);
+
+      await loadConfettiPreset(tsParticles);
+      tsParticles.load({
+        id: "tsparticles",
+        options: {
+          preset: "confetti",
+          particleCount: 100,
+          spread: 70,
+          particles: {
+            size: {
+              value: 8,
+            },
+          }
+        },
+      });
+
+      setTimeout(() => {
+        onQuestionDone()
+      }, 1500)
     } else {
-        console.log("Errou!")
-    }
+      setQuestionValidation(QuestionState.Wrong);
+    } 
+    
   }
 
   return(
@@ -55,7 +94,7 @@ function QuizDisplay({question} : QuizDIsplayInterface){
       <div className='progress-bar-section'>
         <div className='progress-bar-text'>
           <div>00:23</div>
-          <div>35/70</div>
+          <div>1/90</div>
         </div>
         <div className='progress-bar-background'>
           <div className='progress-bar-background bar'></div>
@@ -69,7 +108,7 @@ function ScoreDisplay() {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className="quiz-container">
       <a onClick={()=>(navigate('/main'))}>
         <img className='logo-score' src='mathmagik_logo.svg' alt='Logotipo Mathmagik'/>
       </a>
