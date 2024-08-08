@@ -47,7 +47,7 @@ export class QuestionTemplate {
 
     generateOptions(result: number) {
 
-        return  shuffle([result, getRandomValue(1, result + 10, 0), getRandomValue(1, result - 10, 0), getRandomValue(1, result - 5, 0)]);
+        return  shuffle([result, getRandomValue(0.8 * result, result + 0.1 * result, 0), getRandomValue(0.9 * result, result + 0.3 * result, 0), getRandomValue(1.1 * result, result + 0.2 * result, 0)]);
     }
 }
 
