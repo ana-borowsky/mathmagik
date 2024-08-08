@@ -50,11 +50,11 @@ function QuizDisplay({question, onQuestionDone} : Props) {
           }
         },
       });
-
-      setTimeout(() => {
-        onQuestionDone()
-      }, 1500)
     }
+
+    setTimeout(() => {
+      onQuestionDone()
+    }, 1500)
   }
 
   return(
