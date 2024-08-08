@@ -33,16 +33,9 @@ enum QuestionState {
 
 function QuizDisplay({question, onQuestionDone} : Props) {
   const navigate = useNavigate();
-  const [questionValidation, setQuestionValidation] = useState(QuestionState.Unanswered);
-  
-  useEffect(() => {
-    setQuestionValidation(QuestionState.Unanswered)
-  }, [question])
 
   async function checkAnswer(option: number) {
     if (option === question.result) {
-      setQuestionValidation(QuestionState.Correct);
-
       await loadConfettiPreset(tsParticles);
       tsParticles.load({
         id: "tsparticles",
@@ -61,10 +54,7 @@ function QuizDisplay({question, onQuestionDone} : Props) {
       setTimeout(() => {
         onQuestionDone()
       }, 1500)
-    } else {
-      setQuestionValidation(QuestionState.Wrong);
-    } 
-    
+    }
   }
 
   return(
