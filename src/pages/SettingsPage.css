@@ -1,6 +1,10 @@
+body {
+  height: 110%;
+}
+
 .logo-settings {
   cursor: pointer;
-  margin: 6rem 0 0 1rem;
+  margin: 5rem 0 0 0;
 }
 
 .title {
@@ -13,7 +17,7 @@
   min-width: 37rem;
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 10rem;
 }
 
 .setting {
@@ -23,6 +27,14 @@
   justify-content: center;
   flex-direction: column;
   gap: 2rem;
+}
+
+.settings-title {
+  width: 100%;
+  display: flex;
+  align-items:  first baseline;
+  gap: 8rem;
+
 }
 
 .difficulty-text {
@@ -56,15 +68,17 @@
   width: 100%;
 }
 
-.timer-rectangle {
+.settings-rectangle  {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 9.5rem;
-  height: 5.5rem;
+  width: 8rem;
+  height: 4.5rem;
   background-color: white;
-  border-radius: 2rem;
-  font-size: 2.4rem;
+  border-radius: 1.5rem;
+  font-size: 3rem;
+  color: var(--color-dark-purple);
+  filter: drop-shadow(0.6rem 0.6rem 0 var(--color-purple));
 }
 
 .round-btn {
@@ -85,6 +99,13 @@
   margin: 0rem;
 }
 
+/* .types {
+  height: 6rem;
+  width: 6rem;
+  border-radius: 100%;
+
+} */
+
 .signal {
   display: flex;
   align-items: center;
@@ -100,10 +121,9 @@
 }
 
 .question-types {
-  width: 37rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 4rem;
 }
 

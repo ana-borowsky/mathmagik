@@ -14,8 +14,8 @@ function SettingsPage() {
     const storageDifficulty = localStorage.getItem("difficulty")!;
     const storageQuestionQuantity = localStorage.getItem("questionQuantity")!;
     setTimer(parseInt(storageTime));
-    setTimer(parseInt(storageDifficulty));
-    setTimer(parseInt(storageQuestionQuantity));
+    setDifficulty(parseInt(storageDifficulty));
+    setQuestionQuantity(parseInt(storageQuestionQuantity));
   }, []);  
 
   function decreaseTime() {
@@ -42,23 +42,28 @@ function SettingsPage() {
           <h1>Opções</h1>
         </div>
         <div className='setting'>
-          <h2>Timer:</h2>
-          <div className='timer'>
-            <button className='round-btn minus'>
-              <div onClick={() => decreaseTime()} className='signal'>
-              -
+          <div className='settings-title'>
+            <h2>Timer:</h2>
+            <div className='timer'>
+              <button className='round-btn minus'>
+                <div onClick={() => decreaseTime()} className='signal'>
+                -
+                </div>
+              </button>
+              <div className='settings-rectangle purple'>{timer}s</div>
+                <button className='round-btn sum'>
+                  <div onClick={() => increaseTime()} className='signal'>
+                  +
+                  </div>
+                </button>
               </div>
-            </button>
-            <div className='timer-rectangle purple'>{timer}s</div>
-            <button className='round-btn sum'>
-              <div onClick={() => increaseTime()} className='signal'>
-              +
-              </div>
-            </button>
+            </div>
           </div>
-        </div>
         <div className='setting'>
-          <h2>Dificuldade:</h2>
+          <div className='settings-title'>
+            <h2>Dificuldade:</h2> 
+            <div className='settings-rectangle purple'>{difficulty}</div>
+          </div>
           <div className='range'>
             <div className='difficulty-text'>
               <div className='value left'>0</div>
@@ -70,40 +75,47 @@ function SettingsPage() {
           </div>
         </div>
         <div className='setting'>
-          <h2>Quantidade de questões:</h2>
+          <div className='settings-title'>
+            <h2>Quantidade de questões:</h2>
+            <div className='settings-rectangle purple'>{questionQuantity}</div>
+          </div>
           <div className='range'>
             <div className='difficulty-text'>
               <div className='value left'>0</div>
               <div className='value right'>200</div>
             </div>
             <div className='field'>
-            <input id='qtd-questions' type='range' min='0' max='200' value={questionQuantity} onChange={(e) => setQuestionQuantity(parseInt(e.target.value))}/>
+              <input id='qtd-questions' type='range' min='0' max='200' value={questionQuantity} onChange={(e) => setQuestionQuantity(parseInt(e.target.value))}/>
             </div>
           </div>
         </div>
         <div className='setting'>
-          <h2>Tipos de questões:</h2>
-          <div className='question-types'>
-            <button className='round-btn types'>
-              <div className='signal-small green'>
-              -
+          <div className='settings-title'>
+            <h2>Questões:</h2>
+
+            <div className='question-types'>
+            
+              <button className='round-btn types'>
+                <div className='signal-small green'>
+                -
+                </div>
+              </button>
+              <button className='round-btn types'>
+                <div className='signal purple'>
+                ÷
+                </div>
+              </button>
+              <button className='round-btn types'>
+                <div className='signal pink'>
+                +
+                </div>
+              </button>
+              <button className='round-btn types'>
+                <div className='signal blue'>
+                ×
+                </div>
+              </button>
               </div>
-            </button>
-            <button className='round-btn types'>
-              <div className='signal purple'>
-              ÷
-              </div>
-            </button>
-            <button className='round-btn types'>
-              <div className='signal pink'>
-              +
-              </div>
-            </button>
-            <button className='round-btn types'>
-              <div className='signal blue'>
-              ×
-              </div>
-            </button>
           </div>
         </div>
       </div>
