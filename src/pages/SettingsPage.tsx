@@ -8,6 +8,7 @@ function SettingsPage() {
 
   const [timer, setTimer] = useState(20);
   const [difficulty, setDifficulty] = useState(2);
+  const [questionQuantity, setQuestionQuantity] = useState(20);
 
   function decreaseTime() {
     setTimer(timer - 1);
@@ -18,9 +19,9 @@ function SettingsPage() {
   }
 
   function save() {
-    console.log(difficulty)
     localStorage.setItem("timer", (timer).toString());
     localStorage.setItem("difficulty", (difficulty).toString());
+    localStorage.setItem("questionQuantity", (questionQuantity).toString());
   }
 
   return (
@@ -68,7 +69,7 @@ function SettingsPage() {
               <div className='value right'>200</div>
             </div>
             <div className='field'>
-              <input type='range' min='0' max='200'></input>
+            <input id='qtd-questions' type='range' min='0' max='200' value={questionQuantity} onChange={(e) => setQuestionQuantity(parseInt(e.target.value))}/>
             </div>
           </div>
         </div>
