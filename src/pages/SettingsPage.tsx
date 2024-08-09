@@ -5,10 +5,18 @@ import { useNavigate } from 'react-router-dom';
 
 function SettingsPage() {
   const navigate = useNavigate();
-
   const [timer, setTimer] = useState(20);
   const [difficulty, setDifficulty] = useState(2);
   const [questionQuantity, setQuestionQuantity] = useState(20);
+
+  useEffect(() => {
+    const storageTime = localStorage.getItem("timer")!; //solve null possibility
+    const storageDifficulty = localStorage.getItem("difficulty")!;
+    const storageQuestionQuantity = localStorage.getItem("questionQuantity")!;
+    setTimer(parseInt(storageTime));
+    setTimer(parseInt(storageDifficulty));
+    setTimer(parseInt(storageQuestionQuantity));
+  }, []);  
 
   function decreaseTime() {
     setTimer(timer - 1);
