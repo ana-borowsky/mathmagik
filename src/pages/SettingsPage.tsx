@@ -16,7 +16,7 @@ function SettingsPage() {
     setTimer(parseInt(storageTime));
     setDifficulty(parseInt(storageDifficulty));
     setQuestionQuantity(parseInt(storageQuestionQuantity));
-  }, []);  
+  }, []);
 
   function decreaseTime() {
     setTimer(timer - 1);
@@ -34,10 +34,10 @@ function SettingsPage() {
 
   return (
     <>
-      <a onClick={()=>(navigate('/main'))}>
-        <img className='logo logo-settings' src='mathmagik_logo.svg' alt='Logotipo Mathmagik'/>
-      </a>
       <div className='settings'>
+        <a onClick={() => (navigate('/main'))}>
+          <img className='logo logo-settings' src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
+        </a>
         <div className='title'>
           <h1>Opções</h1>
         </div>
@@ -47,22 +47,22 @@ function SettingsPage() {
             <div className='timer'>
               <button className='round-btn minus'>
                 <div onClick={() => decreaseTime()} className='signal'>
-                -
+                  -
                 </div>
               </button>
-              <div className='settings-rectangle purple'>{timer}s</div>
-                <button className='round-btn sum'>
-                  <div onClick={() => increaseTime()} className='signal'>
+              <div className='settings-rectangle blue'>{timer}s</div>
+              <button className='round-btn sum'>
+                <div onClick={() => increaseTime()} className='signal'>
                   +
-                  </div>
-                </button>
-              </div>
+                </div>
+              </button>
             </div>
           </div>
+        </div>
         <div className='setting'>
           <div className='settings-title'>
-            <h2>Dificuldade:</h2> 
-            <div className='settings-rectangle purple'>{difficulty}</div>
+            <h2>Dificuldade:</h2>
+            <div className='settings-rectangle orange'>{difficulty}</div>
           </div>
           <div className='range'>
             <div className='difficulty-text'>
@@ -70,14 +70,14 @@ function SettingsPage() {
               <div className='value right'>5</div>
             </div>
             <div className='field'>
-              <input id='difficulty' type='range' min='0' max='5' value={difficulty} onChange={(e) => setDifficulty(parseInt(e.target.value))}/>
+              <input id='difficulty' type='range' min='0' max='5' value={difficulty} onChange={(e) => setDifficulty(parseInt(e.target.value))} />
             </div>
           </div>
         </div>
         <div className='setting'>
           <div className='settings-title'>
             <h2>Quantidade de questões:</h2>
-            <div className='settings-rectangle purple'>{questionQuantity}</div>
+            <div className='settings-rectangle pink'>{questionQuantity}</div>
           </div>
           <div className='range'>
             <div className='difficulty-text'>
@@ -85,7 +85,7 @@ function SettingsPage() {
               <div className='value right'>200</div>
             </div>
             <div className='field'>
-              <input id='qtd-questions' type='range' min='0' max='200' value={questionQuantity} onChange={(e) => setQuestionQuantity(parseInt(e.target.value))}/>
+              <input id='qtd-questions' type='range' min='0' max='200' value={questionQuantity} onChange={(e) => setQuestionQuantity(parseInt(e.target.value))} />
             </div>
           </div>
         </div>
@@ -93,38 +93,35 @@ function SettingsPage() {
           <div className='settings-title'>
             <h2>Questões:</h2>
 
-            <div className='question-types'>
-            
-              <button className='round-btn types'>
-                <div className='signal-small green'>
+            <button className='round-btn types'>
+              <div className='signal-small green'>
                 -
-                </div>
-              </button>
-              <button className='round-btn types'>
-                <div className='signal purple'>
-                ÷
-                </div>
-              </button>
-              <button className='round-btn types'>
-                <div className='signal pink'>
-                +
-                </div>
-              </button>
-              <button className='round-btn types'>
-                <div className='signal blue'>
-                ×
-                </div>
-              </button>
               </div>
+            </button>
+            <button className='round-btn types'>
+              <div className='signal purple'>
+                ÷
+              </div>
+            </button>
+            <button className='round-btn types'>
+              <div className='signal pink'>
+                +
+              </div>
+            </button>
+            <button className='round-btn types'>
+              <div className='signal blue'>
+                ×
+              </div>
+            </button>
+
           </div>
         </div>
+
+        <div className='buttons'>
+          <button className='button-std' onClick={() => (navigate('/main'))}>MENU</button>
+          <button className='button-std' onClick={save}>SALVAR</button>
+        </div>
       </div>
-      <div className='gap'></div>
-      <div className='buttons'>
-        <button className='button-std' onClick={()=>(navigate('/main'))}>MENU</button>
-        <button className='button-std' onClick={save}>SALVAR</button>
-      </div>
-      <div className='gap'></div>
     </>
   )
 }

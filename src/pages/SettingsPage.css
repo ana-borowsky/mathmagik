@@ -1,5 +1,10 @@
 body {
-  height: 110%;
+  height: 130%;
+}
+
+#root {
+  padding-top: 2rem;
+  padding-bottom: 5rem;
 }
 
 .logo-settings {
@@ -17,11 +22,13 @@ body {
   min-width: 37rem;
   display: flex;
   flex-direction: column;
-  gap: 10rem;
+  gap: 7rem;
+  align-items: center;
 }
 
 .setting {
   min-width: 37rem;
+  width: 100%;
   display: flex;
   align-items: first baseline;
   justify-content: center;
@@ -33,7 +40,7 @@ body {
   width: 100%;
   display: flex;
   align-items:  first baseline;
-  gap: 8rem;
+  gap: 3rem;
 
 }
 
@@ -73,18 +80,19 @@ body {
   align-items: center;
   justify-content: center;
   width: 8rem;
-  height: 4.5rem;
+  height: 5rem;
   background-color: white;
   border-radius: 1.5rem;
   font-size: 3rem;
-  color: var(--color-dark-purple);
   filter: drop-shadow(0.6rem 0.6rem 0 var(--color-purple));
+  padding: 0.5rem 0 0 0;
 }
 
 .round-btn {
-  height: 4rem;
-  width: 4rem;
-  border-radius: 2rem;
+  height: 4.5rem;
+  width: 4.5rem;
+  border-radius: 100%;
+  padding: 0.5rem 0 0 0;
   background-color: white;
   display: flex;
   align-items: center;
@@ -99,13 +107,6 @@ body {
   margin: 0rem;
 }
 
-/* .types {
-  height: 6rem;
-  width: 6rem;
-  border-radius: 100%;
-
-} */
-
 .signal {
   display: flex;
   align-items: center;
@@ -117,19 +118,7 @@ body {
 }
 
 .signal-small {
-  font-size: 4rem;
-}
-
-.question-types {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 4rem;
-}
-
-.gap {
-  min-height: 2rem;
-  width: 100%;
+  font-size: 3rem;
 }
 
 /*.round-btn types serve para quando inativar o tipo de questão, o botão ficar diferente.
