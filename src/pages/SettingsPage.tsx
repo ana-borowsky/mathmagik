@@ -9,11 +9,15 @@ function SettingsPage() {
   const [timer, setTimer] = useState(20);
 
   function decreaseTime() {
-    setTimer(timer - 1);
+    let currentTimer = timer - 1;
+    setTimer(currentTimer);
+    localStorage.setItem("timer", (currentTimer).toString());
   }
 
   function increaseTime() {
-    setTimer(timer + 1);
+    let currentTimer = timer + 1;
+    setTimer(currentTimer);
+    localStorage.setItem("timer", (currentTimer).toString());
   }
 
   return (
