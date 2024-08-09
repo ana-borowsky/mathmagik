@@ -1,9 +1,20 @@
 import React from 'react'
+import { useState, useEffect } from 'react';
 import './SettingsPage.css'
 import { useNavigate } from 'react-router-dom';
 
 function SettingsPage() {
   const navigate = useNavigate();
+
+  const [timer, setTimer] = useState(20);
+
+  function decreaseTime() {
+    setTimer(timer - 1);
+  }
+
+  function increaseTime() {
+    setTimer(timer + 1);
+  }
 
   return (
     <>
@@ -18,13 +29,13 @@ function SettingsPage() {
           <h2>Timer:</h2>
           <div className='timer'>
             <button className='round-btn minus'>
-              <div className='signal'>
+              <div onClick={() => decreaseTime()} className='signal'>
               -
               </div>
             </button>
-            <div className='timer-rectangle purple'>30s</div>
+            <div className='timer-rectangle purple'>{timer}s</div>
             <button className='round-btn sum'>
-              <div className='signal'>
+              <div onClick={() => increaseTime()} className='signal'>
               +
               </div>
             </button>
