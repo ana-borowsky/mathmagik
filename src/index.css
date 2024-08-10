@@ -119,13 +119,12 @@ button:active {
   display: flex;
   align-items: center;
   gap: 3rem;
-  margin-top: 0rem;
 }
 
 .button-std {
   font-size: 2rem;
-  height: 7rem;
-  width: 17rem;
+  height: 9rem;
+  width: 19.2rem;
   margin: 0rem;
 }
 
