@@ -58,40 +58,39 @@ function QuizDisplay({ question, onQuestionDone }: Props) {
   }
 
   return (
-    // <div className="quiz-container">
-    //   <a onClick={()=>(navigate('/main'))}>
-    //     <img className='logo-quiz' src='mathmagik_logo.svg' alt='Logotipo Mathmagik'/>
-    //   </a>
-    //   <h1>Questão</h1>
-    //   <div className='question'>
-    //     <div className='rectangle question-rectangle'>
-    //       <div className='pink'>{question.questionValues[0]}</div>
-    //       <div className='purple'>+</div>
-    //       <div className='yellow'>{question.questionValues[1]}</div>
-    //     </div>
-    //   </div>
-    //   <div className='quiz-buttons-section'>
-    //     <div className='quiz-buttons'>
-    //       <button onClick={() => checkAnswer(question.options[0])} className='quiz-button pink'>{question.options[0]}</button>
-    //       <button onClick={() => checkAnswer(question.options[1])}  className='quiz-button blue'>{question.options[1]}</button>
-    //     </div>
-    //     <div className='quiz-buttons'>
-    //       <button onClick={() => checkAnswer(question.options[2])} className='quiz-button orange'>{question.options[2]}</button>
-    //       <button onClick={() => checkAnswer(question.options[3])} className='quiz-button yellow'>{question.options[3]}</button>
-    //     </div>
-    //   </div>
+    <div className="quiz-container">
+      <a onClick={()=>(navigate('/main'))}>
+        <img className='logo-quiz' src='mathmagik_logo.svg' alt='Logotipo Mathmagik'/>
+      </a>
+      <h1>Questão</h1>
+      <div className='question'>
+        <div className='rectangle question-rectangle'>
+          <div className='pink'>{question.questionValues[0]}</div>
+          <div className='purple'>+</div>
+          <div className='yellow'>{question.questionValues[1]}</div>
+        </div>
+      </div>
+      <div className='quiz-buttons-section'>
+        <div className='quiz-buttons'>
+          <button onClick={() => checkAnswer(question.options[0])} className='quiz-button pink'>{question.options[0]}</button>
+          <button onClick={() => checkAnswer(question.options[1])}  className='quiz-button blue'>{question.options[1]}</button>
+        </div>
+        <div className='quiz-buttons'>
+          <button onClick={() => checkAnswer(question.options[2])} className='quiz-button orange'>{question.options[2]}</button>
+          <button onClick={() => checkAnswer(question.options[3])} className='quiz-button yellow'>{question.options[3]}</button>
+        </div>
+      </div>
 
-    //   <div className='progress-bar-section'>
-    //     <div className='progress-bar-text'>
-    //       <div>00:23</div>
-    //       <div>1/90</div>
-    //     </div>
-    //     <div className='progress-bar-background'>
-    //       <div className='progress-bar-background bar'></div>
-    //     </div>
-    //   </div>
-    // </div>
-    <WrongAnswerDisplay />
+      <div className='progress-bar-section'>
+        <div className='progress-bar-text'>
+          <div>00:23</div>
+          <div>1/90</div>
+        </div>
+        <div className='progress-bar-background'>
+          <div className='progress-bar-background bar'></div>
+        </div>
+      </div>
+    </div>
   )
 
 }
