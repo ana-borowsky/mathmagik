@@ -8,7 +8,7 @@ type ButtonName = 'subtraction' | 'division' | 'sum' | 'multiplication';
 function SettingsPage() {
   const navigate = useNavigate();
   const [timer, setTimer] = useState(20);
-  const [difficulty, setDifficulty] = useState(2);
+  const [difficulty, setDifficulty] = useState(3);
   const [questionQuantity, setQuestionQuantity] = useState(20);
   const [questionTypes, setQuestionTypes] = useState<Record<ButtonName, boolean>>({
     subtraction: false,
@@ -17,17 +17,17 @@ function SettingsPage() {
     multiplication: false
   });
 
- 
+
   const toggleButton = (buttonName: ButtonName) => {
     setQuestionTypes((prevState) => ({
       ...prevState,
-      [buttonName]: !prevState[buttonName], 
+      [buttonName]: !prevState[buttonName],
     }));
   };
 
   useEffect(() => {
-    const storageTime = localStorage.getItem("timer")!; //solve null possibility
-    const storageDifficulty = localStorage.getItem("difficulty")!;
+    const storageTime = localStorage.getItem("timer") || "20";
+    const storageDifficulty = localStorage.getItem("difficulty") || "3";
     const storageQuestionQuantity = localStorage.getItem("questionQuantity")!;
     const storageQuestionTypes = localStorage.getItem('questionTypes');
     setTimer(parseInt(storageTime));
@@ -36,14 +36,16 @@ function SettingsPage() {
     setQuestionTypes(storageQuestionTypes ? JSON.parse(storageQuestionTypes) : {
       subtraction: false,
       dividision: false,
-      sum: false,
+      sum: true,
       multiplication: false
     });
 
   }, []);
 
-  function decreaseTime() { //solve negative int possibility
-    setTimer(timer - 1);
+  function decreaseTime() {
+    if (timer > 0) {
+      setTimer(timer - 1);
+    }
   }
 
   function increaseTime() {
@@ -51,7 +53,9 @@ function SettingsPage() {
   }
 
   function decreaseDifficulty() {
-    setDifficulty(difficulty - 1);
+    if (difficulty > 1) {
+      setDifficulty(difficulty - 1);
+    }
   }
 
   function increaseDifficulty() {
@@ -89,14 +93,14 @@ function SettingsPage() {
         </div>
         <div className="settings-containter">
           <div className='settings-title'>
-            <h2>Timer:</h2>
+            <h2>Timer(s):</h2>
             <div className='timer'>
               <button className='round-btn minus dark-purple'>
                 <div onClick={() => decreaseTime()} className='signal'>
                   -
                 </div>
               </button>
-              <div className='settings-rectangle blue'>{timer}s</div>
+              <div className='settings-rectangle blue'>{timer == 0 ? "OFF" : timer}</div>
               <button className='round-btn sum dark-purple'>
                 <div onClick={() => increaseTime()} className='signal'>
                   +
@@ -139,7 +143,7 @@ function SettingsPage() {
           <div className='settings-title'>
             <h2>Questões:</h2>
             <button
-            className={`round-btn ${questionTypes.subtraction ? 'green' : 'inactive'}`}
+            className={`round-btn ${questionTypes.subtraction ? 'purple' : 'inactive'}`}
             onClick={() => toggleButton('subtraction')}
           >
               <div className='signal-small'>
@@ -147,7 +151,7 @@ function SettingsPage() {
               </div>
             </button>
             <button
-            className={`round-btn ${questionTypes.division ? 'blue' : 'inactive'}`}
+            className={`round-btn ${questionTypes.division ? 'green' : 'inactive'}`}
             onClick={() => toggleButton('division')}
           >
               <div className='signal'>
@@ -155,7 +159,7 @@ function SettingsPage() {
               </div>
             </button>
             <button
-            className={`round-btn ${questionTypes.sum ?  'pink' : 'inactive'}`}
+            className={`round-btn ${questionTypes.sum ?  'blue' : 'inactive'}`}
             onClick={() => toggleButton('sum')}
           >
               <div className='signal'>
@@ -163,7 +167,7 @@ function SettingsPage() {
               </div>
             </button>
             <button
-            className={`round-btn ${questionTypes.multiplication ? 'orange' : 'inactive'}`}
+            className={`round-btn ${questionTypes.multiplication ? 'pink' : 'inactive'}`}
             onClick={() => toggleButton('multiplication')}
           >
               <div className='signal'>
