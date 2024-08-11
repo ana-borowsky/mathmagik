@@ -9,11 +9,11 @@ import { loadConfettiPreset } from '@tsparticles/preset-confetti';
 function QuizPage() {
   let initialQuestion = GenerateQuestion([0], [OperationType.Sum]);
   const [currentQuestion, setCurrentQuestion] = useState(initialQuestion)
-
   const handleQuestionDone = () => {
     let currentQuestion = GenerateQuestion([0], [OperationType.Sum]);
     setCurrentQuestion(currentQuestion)
   }
+
 
   return (
     <QuizDisplay question={currentQuestion} onQuestionDone={handleQuestionDone} />
@@ -96,8 +96,41 @@ function QuizDisplay({ question, onQuestionDone }: Props) {
 
 }
 
+
+
 function ScoreDisplay() {
   const navigate = useNavigate();
+  const [totalTime, setTotalTime] = useState(10);
+  const [wrongQuestions, setWrongQuestions] = useState(10);
+  const [questionQuantity, setQuestionQuantity] = useState(20); //get from settings
+
+  const averageTimePerQuestion = totalTime / questionQuantity
+  const errorPercentage = wrongQuestions / questionQuantity * 100
+
+  // useEffect(() => {//get from settings
+  //   const storageTime = localStorage.getItem("timer") || "20";
+  //   const storageDifficulty = localStorage.getItem("difficulty") || "3";
+  //   const storageQuestionQuantity = localStorage.getItem("questionQuantity")!;
+  //   const storageQuestionTypes = localStorage.getItem('questionTypes');
+  //   setTimer(parseInt(storageTime));
+  //   setDifficulty(parseInt(storageDifficulty));
+  //   setQuestionQuantity(parseInt(storageQuestionQuantity));
+  //   setQuestionTypes(storageQuestionTypes ? JSON.parse(storageQuestionTypes) : {
+  //     subtraction: false,
+  //     dividision: false,
+  //     sum: true,
+  //     multiplication: false
+  //   });
+
+  // }, []);
+
+
+  // waiting for quiz implementation
+  // useEffect(() => { //gets the data from localStorage (that must be defined on quiz page)
+  //   const totalTime = parseInt(localStorage.getItem("totalTime") || "10"); //get the total time (seconds) spent by the user to finish the quiz. Remove the || and change it to ! once the code is implemented on the quiz page.
+  //   const storageQuestionQuantity = parseInt(localStorage.getItem("questionQuantity") || "70"); //get the quantity of questions this quiz had. Remove the || and change it to ! once the code is implemented on the quiz page.
+  //   const wrongQuestions = parseInt(localStorage.getItem('wrongQquestions') || "0"); //get the amount of errors the user commited, or zero if none
+  // }, []);
 
   return (
     <div className="score-container">
@@ -111,32 +144,29 @@ function ScoreDisplay() {
       </div>
       <div className='points'>
         <div className='rectangle long'>
-          <div className='pink'>52</div>
+          <div className='pink'>{wrongQuestions}</div>
           <div className='purple'>/</div>
-          <div className='yellow'>70</div>
+          <div className='yellow'>{questionQuantity}</div>
         </div>
-
         <div className='details'>
           <div className='rectangle small'>
-            <div className='text blue'>3:47</div>
+            <div className='text blue'>{totalTime}</div>
           </div>
           <div>
             <h2>Tempo total</h2>
           </div>
         </div>
-
         <div className='details'>
           <div className='rectangle small'>
-            <div className='text pink'>74%</div>
+            <div className='text pink'>{errorPercentage}%</div>
           </div>
           <div>
             <h2>de acertos</h2>
           </div>
         </div>
-
         <div className='details'>
           <div className='rectangle small'>
-            <div className='text orange'>32s</div>
+            <div className='text orange'>{averageTimePerQuestion}s</div>
           </div>
           <div>
             <h2>por questão</h2>
