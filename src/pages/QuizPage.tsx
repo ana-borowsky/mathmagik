@@ -9,11 +9,11 @@ import { loadConfettiPreset } from '@tsparticles/preset-confetti';
 function QuizPage() {
   let initialQuestion = GenerateQuestion([0], [OperationType.Sum]);
   const [currentQuestion, setCurrentQuestion] = useState(initialQuestion)
-
   const handleQuestionDone = () => {
     let currentQuestion = GenerateQuestion([0], [OperationType.Sum]);
     setCurrentQuestion(currentQuestion)
   }
+
 
   return (
     <QuizDisplay question={currentQuestion} onQuestionDone={handleQuestionDone} />
@@ -97,9 +97,19 @@ function QuizDisplay({ question, onQuestionDone }: Props) {
 
 function ScoreDisplay() {
   const navigate = useNavigate();
+  const [totalTime, setTotalTime] = useState(126); // Set useState to 0. 126 used for display purposes only. Total time must come from quiz page
+  const [wrongQuestions, setWrongQuestions] = useState(121); // Set useState to 0. 121 used for display purposes only. Wrog answers must come from quiz page
+  const [questionQuantity, setQuestionQuantity] = useState(20); //get from settings
+  const averageTimePerQuestion = totalTime / questionQuantity
+  const errorPercentage = wrongQuestions / questionQuantity * 100
+
+  useEffect(() => {
+    const storageQuestionQuantity = localStorage.getItem("questionQuantity")!;
+    setQuestionQuantity(parseInt(storageQuestionQuantity));
+  }, []);
 
   return (
-    <div className="quiz-container">
+    <div className="score-container">
       <a onClick={() => (navigate('/main'))}>
         <img className='logo-score' src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
       </a>
@@ -109,40 +119,36 @@ function ScoreDisplay() {
         <img src='Star.png' alt='Estrela' />
       </div>
       <div className='points'>
-        <div className='rectangle'>
-          <div className='pink'>52</div>
+        <div className='rectangle long'>
+          <div className='pink'>{wrongQuestions}</div>
           <div className='purple'>/</div>
-          <div className='yellow'>70</div>
+          <div className='yellow'>{questionQuantity}</div>
         </div>
-
         <div className='details'>
           <div className='rectangle small'>
-            <div className='text blue'>3:47</div>
+            <div className='text blue'>{Math.round(errorPercentage)}%</div>
+          </div>
+          <div>
+            <h2>de acerto</h2>
+          </div>
+        </div>
+        <div className='details'>
+          <div className='rectangle small'>
+            <div className='text orange'>{totalTime}</div>
           </div>
           <div>
             <h2>Tempo total</h2>
           </div>
         </div>
-
         <div className='details'>
           <div className='rectangle small'>
-            <div className='text pink'>74%</div>
-          </div>
-          <div>
-            <h2>de acertos</h2>
-          </div>
-        </div>
-
-        <div className='details'>
-          <div className='rectangle small'>
-            <div className='text orange'>32s</div>
+            <div className='text green'>{Math.round(averageTimePerQuestion)}s</div>
           </div>
           <div>
             <h2>por questão</h2>
           </div>
         </div>
       </div>
-      <div className="gap"></div>
       <div className="buttons">
         <button className='button-std' onClick={() => (navigate('/quiz'))}>ERROS</button>
         <button className='button-std' onClick={() => (navigate('/quiz'))}>REPLAY</button>
