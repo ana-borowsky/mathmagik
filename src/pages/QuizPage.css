@@ -20,12 +20,6 @@
   margin-bottom: 3rem;
 }
 
-.logo-score {
-  cursor: pointer;
-  margin: 6rem 0 0 0;
-  height: 15rem;
-}
-
 .logo-quiz {
   cursor: pointer;
   margin: 6rem 0 0 0;
@@ -98,11 +92,33 @@
 }
 
 /*********************/
+h1 {
+  height: 6rem;
+}
+
+.points {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.logo-score {
+  cursor: pointer;
+  margin: 0;
+}
 
 .score-title {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
+}
+
+.score-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7rem;
+  margin-bottom: 6rem;
 }
 
 .small {
