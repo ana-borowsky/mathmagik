@@ -16,7 +16,7 @@ function QuizPage() {
   }
 
   return (
-    <QuizDisplay question={currentQuestion} onQuestionDone={handleQuestionDone}/>
+    <QuizDisplay question={currentQuestion} onQuestionDone={handleQuestionDone} />
   )
 }
 
@@ -31,7 +31,7 @@ enum QuestionState {
   Wrong
 }
 
-function QuizDisplay({question, onQuestionDone} : Props) {
+function QuizDisplay({ question, onQuestionDone }: Props) {
   const navigate = useNavigate();
 
   async function checkAnswer(option: number) {
@@ -57,7 +57,7 @@ function QuizDisplay({question, onQuestionDone} : Props) {
     }, 1500)
   }
 
-  return(
+  return (
     <div className="quiz-container">
       <a onClick={()=>(navigate('/main'))}>
         <img className='logo-quiz' src='mathmagik_logo.svg' alt='Logotipo Mathmagik'/>
@@ -92,6 +92,7 @@ function QuizDisplay({question, onQuestionDone} : Props) {
       </div>
     </div>
   )
+
 }
 
 function ScoreDisplay() {
@@ -99,13 +100,13 @@ function ScoreDisplay() {
 
   return (
     <div className="quiz-container">
-      <a onClick={()=>(navigate('/main'))}>
-        <img className='logo-score' src='mathmagik_logo.svg' alt='Logotipo Mathmagik'/>
+      <a onClick={() => (navigate('/main'))}>
+        <img className='logo-score' src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
       </a>
       <div className='score-title'>
-        <img src='Star.png' alt='Estrela'/>
+        <img src='Star.png' alt='Estrela' />
         <h1>Pontuação</h1>
-        <img src='Star.png' alt='Estrela'/>
+        <img src='Star.png' alt='Estrela' />
       </div>
       <div className='points'>
         <div className='rectangle'>
@@ -143,8 +144,8 @@ function ScoreDisplay() {
       </div>
       <div className="gap"></div>
       <div className="buttons">
-        <button className='button-std' onClick={()=>(navigate('/quiz'))}>ERROS</button>
-        <button className='button-std' onClick={()=>(navigate('/quiz'))}>REPLAY</button>
+        <button className='button-std' onClick={() => (navigate('/quiz'))}>ERROS</button>
+        <button className='button-std' onClick={() => (navigate('/quiz'))}>REPLAY</button>
       </div>
     </div>
   )
@@ -154,16 +155,13 @@ function WrongAnswerDisplay() {
   const navigate = useNavigate();
 
   return (
-    <div>
-      <a onClick={()=>(navigate('/main'))}>
-        <img className='logo-score' src='mathmagik_logo.svg' alt='Logotipo Mathmagik'/>
+    <div className='container'>
+      <a onClick={() => (navigate('/main'))}>
+        <img className='wrongAnswersLogo' src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
       </a>
       <div className='score-title'>
-        <img src='Star.png' alt='Estrela'/>
         <h1>Erros: 4</h1>
-        <img src='Star.png' alt='Estrela'/>
       </div>
-      <div className="gap"></div>
       <div className='wrong-answers'>
         <div className="wrong-answer">
           <div className='rectangle long'>
@@ -173,60 +171,62 @@ function WrongAnswerDisplay() {
             <div className='blue'>=</div>
             <div className='purple'>63</div>
           </div>
-          <div className='details'>
-            <div>
-              <h2>Sua resposta: 56</h2>
-            </div>
+          <div className='answer'>
+            <h2>Sua resposta: 56</h2>
+            <h2>Diferença: 7</h2>
           </div>
         </div>
-        <div className="wrong-answer">
-          <div className='rectangle long'>
-            <div className='pink'>7</div>
-            <div className='purple'>x</div>
-            <div className='yellow'>9</div>
-            <div className='blue'>=</div>
-            <div className='purple'>63</div>
-          </div>
-          <div className='details'>
-            <div>
-              <h2>Sua resposta: 56</h2>
-            </div>
-          </div>
-        </div>
-        <div className="wrong-answer">
-          <div className='rectangle long'>
-            <div className='pink'>7</div>
-            <div className='purple'>x</div>
-            <div className='yellow'>9</div>
-            <div className='blue'>=</div>
-            <div className='purple'>63</div>
-          </div>
-          <div className='details'>
-            <div>
-              <h2>Sua resposta: 56</h2>
-            </div>
-          </div>
-        </div>
-        <div className="wrong-answer">
-          <div className='rectangle long'>
-            <div className='pink'>7</div>
-            <div className='purple'>x</div>
-            <div className='yellow'>9</div>
-            <div className='blue'>=</div>
-            <div className='purple'>63</div>
-          </div>
-          <div className='details'>
-            <div>
-              <h2>Sua resposta: 56</h2>
-            </div>
-          </div>
-        </div>
-       </div>
-      <div className="buttons">
-        <button className='button-std' onClick={()=>(navigate('/quiz'))}>VOLTAR</button>
-        <button className='button-std' onClick={()=>(navigate('/quiz'))}>REPLAY</button>
+
       </div>
-      <div className="gap"></div>
+      <div className='wrong-answers'>
+        <div className="wrong-answer">
+          <div className='rectangle long'>
+            <div className='pink'>7</div>
+            <div className='purple'>x</div>
+            <div className='yellow'>9</div>
+            <div className='blue'>=</div>
+            <div className='purple'>63</div>
+          </div>
+          <div className='answer'>
+            <h2>Sua resposta: 56</h2>
+            <h2>Diferença: 7</h2>
+          </div>
+        </div>
+      </div>
+      <div className='wrong-answers'>
+        <div className="wrong-answer">
+          <div className='rectangle long'>
+            <div className='pink'>7</div>
+            <div className='purple'>x</div>
+            <div className='yellow'>9</div>
+            <div className='blue'>=</div>
+            <div className='purple'>63</div>
+          </div>
+          <div className='answer'>
+            <h2>Sua resposta: 56</h2>
+            <h2>Diferença: 7</h2>
+          </div>
+        </div>
+      </div>
+      <div className='wrong-answers'>
+        <div className="wrong-answer">
+          <div className='rectangle long'>
+            <div className='pink'>7</div>
+            <div className='purple'>x</div>
+            <div className='yellow'>9</div>
+            <div className='blue'>=</div>
+            <div className='purple'>63</div>
+          </div>
+          <div className='answer'>
+            <h2>Sua resposta: 56</h2>
+            <h2>Diferença: 7</h2>
+          </div>
+        </div>
+      </div>
+      <div className="buttons">
+        <button className='button-std' onClick={() => (navigate('/main'))}>VOLTAR</button>
+        <button className='button-std' onClick={() => (navigate('/main'))}>REPLAY</button>
+      </div>
     </div>
   )
 }

@@ -97,6 +97,8 @@
   gap: 1rem;
 }
 
+/*********************/
+
 .score-title {
   display: flex;
   align-items: center;
@@ -120,13 +122,27 @@
 }
 
 .long {
-  height: 8rem;
+  height: 9rem;
   width: 100%;
+  padding-top: 0.5rem;
 }
 
 .question-rectangle {
   height: 9.5rem;
   width: 100%;
+}
+
+/*********************/
+.wrongAnswersLogo {
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7rem;
+
 }
 
 .wrong-answers {
@@ -139,6 +155,11 @@
 .wrong-answer {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1.5rem;
   height: auto;
+}
+
+.answer {
+  display: flex;
+  justify-content: space-between;
 }
