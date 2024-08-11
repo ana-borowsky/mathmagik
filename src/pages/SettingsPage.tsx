@@ -59,7 +59,9 @@ function SettingsPage() {
   }
 
   function increaseDifficulty() {
-    setDifficulty(difficulty + 1);
+    if (difficulty < 5) {
+      setDifficulty(difficulty + 1);
+    }
   }
 
   function menu() {
