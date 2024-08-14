@@ -5,6 +5,7 @@ import { GenerateQuestion } from '../backend/database';
 import { useNavigate } from 'react-router-dom';
 import { tsParticles } from '@tsparticles/engine';
 import { loadConfettiPreset } from '@tsparticles/preset-confetti';
+import { shuffle } from '../backend/util';
 
 function QuizPage() {
   let initialQuestion = GenerateQuestion([0], [OperationType.Sum]);
@@ -57,41 +58,47 @@ function QuizDisplay({ question, onQuestionDone }: Props) {
     }, 1500)
   }
 
-  return (
-    // <div className="quiz-container">
-    //   <a onClick={()=>(navigate('/main'))}>
-    //     <img className='logo-quiz' src='mathmagik_logo.svg' alt='Logotipo Mathmagik'/>
-    //   </a>
-    //   <h1>Questão</h1>
-    //   <div className='question'>
-    //     <div className='rectangle question-rectangle'>
-    //       <div className='pink'>{question.questionValues[0]}</div>
-    //       <div className='purple'>+</div>
-    //       <div className='yellow'>{question.questionValues[1]}</div>
-    //     </div>
-    //   </div>
-    //   <div className='quiz-buttons-section'>
-    //     <div className='quiz-buttons'>
-    //       <button onClick={() => checkAnswer(question.options[0])} className='quiz-button pink'>{question.options[0]}</button>
-    //       <button onClick={() => checkAnswer(question.options[1])}  className='quiz-button blue'>{question.options[1]}</button>
-    //     </div>
-    //     <div className='quiz-buttons'>
-    //       <button onClick={() => checkAnswer(question.options[2])} className='quiz-button orange'>{question.options[2]}</button>
-    //       <button onClick={() => checkAnswer(question.options[3])} className='quiz-button yellow'>{question.options[3]}</button>
-    //     </div>
-    //   </div>
 
-    //   <div className='progress-bar-section'>
-    //     <div className='progress-bar-text'>
-    //       <div>00:23</div>
-    //       <div>1/90</div>
-    //     </div>
-    //     <div className='progress-bar-background'>
-    //       <div className='progress-bar-background bar'></div>
-    //     </div>
-    //   </div>
-    // </div>
-    <WrongAnswerDisplay/>
+  let buttonCSS: string[] = ['quiz-button pink', 'quiz-button blue', 'quiz-button orange', 'quiz-button yellow']
+  buttonCSS = shuffle<string>(buttonCSS);
+
+  let questionCSS: string[] = ['pink', 'purple', 'yellow']
+  questionCSS = shuffle<string>(questionCSS);
+  return (
+    <div className="quiz-container">
+      <a onClick={()=>(navigate('/main'))}>
+        <img className='logo-quiz' src='mathmagik_logo.svg' alt='Logotipo Mathmagik'/>
+      </a>
+      <h1>Questão</h1>
+      <div className='question'>
+        <div className='rectangle question-rectangle'>
+          <div className={questionCSS[0]}>{question.questionValues[0]}</div>
+          <div className={questionCSS[1]}>+</div>
+          <div className={questionCSS[2]}>{question.questionValues[1]}</div>
+        </div>
+      </div>
+      <div className='quiz-buttons-section'>
+        <div className='quiz-buttons'>
+          <button onClick={() => checkAnswer(question.options[0])} className={buttonCSS[0]}>{question.options[0]}</button>
+          <button onClick={() => checkAnswer(question.options[1])}  className={buttonCSS[1]}>{question.options[1]}</button>
+        </div>
+        <div className='quiz-buttons'>
+          <button onClick={() => checkAnswer(question.options[2])} className={buttonCSS[2]}>{question.options[2]}</button>
+          <button onClick={() => checkAnswer(question.options[3])} className={buttonCSS[3]}>{question.options[3]}</button>
+        </div>
+      </div>
+
+      <div className='progress-bar-section'>
+        <div className='progress-bar-text'>
+          <div>00:23</div>
+          <div>1/90</div>
+        </div>
+        <div className='progress-bar-background'>
+          <div className='progress-bar-background bar'></div>
+        </div>
+      </div>
+    </div>
+    //<WrongAnswerDisplay/>
   )
 
 }
