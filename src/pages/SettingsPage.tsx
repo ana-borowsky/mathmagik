@@ -17,7 +17,6 @@ function SettingsPage() {
     multiplication: false
   });
 
-
   const toggleButton = (buttonName: ButtonName) => {
     setQuestionTypes((prevState) => ({
       ...prevState,
@@ -88,7 +87,7 @@ function SettingsPage() {
     <>
       <div className='settings'>
         <a onClick={() => (navigate('/main'))}>
-          <img className='logo logo-settings' src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
+          <img className='logo' src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
         </a>
         <div className='title'>
           <h1>Opções</h1>

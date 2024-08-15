@@ -76,13 +76,18 @@ button {
   border-color: white;
   border-style: none;
   filter: drop-shadow(1.0rem 1.0rem 0rem var(--color-dark-purple));
-  font-weight: bold;
   cursor: pointer;
 }
 
 button:active {
   transform: translateY(0.4rem);
   filter: drop-shadow(0.6rem 0.6rem 0rem var(--color-dark-purple));
+}
+
+.logo {
+ margin: 0;
+ cursor: pointer;
+ height: 15rem;
 }
 
 .pink {
