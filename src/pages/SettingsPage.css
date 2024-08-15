@@ -1,13 +1,3 @@
-#root {
-  padding-top: 2rem;
-  padding-bottom: 5rem;
-}
-
-.logo-settings {
-  cursor: pointer;
-  margin: 0 0 0 0;
-}
-
 .title {
   display: flex;
   justify-content: center;
@@ -23,10 +13,14 @@
 }
 
 .settings-containter {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.settings-section {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 7rem;
+  gap: 6rem;
   width: 100%;
 }
 
@@ -35,7 +29,6 @@
   display: flex;
   align-items:  first baseline;
   justify-content: space-between;
-
 }
 
 .difficulty-text {
@@ -129,13 +122,3 @@ select {
 .signal-small {
   font-size: 3rem;
 }
-
-/*.round-btn types serve para quando inativar o tipo de questão, o botão ficar diferente.
-O fundo muda de branco para roxo claro, e o sinal da conta deve mudar para a cor roxa.
-Pra isso é preciso mudar a imagem.
-As imagens roxas estão no public.
-
-.types {
-  background-color: var(--color-light-purple);
-}
-*/
