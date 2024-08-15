@@ -85,103 +85,105 @@ function SettingsPage() {
 
   return (
     <>
-      <div className='settings'>
-        <a onClick={() => (navigate('/main'))}>
-          <img className='logo' src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
-        </a>
-        <div className='title'>
-          <h1>Opções</h1>
-        </div>
-        <div className="settings-containter">
-          <div className='settings-title'>
-            <h2>Timer(s):</h2>
-            <div className='timer'>
-              <button className='round-btn minus dark-purple'>
-                <div onClick={() => decreaseTime()} className='signal'>
+      <div className="container settings-containter">
+        <div className='settings'>
+          <a onClick={() => (navigate('/main'))}>
+            <img className='logo' src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
+          </a>
+          <div className="settings-section">
+          <div className='title'>
+            <h1>Opções</h1>
+          </div>
+            <div className='settings-title'>
+              <h2>Timer(s):</h2>
+              <div className='timer'>
+                <button className='round-btn minus dark-purple'>
+                  <div onClick={() => decreaseTime()} className='signal'>
+                    -
+                  </div>
+                </button>
+                <div className='settings-rectangle blue'>{timer == 0 ? "OFF" : timer}</div>
+                <button className='round-btn sum dark-purple'>
+                  <div onClick={() => increaseTime()} className='signal'>
+                    +
+                  </div>
+                </button>
+              </div>
+            </div>
+            <div className='settings-title'>
+              <h2>Dificuldade:</h2>
+              <div className="timer">
+                <button className='round-btn minus dark-purple'>
+                  <div onClick={() => decreaseDifficulty()} className='signal'>
+                    -
+                  </div>
+                </button>
+                <div className='settings-rectangle orange'>{difficulty}</div>
+                <button className='round-btn sum dark-purple'>
+                  <div onClick={() => increaseDifficulty()} className='signal'>
+                    +
+                  </div>
+                </button>
+              </div>
+            </div>
+            <div className='settings-title'>
+              <h2>Quantidade de questões:</h2>
+              <select
+                className="questionQuantity"
+                id="questionsQuantity"
+                name="questionsQuantity"
+                value={questionQuantity}
+                onChange={(e) => setQuestionQuantity(parseInt(e.target.value))}
+              >
+                {Array.from({ length: 20 }, (_, i) => (
+                  <option key={i} value={(i + 1) * 10}>
+                    {(i + 1) * 10}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className='settings-title'>
+              <h2>Questões:</h2>
+              <button
+                className={`round-btn ${questionTypes.subtraction ? 'purple' : 'inactive'}`}
+                onClick={() => toggleButton('subtraction')}
+              >
+                <div className='signal-small'>
                   -
                 </div>
               </button>
-              <div className='settings-rectangle blue'>{timer == 0 ? "OFF" : timer}</div>
-              <button className='round-btn sum dark-purple'>
-                <div onClick={() => increaseTime()} className='signal'>
+              <button
+                className={`round-btn ${questionTypes.division ? 'green' : 'inactive'}`}
+                onClick={() => toggleButton('division')}
+              >
+                <div className='signal'>
+                  ÷
+                </div>
+              </button>
+              <button
+                className={`round-btn ${questionTypes.sum ? 'blue' : 'inactive'}`}
+                onClick={() => toggleButton('sum')}
+              >
+                <div className='signal'>
                   +
+                </div>
+              </button>
+              <button
+                className={`round-btn ${questionTypes.multiplication ? 'pink' : 'inactive'}`}
+                onClick={() => toggleButton('multiplication')}
+              >
+                <div className='signal'>
+                  ×
                 </div>
               </button>
             </div>
           </div>
-          <div className='settings-title'>
-            <h2>Dificuldade:</h2>
-            <div className="timer">
-              <button className='round-btn minus dark-purple'>
-                <div onClick={() => decreaseDifficulty()} className='signal'>
-                  -
-                </div>
-              </button>
-              <div className='settings-rectangle orange'>{difficulty}</div>
-              <button className='round-btn sum dark-purple'>
-                <div onClick={() => increaseDifficulty()} className='signal'>
-                  +
-                </div>
-              </button>
-            </div>
-          </div>
-          <div className='settings-title'>
-            <h2>Quantidade de questões:</h2>
-            <select
-              className="questionQuantity"
-              id="questionsQuantity"
-              name="questionsQuantity"
-              value={questionQuantity}
-              onChange={(e) => setQuestionQuantity(parseInt(e.target.value))}
-            >
-              {Array.from({ length: 20 }, (_, i) => (
-                <option key={i} value={(i + 1) * 10}>
-                  {(i + 1) * 10}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className='settings-title'>
-            <h2>Questões:</h2>
-            <button
-            className={`round-btn ${questionTypes.subtraction ? 'purple' : 'inactive'}`}
-            onClick={() => toggleButton('subtraction')}
-          >
-              <div className='signal-small'>
-                -
-              </div>
-            </button>
-            <button
-            className={`round-btn ${questionTypes.division ? 'green' : 'inactive'}`}
-            onClick={() => toggleButton('division')}
-          >
-              <div className='signal'>
-                ÷
-              </div>
-            </button>
-            <button
-            className={`round-btn ${questionTypes.sum ?  'blue' : 'inactive'}`}
-            onClick={() => toggleButton('sum')}
-          >
-              <div className='signal'>
-                +
-              </div>
-            </button>
-            <button
-            className={`round-btn ${questionTypes.multiplication ? 'pink' : 'inactive'}`}
-            onClick={() => toggleButton('multiplication')}
-          >
-              <div className='signal'>
-                ×
-              </div>
-            </button>
+          <div className='buttons'>
+            <button className='button-std' onClick={menu}>MENU</button>
+            <button className='button-std' onClick={save}>SALVAR</button>
           </div>
         </div>
-        <div className='buttons'>
-          <button className='button-std' onClick={menu}>MENU</button>
-          <button className='button-std' onClick={save}>SALVAR</button>
-        </div>
-      </div >
+      </div>
     </>
   )
 }
