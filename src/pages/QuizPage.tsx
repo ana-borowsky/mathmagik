@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
 import './QuizPage.css';
 import { OperationType, QuestionTemplate, Question } from '../backend/backend';
-import { GenerateQuestion } from '../backend/database';
+import { generateQuestion } from '../backend/database';
 import { useNavigate } from 'react-router-dom';
 import { tsParticles } from '@tsparticles/engine';
 import { loadConfettiPreset } from '@tsparticles/preset-confetti';
 import { shuffle, getRandomValue } from '../backend/util';
 
 function QuizPage() {
-  let initialQuestion = GenerateQuestion([0], [OperationType.Sum]);
+  let initialQuestion = generateQuestion([0], [OperationType.Sum]);
   const [currentQuestion, setCurrentQuestion] = useState(initialQuestion)
   const handleQuestionDone = () => {
-    let currentQuestion = GenerateQuestion([0], [OperationType.Sum]);
+    let currentQuestion = generateQuestion([0], [OperationType.Sum]);
     setCurrentQuestion(currentQuestion)
   }
 
