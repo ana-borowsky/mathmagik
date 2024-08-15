@@ -5,7 +5,7 @@ import { GenerateQuestion } from '../backend/database';
 import { useNavigate } from 'react-router-dom';
 import { tsParticles } from '@tsparticles/engine';
 import { loadConfettiPreset } from '@tsparticles/preset-confetti';
-import { shuffle } from '../backend/util';
+import { shuffle, getRandomValue } from '../backend/util';
 
 function QuizPage() {
   let initialQuestion = GenerateQuestion([0], [OperationType.Sum]);
@@ -14,7 +14,6 @@ function QuizPage() {
     let currentQuestion = GenerateQuestion([0], [OperationType.Sum]);
     setCurrentQuestion(currentQuestion)
   }
-
 
   return (
     <QuizDisplay question={currentQuestion} onQuestionDone={handleQuestionDone} />
@@ -57,7 +56,6 @@ function QuizDisplay({ question, onQuestionDone }: Props) {
       onQuestionDone()
     }, 1500)
   }
-
 
   let buttonCSS: string[] = ['quiz-button pink', 'quiz-button blue', 'quiz-button orange', 'quiz-button yellow', 'quiz-button green']
   buttonCSS = shuffle<string>(buttonCSS);
@@ -167,6 +165,8 @@ function ScoreDisplay() {
 function WrongAnswerDisplay() {
   const navigate = useNavigate();
 
+  let questionCSS: string[] = ['pink', 'purple', 'yellow', 'green', 'blue', 'orange'];
+
   const wrongAnswers: Record<number, { question: string, result: number, answer: number }> = {
     1: {
       "question": "7 x 9 = ",
@@ -182,10 +182,54 @@ function WrongAnswerDisplay() {
       "question": "6 x 7 = ",
       "result": 42,
       "answer": 47
+    },
+    4: {
+      "question": "5 x 5 = ",
+      "result": 25,
+      "answer": 20
+    },
+    5: {
+      "question": "9 x 9 = ",
+      "result": 81,
+      "answer": 72
+    },
+    6: {
+      "question": "4 x 6 = ",
+      "result": 24,
+      "answer": 30
+    },
+    7: {
+      "question": "3 x 8 = ",
+      "result": 24,
+      "answer": 20
+    },
+    8: {
+      "question": "2 x 7 = ",
+      "result": 14,
+      "answer": 12
+    },
+    9: {
+      "question": "10 x 3 = ",
+      "result": 30,
+      "answer": 33
+    },
+    10: {
+      "question": "6 x 8 = ",
+      "result": 48,
+      "answer": 42
     }
   };
 
   const numberOfWrongAnswers = Object.keys(wrongAnswers).length;
+
+  const assignUniqueColors = (parts: string[], colors: string[]): string[] => {
+    let shuffledColors = colors.slice(0, questionCSS.length);
+    shuffledColors = shuffle(shuffledColors); 
+
+    return parts.map((part, index) => {
+      return `<span class="${shuffledColors[index]}">${part}</span>`;
+    });
+  };
 
   return (
     <div className='container'>
@@ -197,10 +241,14 @@ function WrongAnswerDisplay() {
       </div>
       <div className='wrong-answers'>
         {Array.from({ length: numberOfWrongAnswers }, (_, i) => i + 1).map((key) => {
+          const questionParts = `${wrongAnswers[key].question}${wrongAnswers[key].result}`.split(' ');
+
+          const coloredQuestion = assignUniqueColors(questionParts, questionCSS).join(' ');
+
           return (
             <div key={key} className="wrong-answer">
               <div className='rectangle wrong-question-rectangle'>
-                <div className='pink'>{wrongAnswers[key].question}{wrongAnswers[key].result}</div>
+                <div dangerouslySetInnerHTML={{ __html: coloredQuestion }}></div>
               </div>
               <div className='answer'>
                 <h2>Sua resposta: {wrongAnswers[key].answer}</h2>
@@ -217,7 +265,5 @@ function WrongAnswerDisplay() {
     </div>
   );
 }
-
-
 
 export default QuizPage

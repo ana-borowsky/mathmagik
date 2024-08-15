@@ -2,7 +2,7 @@
 
 #root {
   gap: 3rem;
-  height: 130%;
+  height: auto;
 }
 
 .quiz-container {
