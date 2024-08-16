@@ -33,7 +33,6 @@ enum QuestionState {
 
 function QuizDisplay({ question, onQuestionDone }: Props) {
   const navigate = useNavigate();
-  let wrongQuestionsCounter = 0;
   const wrongAnswers: Record<number, { question: string, result: number, answer: number }> = {};
 
   let buttonCSS: string[] = ['quiz-button pink', 'quiz-button blue', 'quiz-button orange', 'quiz-button yellow', 'quiz-button green', 'quiz-button purple']
@@ -41,6 +40,8 @@ function QuizDisplay({ question, onQuestionDone }: Props) {
 
   let questionCSS: string[] = ['pink', 'purple', 'yellow', 'green', 'blue', 'orange']
   questionCSS = shuffle<string>(questionCSS);
+
+  const [wrongAnswerCounter, setWrongAnswerCounter] = useState(1);
 
   async function checkAnswer(option: number, buttonId: number) {
     if (option === question.result) {
@@ -58,9 +59,9 @@ function QuizDisplay({ question, onQuestionDone }: Props) {
           }
         },
       });
-    } else { // at the moment it only saves one wrong question
-      wrongQuestionsCounter += 1;
-      wrongAnswers[wrongQuestionsCounter] = {
+    } else { // at the moment it only saves one wrong question, but the counter works
+      setWrongAnswerCounter(wrongAnswerCounter + 1);
+      wrongAnswers[wrongAnswerCounter] = {
         "question": question.questionValues[0] + " + " + question.questionValues[1] + " = ", // waiting for the code to get the correct signal of this question
         "result": question.result,
         "answer": question.options[buttonId]
