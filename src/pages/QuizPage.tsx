@@ -33,8 +33,16 @@ enum QuestionState {
 
 function QuizDisplay({ question, onQuestionDone }: Props) {
   const navigate = useNavigate();
+  let wrongQuestionsCounter = 0;
+  const wrongAnswers: Record<number, { question: string, result: number, answer: number }> = {};
 
-  async function checkAnswer(option: number) {
+  let buttonCSS: string[] = ['quiz-button pink', 'quiz-button blue', 'quiz-button orange', 'quiz-button yellow', 'quiz-button green', 'quiz-button purple']
+  buttonCSS = shuffle<string>(buttonCSS);
+
+  let questionCSS: string[] = ['pink', 'purple', 'yellow', 'green', 'blue', 'orange']
+  questionCSS = shuffle<string>(questionCSS);
+
+  async function checkAnswer(option: number, buttonId: number) {
     if (option === question.result) {
       await loadConfettiPreset(tsParticles);
       tsParticles.load({
@@ -50,55 +58,57 @@ function QuizDisplay({ question, onQuestionDone }: Props) {
           }
         },
       });
+    } else { // at the moment it only saves one wrong question
+      wrongQuestionsCounter += 1;
+      wrongAnswers[wrongQuestionsCounter] = {
+        "question": question.questionValues[0] + " + " + question.questionValues[1] + " = ", // waiting for the code to get the correct signal of this question
+        "result": question.result,
+        "answer": question.options[buttonId]
+      };
+
+      console.log(wrongAnswers);
     }
 
     setTimeout(() => {
-      onQuestionDone()
-    }, 1500)
+      onQuestionDone();
+    }, 1000);
   }
 
-  let buttonCSS: string[] = ['quiz-button pink', 'quiz-button blue', 'quiz-button orange', 'quiz-button yellow', 'quiz-button green']
-  buttonCSS = shuffle<string>(buttonCSS);
-
-  let questionCSS: string[] = ['pink', 'purple', 'yellow', 'green', 'blue']
-  questionCSS = shuffle<string>(questionCSS);
-
   return (
-      <div className="container">
-        <div className="quiz-container">
-          <a onClick={() => (navigate('/main'))}>
-            <img className='logo' src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
-          </a>
-          <h1>Questão</h1>
-          <div className='rectangle question-rectangle'>
-            <div className={questionCSS[0]}>{question.questionValues[0]}</div>
-            <div className={questionCSS[1]}>{question.signal}</div>
-            <div className={questionCSS[2]}>{question.questionValues[1]}</div>
+    <div className="container">
+      <div className="quiz-container">
+        <a onClick={() => navigate('/main')}>
+          <img className='logo' src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
+        </a>
+        <h1>Questão</h1>
+        <div className='rectangle question-rectangle'>
+          <div className={questionCSS[0]}>{question.questionValues[0]}</div>
+          <div className={questionCSS[1]}>+</div>
+          <div className={questionCSS[2]}>{question.questionValues[1]}</div>
+        </div>
+        <div className='quiz-buttons-section'>
+          <div className='quiz-buttons'>
+            <button id="0" onClick={() => checkAnswer(question.options[0], 0)} className={buttonCSS[0]}>{question.options[0]}</button>
+            <button id="1" onClick={() => checkAnswer(question.options[1], 1)} className={buttonCSS[1]}>{question.options[1]}</button>
           </div>
-          <div className='quiz-buttons-section'>
-            <div className='quiz-buttons'>
-              <button onClick={() => checkAnswer(question.options[0])} className={buttonCSS[0]}>{question.options[0]}</button>
-              <button onClick={() => checkAnswer(question.options[1])} className={buttonCSS[1]}>{question.options[1]}</button>
-            </div>
-            <div className='quiz-buttons'>
-              <button onClick={() => checkAnswer(question.options[2])} className={buttonCSS[2]}>{question.options[2]}</button>
-              <button onClick={() => checkAnswer(question.options[3])} className={buttonCSS[3]}>{question.options[3]}</button>
-            </div>
+          <div className='quiz-buttons'>
+            <button id="2" onClick={() => checkAnswer(question.options[2], 2)} className={buttonCSS[2]}>{question.options[2]}</button>
+            <button id="3" onClick={() => checkAnswer(question.options[3], 3)} className={buttonCSS[3]}>{question.options[3]}</button>
           </div>
+        </div>
 
-          <div className='progress-bar-section'>
-            <div className='progress-bar-text'>
-              <div>00:23</div>
-              <div>1/90</div>
-            </div>
-            <div className='progress-bar-background'>
-              <div className='progress-bar-background bar'></div>
-            </div>
+        <div className='progress-bar-section'>
+          <div className='progress-bar-text'>
+            <div>00:23</div>
+            <div>1/90</div>
+          </div>
+          <div className='progress-bar-background'>
+            <div className='progress-bar-background bar'></div>
           </div>
         </div>
       </div>
-  )
-
+    </div>
+  );
 }
 
 function ScoreDisplay() {
@@ -221,7 +231,7 @@ function WrongAnswerDisplay() {
       "result": 48,
       "answer": 42
     }
-  };
+  }; 
 
   const numberOfWrongAnswers = Object.keys(wrongAnswers).length;
 
