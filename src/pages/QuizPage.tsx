@@ -15,7 +15,7 @@ function QuizPage() {
     setCurrentQuestion(currentQuestion)
   }
 
-  return (
+  return ( 
     <QuizDisplay question={currentQuestion} onQuestionDone={handleQuestionDone} />
   )
 }
