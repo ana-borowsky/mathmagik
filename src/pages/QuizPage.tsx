@@ -5,7 +5,7 @@ import { generateQuestion } from '../backend/database';
 import { useNavigate } from 'react-router-dom';
 import { tsParticles } from '@tsparticles/engine';
 import { loadConfettiPreset } from '@tsparticles/preset-confetti';
-import { shuffle, getRandomValue } from '../backend/util';
+import { shuffle } from '../backend/util';
 
 function QuizPage() {
   let initialQuestion = generateQuestion([0], [OperationType.Sum]); //Generate question altered for testing purposes
@@ -49,7 +49,6 @@ function QuizPage() {
 >>>>>>> 551d398 (Generate json with the wrong answers)
 function QuizDisplay({ question, onQuestionDone }: Props) {
   const navigate = useNavigate();
-
   const [wrongAnswerCounter, setWrongAnswerCounter] = useState(1);
   const [wrongAnswers, setWrongAnswers] = useState<Record<number, { question: string, result: number, answer: number }>>({});
   const [buttonCSS, setButtonCSS] = useState<string[]>([]);
@@ -79,25 +78,21 @@ function QuizDisplay({ question, onQuestionDone }: Props) {
         },
       });
     } else {
-      setWrongAnswerCounter(prevCounter => {
-        const wrongAnswerCounter = prevCounter + 1;
+      const newWrongAnswerCounter = wrongAnswerCounter + 1;
 
-        const newWrongAnswers = {
-          ...wrongAnswers,
-          [prevCounter]: {
-            "question": question.questionValues[0] + " + " + question.questionValues[1] + " = ",
-            "result": question.result,
-            "answer": question.options[buttonId]
-          }
-        };
+      const newWrongAnswers = {
+        ...wrongAnswers,
+        [wrongAnswerCounter]: {
+          "question": question.questionValues[0] + " + " + question.questionValues[1] + " = ",
+          "result": question.result,
+          "answer": question.options[buttonId]
+        }
+      };
 
-        localStorage.setItem('wrongAnswers', JSON.stringify(newWrongAnswers));
+      localStorage.setItem('wrongAnswers', JSON.stringify(newWrongAnswers));
 
-        setWrongAnswers(newWrongAnswers);
-        return wrongAnswerCounter;
-      });
-
-      console.log(wrongAnswers);
+      setWrongAnswers(newWrongAnswers);
+      setWrongAnswerCounter(newWrongAnswerCounter);
     }
 
     setTimeout(() => {
