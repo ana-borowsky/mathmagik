@@ -1,5 +1,5 @@
 import { QuestionTemplate, OperationType , Question} from "./backend";
-import { getRandomValue } from "./util";
+import { getRandomValue, GetValuesForSubtraction } from "./util";
 
 // Define the questionTemplates array
 export const questionTemplates: QuestionTemplate[] = [
@@ -8,13 +8,20 @@ export const questionTemplates: QuestionTemplate[] = [
         [OperationType.Sum],
         ()=> [getRandomValue(0, 250, 0), getRandomValue(0, 250, 0)],
         (values: number[]) => 
-        (values[0] + values[1]), // Sum operation
-        "%1 + %2" // Format string for the question
+        (values[0] + values[1]) // Sum operation
+    ),
+    new QuestionTemplate(
+        0,
+        [OperationType.Subtraction],
+        ()=> GetValuesForSubtraction(250),
+        (values: number[]) => 
+        (values[0] - values[1]) // Sum operation
     )
 ];
 
 export function generateQuestion(difficulty: number[], operations: OperationType[]): Question {
     // Temporary implementation for debug purposes, function NOT finished!
 
-    return questionTemplates[0].toQuestion();
+    let r = Math.floor(Math.random() * questionTemplates.length);
+    return questionTemplates[r].toQuestion();
 }

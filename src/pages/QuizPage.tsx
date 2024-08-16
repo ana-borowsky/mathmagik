@@ -8,7 +8,7 @@ import { loadConfettiPreset } from '@tsparticles/preset-confetti';
 import { shuffle, getRandomValue } from '../backend/util';
 
 function QuizPage() {
-  let initialQuestion = generateQuestion([0], [OperationType.Sum]);
+  let initialQuestion = generateQuestion([0], [OperationType.Sum]); //Generate question altered for testing purposes
   const [currentQuestion, setCurrentQuestion] = useState(initialQuestion)
   const handleQuestionDone = () => {
     let currentQuestion = generateQuestion([0], [OperationType.Sum]);
@@ -72,7 +72,7 @@ function QuizDisplay({ question, onQuestionDone }: Props) {
           <h1>Questão</h1>
           <div className='rectangle question-rectangle'>
             <div className={questionCSS[0]}>{question.questionValues[0]}</div>
-            <div className={questionCSS[1]}>+</div>
+            <div className={questionCSS[1]}>{question.signal}</div>
             <div className={questionCSS[2]}>{question.questionValues[1]}</div>
           </div>
           <div className='quiz-buttons-section'>

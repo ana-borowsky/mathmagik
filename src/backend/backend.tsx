@@ -14,20 +14,17 @@ export class QuestionTemplate {
     operations: OperationType[];
     valueGenerator: () => number[];
     questionOperation: (values: number[]) => number;
-    questionText: string;
 
     constructor(
         difficulty: number,
         operations: OperationType[],
         valueGenerator: () => number[],
         questionOperation: (values: number[]) => number,
-        questionText: string
     ) {
         this.difficulty = difficulty;
         this.operations = operations;
         this.valueGenerator = valueGenerator;
         this.questionOperation = questionOperation;
-        this.questionText = questionText;
     }
 
     // Methods
@@ -38,8 +35,7 @@ export class QuestionTemplate {
 
         let result = this.questionOperation(choosenValues);
 
-        let temp: Question = new Question(choosenValues, this.questionText, this.generateOptions(result), result);
-        temp.questionText = this.questionText;
+        let temp: Question = new Question(choosenValues, this.generateOptions(result), result, this.getSinal());
         return temp;
     }
 
@@ -47,23 +43,37 @@ export class QuestionTemplate {
 
         return  shuffle<number>([result, getRandomValue(0.8 * result, result + 0.1 * result, 0), getRandomValue(0.9 * result, result + 0.3 * result, 0), getRandomValue(1.1 * result, result + 0.2 * result, 0)]);
     }
+
+    getSinal(): String{
+        switch(this.operations[0]){
+            case OperationType.Sum:
+                return "+";
+            case OperationType.Subtraction:
+                return "-";
+            case OperationType.Multiplication:
+                return "*";
+            case OperationType.Division:
+                return "/";
+        }
+        return "";
+    }
 }
 
 export class Question {
     questionValues: number[];
-    questionText: string;
     options: number[];
     result: number;
+    signal: String;
 
     constructor(
         questionValues: number[],
-        questionText: string,
         options: number[],
-        result: number
+        result: number,
+        signal: String
     ) {
         this.questionValues = questionValues;
-        this.questionText = questionText;
         this.options = options;
         this.result = result;
+        this.signal = signal;
     }
 }
