@@ -31,17 +31,36 @@ enum QuestionState {
   Wrong
 }
 
+<<<<<<< HEAD
+=======
+function QuizPage() {
+  let initialQuestion = generateQuestion([0], [OperationType.Sum]);
+  const [currentQuestion, setCurrentQuestion] = useState(initialQuestion)
+  const handleQuestionDone = () => {
+    let currentQuestion = generateQuestion([0], [OperationType.Sum]);
+    setCurrentQuestion(currentQuestion)
+  }
+
+  return (
+    <QuizDisplay question={currentQuestion} onQuestionDone={handleQuestionDone} />
+  )
+};
+
+>>>>>>> 551d398 (Generate json with the wrong answers)
 function QuizDisplay({ question, onQuestionDone }: Props) {
   const navigate = useNavigate();
-  const wrongAnswers: Record<number, { question: string, result: number, answer: number }> = {};
-
-  let buttonCSS: string[] = ['quiz-button pink', 'quiz-button blue', 'quiz-button orange', 'quiz-button yellow', 'quiz-button green', 'quiz-button purple']
-  buttonCSS = shuffle<string>(buttonCSS);
-
-  let questionCSS: string[] = ['pink', 'purple', 'yellow', 'green', 'blue', 'orange']
-  questionCSS = shuffle<string>(questionCSS);
 
   const [wrongAnswerCounter, setWrongAnswerCounter] = useState(1);
+  const [wrongAnswers, setWrongAnswers] = useState<Record<number, { question: string, result: number, answer: number }>>({});
+  const [buttonCSS, setButtonCSS] = useState<string[]>([]);
+  const [questionCSS, setQuestionCSS] = useState<string[]>([]);
+
+  useEffect(() => {
+    const shuffledButtonCSS = shuffle<string>(['quiz-button pink', 'quiz-button blue', 'quiz-button orange', 'quiz-button yellow', 'quiz-button green', 'quiz-button purple']);
+    const shuffledQuestionCSS = shuffle<string>(['pink', 'purple', 'yellow', 'green', 'blue', 'orange']);
+    setButtonCSS(shuffledButtonCSS);
+    setQuestionCSS(shuffledQuestionCSS);
+  }, [question]);
 
   async function checkAnswer(option: number, buttonId: number) {
     if (option === question.result) {
@@ -59,13 +78,24 @@ function QuizDisplay({ question, onQuestionDone }: Props) {
           }
         },
       });
-    } else { // at the moment it only saves one wrong question, but the counter works
-      setWrongAnswerCounter(wrongAnswerCounter + 1);
-      wrongAnswers[wrongAnswerCounter] = {
-        "question": question.questionValues[0] + " + " + question.questionValues[1] + " = ", // waiting for the code to get the correct signal of this question
-        "result": question.result,
-        "answer": question.options[buttonId]
-      };
+    } else {
+      setWrongAnswerCounter(prevCounter => {
+        const wrongAnswerCounter = prevCounter + 1;
+
+        const newWrongAnswers = {
+          ...wrongAnswers,
+          [prevCounter]: {
+            "question": question.questionValues[0] + " + " + question.questionValues[1] + " = ",
+            "result": question.result,
+            "answer": question.options[buttonId]
+          }
+        };
+
+        localStorage.setItem('wrongAnswers', JSON.stringify(newWrongAnswers));
+
+        setWrongAnswers(newWrongAnswers);
+        return wrongAnswerCounter;
+      });
 
       console.log(wrongAnswers);
     }
@@ -89,15 +119,14 @@ function QuizDisplay({ question, onQuestionDone }: Props) {
         </div>
         <div className='quiz-buttons-section'>
           <div className='quiz-buttons'>
-            <button id="0" onClick={() => checkAnswer(question.options[0], 0)} className={buttonCSS[0]}>{question.options[0]}</button>
-            <button id="1" onClick={() => checkAnswer(question.options[1], 1)} className={buttonCSS[1]}>{question.options[1]}</button>
+            <button id='0' onClick={() => checkAnswer(question.options[0], 0)} className={buttonCSS[0]}>{question.options[0]}</button>
+            <button id='1' onClick={() => checkAnswer(question.options[1], 1)} className={buttonCSS[1]}>{question.options[1]}</button>
           </div>
           <div className='quiz-buttons'>
-            <button id="2" onClick={() => checkAnswer(question.options[2], 2)} className={buttonCSS[2]}>{question.options[2]}</button>
-            <button id="3" onClick={() => checkAnswer(question.options[3], 3)} className={buttonCSS[3]}>{question.options[3]}</button>
+            <button id='2' onClick={() => checkAnswer(question.options[2], 2)} className={buttonCSS[2]}>{question.options[2]}</button>
+            <button id='3' onClick={() => checkAnswer(question.options[3], 3)} className={buttonCSS[3]}>{question.options[3]}</button>
           </div>
         </div>
-
         <div className='progress-bar-section'>
           <div className='progress-bar-text'>
             <div>00:23</div>
@@ -232,7 +261,7 @@ function WrongAnswerDisplay() {
       "result": 48,
       "answer": 42
     }
-  }; 
+  };
 
   const numberOfWrongAnswers = Object.keys(wrongAnswers).length;
 
