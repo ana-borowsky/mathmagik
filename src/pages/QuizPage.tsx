@@ -144,10 +144,17 @@ function QuizDisplay({ question, onQuestionDone }: Props) {
 function ScoreDisplay() {
   const navigate = useNavigate();
   const [totalTime, setTotalTime] = useState(126); // Set useState to 0. 126 used for display purposes only. Total time must come from quiz page
-  const [wrongQuestions, setWrongQuestions] = useState(121); // Set useState to 0. 121 used for display purposes only. Wrog answers must come from quiz page
-  const [questionQuantity, setQuestionQuantity] = useState(20); //get from settings
+    const [questionQuantity, setQuestionQuantity] = useState(20); //get from settings
   const averageTimePerQuestion = totalTime / questionQuantity
-  const errorPercentage = wrongQuestions / questionQuantity * 100
+
+  const storedWrongAnswers = localStorage.getItem('wrongAnswers');
+  const wrongAnswers: Record<number, { question: string, result: number, answer: number }> = storedWrongAnswers 
+    ? JSON.parse(storedWrongAnswers)
+    : {}; 
+
+  const numberOfWrongAnswers = Object.keys(wrongAnswers).length;
+
+  const errorPercentage = numberOfWrongAnswers / questionQuantity * 100
 
   useEffect(() => {
     const storageQuestionQuantity = localStorage.getItem("questionQuantity")!;
@@ -167,7 +174,7 @@ function ScoreDisplay() {
         </div>
         <div className='points'>
           <div className='rectangle long'>
-            <div className='pink'>{wrongQuestions}</div>
+            <div className='pink'>{numberOfWrongAnswers}</div>
             <div className='purple'>/</div>
             <div className='yellow'>{questionQuantity}</div>
           </div>
@@ -210,58 +217,10 @@ function WrongAnswerDisplay() {
 
   let questionCSS: string[] = ['pink', 'purple', 'yellow', 'green', 'blue', 'orange'];
 
-  const wrongAnswers: Record<number, { question: string, result: number, answer: number }> = {
-    1: {
-      "question": "7 x 9 = ",
-      "result": 63,
-      "answer": 56
-    },
-    2: {
-      "question": "8 x 4 = ",
-      "result": 32,
-      "answer": 36
-    },
-    3: {
-      "question": "6 x 7 = ",
-      "result": 42,
-      "answer": 47
-    },
-    4: {
-      "question": "5 x 5 = ",
-      "result": 25,
-      "answer": 20
-    },
-    5: {
-      "question": "9 x 9 = ",
-      "result": 81,
-      "answer": 72
-    },
-    6: {
-      "question": "4 x 6 = ",
-      "result": 24,
-      "answer": 30
-    },
-    7: {
-      "question": "3 x 8 = ",
-      "result": 24,
-      "answer": 20
-    },
-    8: {
-      "question": "2 x 7 = ",
-      "result": 14,
-      "answer": 12
-    },
-    9: {
-      "question": "10 x 3 = ",
-      "result": 30,
-      "answer": 33
-    },
-    10: {
-      "question": "6 x 8 = ",
-      "result": 48,
-      "answer": 42
-    }
-  };
+  const storedWrongAnswers = localStorage.getItem('wrongAnswers');
+  const wrongAnswers: Record<number, { question: string, result: number, answer: number }> = storedWrongAnswers 
+    ? JSON.parse(storedWrongAnswers)
+    : {}; 
 
   const numberOfWrongAnswers = Object.keys(wrongAnswers).length;
 
@@ -308,5 +267,6 @@ function WrongAnswerDisplay() {
     </div>
   );
 }
+
 
 export default QuizPage
