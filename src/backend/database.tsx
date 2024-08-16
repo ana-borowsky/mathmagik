@@ -22,6 +22,21 @@ export const questionTemplates: QuestionTemplate[] = [
 export function generateQuestion(difficulty: number[], operations: OperationType[]): Question {
     // Temporary implementation for debug purposes, function NOT finished!
 
-    let r = Math.floor(Math.random() * questionTemplates.length);
-    return questionTemplates[r].toQuestion();
+    //SUPER GAMBIARRA PARA TESTES!!
+    const storageQuestionTypes = JSON.parse(localStorage.getItem('questionTypes') || '[]');
+    //console.log(storageQuestionTypes);
+
+    let pool: QuestionTemplate[] = [];
+    let c = 0;
+    if(storageQuestionTypes.sum){
+        c = pool.push(questionTemplates[0]);
+    }
+    if(storageQuestionTypes.subtraction){
+        c = pool.push(questionTemplates[1]);
+    }
+
+    //console.log(pool.length);
+
+    let r = Math.floor(Math.random() * c);
+    return pool[r].toQuestion();
 }
