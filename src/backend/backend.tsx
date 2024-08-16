@@ -12,35 +12,33 @@ export enum OperationType {
 export class QuestionTemplate {
     difficulty: number;
     operations: OperationType[];
-    generatedValues: (() => number)[];
+    valueGenerator: () => number[];
     questionOperation: (values: number[]) => number;
     questionText: string;
 
     constructor(
         difficulty: number,
         operations: OperationType[],
-        generatedValues: (() => number)[],
+        valueGenerator: () => number[],
         questionOperation: (values: number[]) => number,
         questionText: string
     ) {
         this.difficulty = difficulty;
         this.operations = operations;
-        this.generatedValues = generatedValues;
+        this.valueGenerator = valueGenerator;
         this.questionOperation = questionOperation;
         this.questionText = questionText;
     }
 
     // Methods
-    ToQuestion(): Question {
-        let chosenValues: number[] = []
+    toQuestion(): Question {
+        let choosenValues: number[] = []
 
-        this.generatedValues.forEach(element => {
-            chosenValues.push(element());
-        });
+        choosenValues = this.valueGenerator();
 
-        let result = this.questionOperation(chosenValues);
+        let result = this.questionOperation(choosenValues);
 
-        let temp: Question = new Question(chosenValues, this.questionText, this.generateOptions(result), result);
+        let temp: Question = new Question(choosenValues, this.questionText, this.generateOptions(result), result);
         temp.questionText = this.questionText;
         return temp;
     }
