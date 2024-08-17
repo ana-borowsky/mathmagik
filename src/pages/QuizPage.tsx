@@ -153,7 +153,7 @@ function ScoreDisplay() {
   const [totalTime, setTotalTime] = useState(10); 
   const [questionQuantity, setQuestionQuantity] = useState(20); 
   const averageTimePerQuestion = totalTime / questionQuantity
-
+  let [questionCounter, setQuestionCounter] = useState(1);
   const storedWrongAnswers = localStorage.getItem('wrongAnswers');
   const wrongAnswers: Record<number, { question: string, result: number, answer: number }> = storedWrongAnswers 
     ? JSON.parse(storedWrongAnswers)
@@ -166,6 +166,14 @@ function ScoreDisplay() {
     const storageQuestionQuantity = localStorage.getItem("questionQuantity")!;
     setQuestionQuantity(parseInt(storageQuestionQuantity));
   }, []);
+
+  function reloadQuiz() {
+    questionCounter = 1
+    setQuestionCounter(questionCounter);
+    const storeQuestionCounter = localStorage.setItem('questionCounter', '1');
+    window.location.reload();
+
+  }
 
   return (
     <div className="container">
@@ -180,7 +188,7 @@ function ScoreDisplay() {
         </div>
         <div className='points'>
           <div className='rectangle long'>
-            <div className='pink'>{numberOfWrongAnswers}</div>
+            <div className='pink'>{questionQuantity - numberOfWrongAnswers}</div>
             <div className='purple'>/</div>
             <div className='yellow'>{questionQuantity}</div>
           </div>
@@ -189,15 +197,15 @@ function ScoreDisplay() {
               <div className='text blue'>{Math.round(errorPercentage)}%</div>
             </div>
             <div>
-              <h2>de acerto</h2>
+              <h2>de erros</h2>
             </div>
           </div>
           <div className='details'>
             <div className='rectangle small'>
-              <div className='text orange'>{totalTime}</div>
+              <div className='text orange'>{totalTime}s</div>
             </div>
             <div>
-              <h2>Tempo total</h2>
+              <h2>de tempo total</h2>
             </div>
           </div>
           <div className='details'>
@@ -210,8 +218,8 @@ function ScoreDisplay() {
           </div>
         </div>
         <div className="buttons">
-          <button className='button-std' onClick={() => (navigate('/quiz'))}>ERROS</button>
-          <button className='button-std' onClick={() => (navigate('/quiz'))}>REPLAY</button>
+          <button className='button-std' onClick={() => reloadQuiz()}>ERROS</button>
+          <button className='button-std' onClick={() => reloadQuiz()}>REPLAY</button>
         </div>
       </div>
     </div>
