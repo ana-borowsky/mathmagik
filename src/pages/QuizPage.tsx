@@ -123,7 +123,7 @@ function QuizDisplay({ question, onQuestionDone }: Props) {
 function ScoreDisplay() {
   const navigate = useNavigate();
   const [totalTime, setTotalTime] = useState(126); // Set useState to 0. 126 used for display purposes only. Total time must come from quiz page
-    const [questionQuantity, setQuestionQuantity] = useState(20); //get from settings
+  const [questionQuantity, setQuestionQuantity] = useState(20); //get from settings
   const averageTimePerQuestion = totalTime / questionQuantity
 
   const storedWrongAnswers = localStorage.getItem('wrongAnswers');
@@ -132,7 +132,6 @@ function ScoreDisplay() {
     : {}; 
 
   const numberOfWrongAnswers = Object.keys(wrongAnswers).length;
-
   const errorPercentage = numberOfWrongAnswers / questionQuantity * 100
 
   useEffect(() => {
