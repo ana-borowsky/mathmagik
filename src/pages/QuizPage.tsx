@@ -39,8 +39,8 @@ function QuizDisplay({ question, onQuestionDone }: Props) {
   const [questionCSS, setQuestionCSS] = useState<string[]>([]);
 
   useEffect(() => {
-    const shuffledButtonCSS = shuffle<string>(['quiz-button pink', 'quiz-button blue', 'quiz-button orange', 'quiz-button yellow', 'quiz-button green', 'quiz-button purple']);
-    const shuffledQuestionCSS = shuffle<string>(['pink', 'purple', 'yellow', 'green', 'blue', 'orange']);
+    const shuffledButtonCSS = shuffle<string>(['quiz-button pink', 'quiz-button blue', 'quiz-button orange', 'quiz-button yellow', 'quiz-button green']);
+    const shuffledQuestionCSS = shuffle<string>(['pink', 'yellow', 'green', 'blue', 'orange']);
     setButtonCSS(shuffledButtonCSS);
     setQuestionCSS(shuffledQuestionCSS);
   }, [question]);
@@ -67,7 +67,7 @@ function QuizDisplay({ question, onQuestionDone }: Props) {
       const newWrongAnswers = {
         ...wrongAnswers,
         [wrongAnswerCounter]: {
-          "question": question.questionValues[0] + " + " + question.questionValues[1] + " = ",
+          "question": question.questionValues[0] + " " +  question.signal + " " + question.questionValues[1] + " = ",
           "result": question.result,
           "answer": question.options[buttonId]
         }
@@ -93,7 +93,7 @@ function QuizDisplay({ question, onQuestionDone }: Props) {
         <h1>Questão</h1>
         <div className='rectangle question-rectangle'>
           <div className={questionCSS[0]}>{question.questionValues[0]}</div>
-          <div className={questionCSS[1]}>+</div>
+          <div className={questionCSS[1]}>{question.signal}</div>
           <div className={questionCSS[2]}>{question.questionValues[1]}</div>
         </div>
         <div className='quiz-buttons-section'>
