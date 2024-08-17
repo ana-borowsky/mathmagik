@@ -31,22 +31,6 @@ enum QuestionState {
   Wrong
 }
 
-<<<<<<< HEAD
-=======
-function QuizPage() {
-  let initialQuestion = generateQuestion([0], [OperationType.Sum]);
-  const [currentQuestion, setCurrentQuestion] = useState(initialQuestion)
-  const handleQuestionDone = () => {
-    let currentQuestion = generateQuestion([0], [OperationType.Sum]);
-    setCurrentQuestion(currentQuestion)
-  }
-
-  return (
-    <QuizDisplay question={currentQuestion} onQuestionDone={handleQuestionDone} />
-  )
-};
-
->>>>>>> 551d398 (Generate json with the wrong answers)
 function QuizDisplay({ question, onQuestionDone }: Props) {
   const navigate = useNavigate();
   const [wrongAnswerCounter, setWrongAnswerCounter] = useState(1);
