@@ -46,9 +46,10 @@ body {
   width: 20%;
   min-width: 60rem;
   max-width: 70rem;
-  min-height: 125rem;
+  min-height: 82rem;
   background-color: var(--color-medium-light-purple);
-  padding-top: 0rem;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
   margin: 0%;
   color: white;
   gap: 6rem;

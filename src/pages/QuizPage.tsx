@@ -5,7 +5,7 @@ import { generateQuestion } from '../backend/database';
 import { useNavigate } from 'react-router-dom';
 import { tsParticles } from '@tsparticles/engine';
 import { loadConfettiPreset } from '@tsparticles/preset-confetti';
-import { shuffle, getRandomValue } from '../backend/util';
+import { shuffle } from '../backend/util';
 
 function QuizPage() {
   let initialQuestion = generateQuestion([0], [OperationType.Sum]); //Generate question altered for testing purposes
@@ -33,8 +33,19 @@ enum QuestionState {
 
 function QuizDisplay({ question, onQuestionDone }: Props) {
   const navigate = useNavigate();
+  const [wrongAnswerCounter, setWrongAnswerCounter] = useState(1);
+  const [wrongAnswers, setWrongAnswers] = useState<Record<number, { question: string, result: number, answer: number }>>({});
+  const [buttonCSS, setButtonCSS] = useState<string[]>([]);
+  const [questionCSS, setQuestionCSS] = useState<string[]>([]);
 
-  async function checkAnswer(option: number) {
+  useEffect(() => {
+    const shuffledButtonCSS = shuffle<string>(['quiz-button pink', 'quiz-button blue', 'quiz-button orange', 'quiz-button yellow', 'quiz-button green']);
+    const shuffledQuestionCSS = shuffle<string>(['pink', 'yellow', 'green', 'blue', 'orange']);
+    setButtonCSS(shuffledButtonCSS);
+    setQuestionCSS(shuffledQuestionCSS);
+  }, [question]);
+
+  async function checkAnswer(option: number, buttonId: number) {
     if (option === question.result) {
       await loadConfettiPreset(tsParticles);
       tsParticles.load({
@@ -50,64 +61,79 @@ function QuizDisplay({ question, onQuestionDone }: Props) {
           }
         },
       });
+    } else {
+      const newWrongAnswerCounter = wrongAnswerCounter + 1;
+
+      const newWrongAnswers = {
+        ...wrongAnswers,
+        [wrongAnswerCounter]: {
+          "question": question.questionValues[0] + " " +  question.signal + " " + question.questionValues[1] + " = ",
+          "result": question.result,
+          "answer": question.options[buttonId]
+        }
+      };
+
+      localStorage.setItem('wrongAnswers', JSON.stringify(newWrongAnswers));
+
+      setWrongAnswers(newWrongAnswers);
+      setWrongAnswerCounter(newWrongAnswerCounter);
     }
 
     setTimeout(() => {
-      onQuestionDone()
-    }, 1500)
+      onQuestionDone();
+    }, 1000);
   }
 
-  let buttonCSS: string[] = ['quiz-button pink', 'quiz-button blue', 'quiz-button orange', 'quiz-button yellow', 'quiz-button green']
-  buttonCSS = shuffle<string>(buttonCSS);
-
-  let questionCSS: string[] = ['pink', 'purple', 'yellow', 'green', 'blue']
-  questionCSS = shuffle<string>(questionCSS);
-
   return (
-      <div className="container">
-        <div className="quiz-container">
-          <a onClick={() => (navigate('/main'))}>
-            <img className='logo' src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
-          </a>
-          <h1>Questão</h1>
-          <div className='rectangle question-rectangle'>
-            <div className={questionCSS[0]}>{question.questionValues[0]}</div>
-            <div className={questionCSS[1]}>{question.signal}</div>
-            <div className={questionCSS[2]}>{question.questionValues[1]}</div>
+    <div className="container">
+      <div className="quiz-container">
+        <a onClick={() => navigate('/main')}>
+          <img className='logo' src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
+        </a>
+        <h1>Questão</h1>
+        <div className='rectangle question-rectangle'>
+          <div className={questionCSS[0]}>{question.questionValues[0]}</div>
+          <div className={questionCSS[1]}>{question.signal}</div>
+          <div className={questionCSS[2]}>{question.questionValues[1]}</div>
+        </div>
+        <div className='quiz-buttons-section'>
+          <div className='quiz-buttons'>
+            <button id='0' onClick={() => checkAnswer(question.options[0], 0)} className={buttonCSS[0]}>{question.options[0]}</button>
+            <button id='1' onClick={() => checkAnswer(question.options[1], 1)} className={buttonCSS[1]}>{question.options[1]}</button>
           </div>
-          <div className='quiz-buttons-section'>
-            <div className='quiz-buttons'>
-              <button onClick={() => checkAnswer(question.options[0])} className={buttonCSS[0]}>{question.options[0]}</button>
-              <button onClick={() => checkAnswer(question.options[1])} className={buttonCSS[1]}>{question.options[1]}</button>
-            </div>
-            <div className='quiz-buttons'>
-              <button onClick={() => checkAnswer(question.options[2])} className={buttonCSS[2]}>{question.options[2]}</button>
-              <button onClick={() => checkAnswer(question.options[3])} className={buttonCSS[3]}>{question.options[3]}</button>
-            </div>
+          <div className='quiz-buttons'>
+            <button id='2' onClick={() => checkAnswer(question.options[2], 2)} className={buttonCSS[2]}>{question.options[2]}</button>
+            <button id='3' onClick={() => checkAnswer(question.options[3], 3)} className={buttonCSS[3]}>{question.options[3]}</button>
           </div>
-
-          <div className='progress-bar-section'>
-            <div className='progress-bar-text'>
-              <div>00:23</div>
-              <div>1/90</div>
-            </div>
-            <div className='progress-bar-background'>
-              <div className='progress-bar-background bar'></div>
-            </div>
+        </div>
+        <div className='progress-bar-section'>
+          <div className='progress-bar-text'>
+            <div>00:23</div>
+            <div>1/90</div>
+          </div>
+          <div className='progress-bar-background'>
+            <div className='progress-bar-background bar'></div>
           </div>
         </div>
       </div>
-  )
-
+    </div>
+  );
 }
 
 function ScoreDisplay() {
   const navigate = useNavigate();
   const [totalTime, setTotalTime] = useState(126); // Set useState to 0. 126 used for display purposes only. Total time must come from quiz page
-  const [wrongQuestions, setWrongQuestions] = useState(121); // Set useState to 0. 121 used for display purposes only. Wrog answers must come from quiz page
-  const [questionQuantity, setQuestionQuantity] = useState(20); //get from settings
+    const [questionQuantity, setQuestionQuantity] = useState(20); //get from settings
   const averageTimePerQuestion = totalTime / questionQuantity
-  const errorPercentage = wrongQuestions / questionQuantity * 100
+
+  const storedWrongAnswers = localStorage.getItem('wrongAnswers');
+  const wrongAnswers: Record<number, { question: string, result: number, answer: number }> = storedWrongAnswers 
+    ? JSON.parse(storedWrongAnswers)
+    : {}; 
+
+  const numberOfWrongAnswers = Object.keys(wrongAnswers).length;
+
+  const errorPercentage = numberOfWrongAnswers / questionQuantity * 100
 
   useEffect(() => {
     const storageQuestionQuantity = localStorage.getItem("questionQuantity")!;
@@ -127,7 +153,7 @@ function ScoreDisplay() {
         </div>
         <div className='points'>
           <div className='rectangle long'>
-            <div className='pink'>{wrongQuestions}</div>
+            <div className='pink'>{numberOfWrongAnswers}</div>
             <div className='purple'>/</div>
             <div className='yellow'>{questionQuantity}</div>
           </div>
@@ -170,58 +196,10 @@ function WrongAnswerDisplay() {
 
   let questionCSS: string[] = ['pink', 'purple', 'yellow', 'green', 'blue', 'orange'];
 
-  const wrongAnswers: Record<number, { question: string, result: number, answer: number }> = {
-    1: {
-      "question": "7 x 9 = ",
-      "result": 63,
-      "answer": 56
-    },
-    2: {
-      "question": "8 x 4 = ",
-      "result": 32,
-      "answer": 36
-    },
-    3: {
-      "question": "6 x 7 = ",
-      "result": 42,
-      "answer": 47
-    },
-    4: {
-      "question": "5 x 5 = ",
-      "result": 25,
-      "answer": 20
-    },
-    5: {
-      "question": "9 x 9 = ",
-      "result": 81,
-      "answer": 72
-    },
-    6: {
-      "question": "4 x 6 = ",
-      "result": 24,
-      "answer": 30
-    },
-    7: {
-      "question": "3 x 8 = ",
-      "result": 24,
-      "answer": 20
-    },
-    8: {
-      "question": "2 x 7 = ",
-      "result": 14,
-      "answer": 12
-    },
-    9: {
-      "question": "10 x 3 = ",
-      "result": 30,
-      "answer": 33
-    },
-    10: {
-      "question": "6 x 8 = ",
-      "result": 48,
-      "answer": 42
-    }
-  };
+  const storedWrongAnswers = localStorage.getItem('wrongAnswers');
+  const wrongAnswers: Record<number, { question: string, result: number, answer: number }> = storedWrongAnswers 
+    ? JSON.parse(storedWrongAnswers)
+    : {}; 
 
   const numberOfWrongAnswers = Object.keys(wrongAnswers).length;
 
@@ -268,5 +246,6 @@ function WrongAnswerDisplay() {
     </div>
   );
 }
+
 
 export default QuizPage
