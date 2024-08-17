@@ -14,10 +14,24 @@ function QuizPage() {
     let currentQuestion = generateQuestion([0], [OperationType.Sum]);
     setCurrentQuestion(currentQuestion)
   }
+  const [questionQuantity, setQuestionQuantity] = useState(20);
+  const [questionCounter, setQuestionCounter] = useState(1);
+  const storedQuestionCounter = localStorage.getItem("questionCounter")!;
 
-  return ( 
-    <QuizDisplay question={currentQuestion} onQuestionDone={handleQuestionDone} />
-  )
+  useEffect(() => {
+    const storageQuestionQuantity = localStorage.getItem("questionQuantity")!;
+    setQuestionQuantity(parseInt(storageQuestionQuantity));
+  }, []);
+
+  return (
+    <>
+      {parseInt(storedQuestionCounter) > questionQuantity ? (
+        <ScoreDisplay />
+      ) : (
+        <QuizDisplay question={currentQuestion} onQuestionDone={handleQuestionDone} />
+      )}
+    </>
+  );
 }
 
 interface Props {
@@ -34,16 +48,23 @@ enum QuestionState {
 function QuizDisplay({ question, onQuestionDone }: Props) {
   const navigate = useNavigate();
   const [wrongAnswerCounter, setWrongAnswerCounter] = useState(1);
+  const [questionCounter, setQuestionCounter] = useState(1);
   const [wrongAnswers, setWrongAnswers] = useState<Record<number, { question: string, result: number, answer: number }>>({});
+  const [questionState, setQuestionState] = useState<QuestionState>(QuestionState.Unanswered);
   const [buttonCSS, setButtonCSS] = useState<string[]>([]);
   const [questionCSS, setQuestionCSS] = useState<string[]>([]);
+  const [questionQuantity, setQuestionQuantity] = useState(20);
 
   useEffect(() => {
     const shuffledButtonCSS = shuffle<string>(['quiz-button pink', 'quiz-button blue', 'quiz-button orange', 'quiz-button yellow', 'quiz-button green']);
     const shuffledQuestionCSS = shuffle<string>(['pink', 'yellow', 'green', 'blue', 'orange']);
     setButtonCSS(shuffledButtonCSS);
     setQuestionCSS(shuffledQuestionCSS);
+    const storageQuestionQuantity = localStorage.getItem("questionQuantity")!;
+    setQuestionQuantity(parseInt(storageQuestionQuantity));
   }, [question]);
+
+  localStorage.setItem('questionCounter', JSON.stringify(questionCounter));
 
   async function checkAnswer(option: number, buttonId: number) {
     if (option === question.result) {
@@ -61,6 +82,11 @@ function QuizDisplay({ question, onQuestionDone }: Props) {
           }
         },
       });
+
+      setQuestionState(QuestionState.Correct);
+      setQuestionCounter(questionCounter + 1);
+      localStorage.setItem('questionCounter', JSON.stringify(questionCounter));
+
     } else {
       const newWrongAnswerCounter = wrongAnswerCounter + 1;
 
@@ -74,14 +100,16 @@ function QuizDisplay({ question, onQuestionDone }: Props) {
       };
 
       localStorage.setItem('wrongAnswers', JSON.stringify(newWrongAnswers));
-
       setWrongAnswers(newWrongAnswers);
       setWrongAnswerCounter(newWrongAnswerCounter);
+      setQuestionState(QuestionState.Wrong);
+      setQuestionCounter(questionCounter + 1);
+      localStorage.setItem('questionCounter', JSON.stringify(questionCounter));
     }
 
     setTimeout(() => {
       onQuestionDone();
-    }, 1000);
+    }, 300);
   }
 
   return (
@@ -90,7 +118,7 @@ function QuizDisplay({ question, onQuestionDone }: Props) {
         <a onClick={() => navigate('/main')}>
           <img className='logo' src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
         </a>
-        <h1>Questão</h1>
+        <h1>Questão: {questionCounter}</h1>
         <div className='rectangle question-rectangle'>
           <div className={questionCSS[0]}>{question.questionValues[0]}</div>
           <div className={questionCSS[1]}>{question.signal}</div>
@@ -109,7 +137,7 @@ function QuizDisplay({ question, onQuestionDone }: Props) {
         <div className='progress-bar-section'>
           <div className='progress-bar-text'>
             <div>00:23</div>
-            <div>1/90</div>
+            <div>{questionCounter}/{questionQuantity}</div>
           </div>
           <div className='progress-bar-background'>
             <div className='progress-bar-background bar'></div>
@@ -122,8 +150,8 @@ function QuizDisplay({ question, onQuestionDone }: Props) {
 
 function ScoreDisplay() {
   const navigate = useNavigate();
-  const [totalTime, setTotalTime] = useState(126); // Set useState to 0. 126 used for display purposes only. Total time must come from quiz page
-  const [questionQuantity, setQuestionQuantity] = useState(20); //get from settings
+  const [totalTime, setTotalTime] = useState(10); 
+  const [questionQuantity, setQuestionQuantity] = useState(20); 
   const averageTimePerQuestion = totalTime / questionQuantity
 
   const storedWrongAnswers = localStorage.getItem('wrongAnswers');
