@@ -110,6 +110,7 @@ function QuizDisplay({ question, onQuestionDone }: Props) {
     setTimeout(() => {
       onQuestionDone();
     }, 300);
+
   }
 
   return (
