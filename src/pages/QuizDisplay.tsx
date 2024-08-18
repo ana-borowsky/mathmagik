@@ -53,7 +53,7 @@ function QuizDisplay({ question, onQuestionDone, questionCounter }: Props) {
       <a onClick={() => navigate('/main')}>
         <img className='logo' src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
       </a>
-      <h1>Questão: {questionCounter}</h1>
+      <h1>Questão: {questionCounter + 1}</h1>
       <div className='rectangle question-rectangle'>
         <div className={questionCSS[0]}>{question.questionValues[0]}</div>
         <div className={questionCSS[1]}>{question.signal}</div>

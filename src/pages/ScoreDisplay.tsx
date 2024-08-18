@@ -1,32 +1,23 @@
-import { useState, useEffect } from 'react';
 import './QuizPage.css';
 import { useNavigate } from 'react-router-dom';
+import { Question } from '../backend/backend';
 
-function ScoreDisplay() {
+interface Props {
+  wrongAnswers: Array<{ question: Question, answer: number }>
+  totalTime: number,
+  questionsQuantity: number
+  onReplay: () => void
+}
+
+function ScoreDisplay({ wrongAnswers,  totalTime, questionsQuantity, onReplay}: Props) {
   const navigate = useNavigate();
-  const [totalTime, setTotalTime] = useState(10); 
-  const [questionQuantity, setQuestionQuantity] = useState(20); 
-  const averageTimePerQuestion = totalTime / questionQuantity
-  let [questionCounter, setQuestionCounter] = useState(1);
-  const storedWrongAnswers = localStorage.getItem('wrongAnswers');
-  const wrongAnswers: Record<number, { question: string, result: number, answer: number }> = storedWrongAnswers 
-    ? JSON.parse(storedWrongAnswers)
-    : {}; 
-
+  
+  const averageTimePerQuestion = totalTime / questionsQuantity
   const numberOfWrongAnswers = Object.keys(wrongAnswers).length;
-  const errorPercentage = numberOfWrongAnswers / questionQuantity * 100
-
-  useEffect(() => {
-    const storageQuestionQuantity = localStorage.getItem("questionQuantity")!;
-    setQuestionQuantity(parseInt(storageQuestionQuantity));
-  }, []);
+  const errorPercentage = numberOfWrongAnswers / questionsQuantity * 100 
 
   function reloadQuiz() {
-    questionCounter = 1
-    setQuestionCounter(questionCounter);
-    const storeQuestionCounter = localStorage.setItem('questionCounter', '1');
-    window.location.reload();
-
+    onReplay()
   }
 
   return (
@@ -42,9 +33,9 @@ function ScoreDisplay() {
         </div>
         <div className='points'>
           <div className='rectangle long'>
-            <div className='pink'>{questionQuantity - numberOfWrongAnswers}</div>
+            <div className='pink'>{questionsQuantity - numberOfWrongAnswers}</div>
             <div className='purple'>/</div>
-            <div className='yellow'>{questionQuantity}</div>
+            <div className='yellow'>{questionsQuantity}</div>
           </div>
           <div className='details'>
             <div className='rectangle small'>

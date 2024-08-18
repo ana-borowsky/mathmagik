@@ -25,23 +25,30 @@ function QuizPage() {
       setWrongAnswers(newWrongAnswers);
     }
 
-    let newQuestion = generateQuestion([0], [OperationType.Sum]);
+    const newQuestion = generateQuestion([0], [OperationType.Sum]);
     setCurrentQuestion(newQuestion)
     setQuestionCounter(questionCounter + 1);
+  }
+
+  const reset = () => {
+    setQuestionCounter(0);
+    setWrongAnswers([]);
+    const newQuestion = generateQuestion([0], [OperationType.Sum]);
+    setCurrentQuestion(newQuestion)
   }
 
   useEffect(() => {
     const settings = readSettings();
     setQuestionQuantity(settings.questionQuantity);
-  }, []);
+  }, []); //receber como parametro
 
   return (
     <>
-      {questionCounter > questionQuantity ? ( 
-        <ScoreDisplay />
+      {questionCounter >= questionQuantity ? ( 
+        <ScoreDisplay wrongAnswers={wrongAnswers} totalTime={10} questionsQuantity={questionQuantity} onReplay={reset}/>
       ) : (
         <div className="container">
-          <QuizDisplay question={currentQuestion} onQuestionDone={handleQuestionDone} questionCounter={questionCounter}/>
+          <QuizDisplay question={currentQuestion} onQuestionDone={handleQuestionDone} questionCounter={questionCounter} />
           <ProgressBar questionCounter={questionCounter} questionQuantity={questionQuantity} />
         </div>
       )}
