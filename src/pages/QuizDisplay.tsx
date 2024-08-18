@@ -82,39 +82,27 @@ function QuizDisplay({ question, onQuestionDone }: Props) {
     setTimeout(() => {
       onQuestionDone();
     }, 300);
-
   }
 
   return (
-    <div className="container">
-      <div className="quiz-container">
-        <a onClick={() => navigate('/main')}>
-          <img className='logo' src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
-        </a>
-        <h1>Questão: {questionCounter}</h1>
-        <div className='rectangle question-rectangle'>
-          <div className={questionCSS[0]}>{question.questionValues[0]}</div>
-          <div className={questionCSS[1]}>{question.signal}</div>
-          <div className={questionCSS[2]}>{question.questionValues[1]}</div>
+    <div className="quiz-container">
+      <a onClick={() => navigate('/main')}>
+        <img className='logo' src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
+      </a>
+      <h1>Questão: {questionCounter}</h1>
+      <div className='rectangle question-rectangle'>
+        <div className={questionCSS[0]}>{question.questionValues[0]}</div>
+        <div className={questionCSS[1]}>{question.signal}</div>
+        <div className={questionCSS[2]}>{question.questionValues[1]}</div>
+      </div>
+      <div className='quiz-buttons-section'>
+        <div className='quiz-buttons'>
+          <button id='0' onClick={() => checkAnswer(question.options[0], 0)} className={buttonCSS[0]}>{question.options[0]}</button>
+          <button id='1' onClick={() => checkAnswer(question.options[1], 1)} className={buttonCSS[1]}>{question.options[1]}</button>
         </div>
-        <div className='quiz-buttons-section'>
-          <div className='quiz-buttons'>
-            <button id='0' onClick={() => checkAnswer(question.options[0], 0)} className={buttonCSS[0]}>{question.options[0]}</button>
-            <button id='1' onClick={() => checkAnswer(question.options[1], 1)} className={buttonCSS[1]}>{question.options[1]}</button>
-          </div>
-          <div className='quiz-buttons'>
-            <button id='2' onClick={() => checkAnswer(question.options[2], 2)} className={buttonCSS[2]}>{question.options[2]}</button>
-            <button id='3' onClick={() => checkAnswer(question.options[3], 3)} className={buttonCSS[3]}>{question.options[3]}</button>
-          </div>
-        </div>
-        <div className='progress-bar-section'>
-          <div className='progress-bar-text'>
-            <div>00:23</div>
-            <div>{questionCounter}/{questionQuantity}</div>
-          </div>
-          <div className='progress-bar-background'>
-            <div className='progress-bar-background bar'></div>
-          </div>
+        <div className='quiz-buttons'>
+          <button id='2' onClick={() => checkAnswer(question.options[2], 2)} className={buttonCSS[2]}>{question.options[2]}</button>
+          <button id='3' onClick={() => checkAnswer(question.options[3], 3)} className={buttonCSS[3]}>{question.options[3]}</button>
         </div>
       </div>
     </div>

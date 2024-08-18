@@ -5,6 +5,7 @@ import { generateQuestion } from '../backend/database';
 // import WrongAnswerDisplay  from './WrongAnswersDisplay'
 import ScoreDisplay  from './ScoreDisplay'
 import QuizDisplay  from './QuizDisplay'
+import { readSettings } from '../backend/storage'
 
 function QuizPage() {
   let initialQuestion = generateQuestion([0], [OperationType.Sum]); //Generate question altered for testing purposes
@@ -18,16 +19,27 @@ function QuizPage() {
   const storedQuestionCounter = localStorage.getItem("questionCounter")!;
 
   useEffect(() => {
-    const storageQuestionQuantity = localStorage.getItem("questionQuantity")!;
-    setQuestionQuantity(parseInt(storageQuestionQuantity));
+    const settings = readSettings();
+    setQuestionQuantity(settings.questionQuantity);
   }, []);
 
   return (
     <>
-      {parseInt(storedQuestionCounter) > questionQuantity ? (
+      {parseInt(storedQuestionCounter) > questionQuantity ? ( 
         <ScoreDisplay />
       ) : (
-        <QuizDisplay question={currentQuestion} onQuestionDone={handleQuestionDone} />
+        <div className="container">
+          <QuizDisplay question={currentQuestion} onQuestionDone={handleQuestionDone} />
+          <div className='progress-bar-section'>
+            <div className='progress-bar-text'>
+              <div>00:23</div>
+              <div>{questionCounter}/{questionQuantity}</div>
+            </div>
+            <div className='progress-bar-background'>
+              <div className='progress-bar-background bar'></div>
+            </div>
+          </div>
+        </div>
       )}
     </>
   );
