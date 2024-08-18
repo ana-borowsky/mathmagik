@@ -1,11 +1,15 @@
 /* Quiz */
 
+.quiz-progress-bar {
+  gap: 5rem;
+  margin-bottom: 6rem;
+}
+
 .quiz-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 5rem;
-  margin-bottom: 6rem;
 }
 
 .question {
