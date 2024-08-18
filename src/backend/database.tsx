@@ -1,5 +1,6 @@
 import { QuestionTemplate, OperationType , Question} from "./backend";
 import { getRandomValue, GetValuesForSubtraction } from "./util";
+import { readSettings } from './storage'
 
 // Define the questionTemplates array
 export const questionTemplates: QuestionTemplate[] = [
@@ -23,7 +24,8 @@ export function generateQuestion(difficulty: number[], operations: OperationType
     // Temporary implementation for debug purposes, function NOT finished!
 
     //SUPER GAMBIARRA PARA TESTES!!
-    const storageQuestionTypes = JSON.parse(localStorage.getItem('questionTypes') || '[]');
+    // Passar como parametro
+    const storageQuestionTypes = readSettings().questionTypes
     //console.log(storageQuestionTypes);
 
     let pool: QuestionTemplate[] = [];

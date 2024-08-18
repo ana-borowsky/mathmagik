@@ -1,7 +1,7 @@
-import React from 'react'
 import { useState, useEffect } from 'react';
 import './SettingsPage.css'
 import { useNavigate } from 'react-router-dom';
+import { readSettings, writeSettings } from '../backend/storage'
 
 type ButtonName = 'subtraction' | 'division' | 'sum' | 'multiplication';
 
@@ -25,19 +25,12 @@ function SettingsPage() {
   };
 
   useEffect(() => {
-    const storageTime = localStorage.getItem("timer") || "20";
-    const storageDifficulty = localStorage.getItem("difficulty") || "3";
-    const storageQuestionQuantity = localStorage.getItem("questionQuantity")!;
-    const storageQuestionTypes = localStorage.getItem('questionTypes');
-    setTimer(parseInt(storageTime));
-    setDifficulty(parseInt(storageDifficulty));
-    setQuestionQuantity(parseInt(storageQuestionQuantity));
-    setQuestionTypes(storageQuestionTypes ? JSON.parse(storageQuestionTypes) : {
-      subtraction: false,
-      dividision: false,
-      sum: true,
-      multiplication: false
-    });
+    const settings = readSettings();
+
+    setTimer(settings.timer);
+    setDifficulty(settings.difficulty);
+    setQuestionQuantity(settings.questionQuantity);
+    setQuestionTypes(settings.questionTypes);
 
   }, []);
 
@@ -64,30 +57,37 @@ function SettingsPage() {
   }
 
   function menu() {
-    alert("Configurações não salvas!");
+    save();
     navigate('/main');
   }
 
   function save() {
     const atLeastOneActive = Object.values(questionTypes).some(value => value);
 
-    localStorage.setItem("timer", (timer).toString());
-    localStorage.setItem("difficulty", (difficulty).toString());
-    localStorage.setItem("questionQuantity", (questionQuantity).toString());
-
     if (atLeastOneActive) {
-      localStorage.setItem('questionTypes', JSON.stringify(questionTypes));
+
+      let settings = {
+        timer,
+        difficulty,
+        questionQuantity,
+        questionTypes
+      };
+
+      writeSettings(settings)
+
       alert("Configurações salvas!");
     } else {
       alert("Escolha pelo menos um tipo de quesão!");
     }
+
+    navigate('/main');
   }
 
   return (
     <>
       <div className="container settings-containter">
         <div className='settings'>
-          <a onClick={() => (navigate('/main'))}>
+          <a onClick={() => menu()}>
             <img className='logo' src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
           </a>
           <div className="settings-section">
