@@ -79,6 +79,8 @@ function SettingsPage() {
     } else {
       alert("Escolha pelo menos um tipo de quesão!");
     }
+
+    navigate('/main');
   }
 
   return (

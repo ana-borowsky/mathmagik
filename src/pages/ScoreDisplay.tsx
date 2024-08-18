@@ -1,6 +1,8 @@
-import './QuizPage.css';
-import { useNavigate } from 'react-router-dom';
-import { Question } from '../backend/backend';
+import './QuizPage.css'
+import { useNavigate } from 'react-router-dom'
+import { Question } from '../backend/backend'
+import { useState } from 'react'
+import WrongAnswerDisplay  from './WrongAnswersDisplay'
 
 interface Props {
   wrongAnswers: Array<{ question: Question, answer: number }>
@@ -9,15 +11,21 @@ interface Props {
   onReplay: () => void
 }
 
-function ScoreDisplay({ wrongAnswers,  totalTime, questionsQuantity, onReplay}: Props) {
-  const navigate = useNavigate();
-  
+function ScoreDisplay({ wrongAnswers, totalTime, questionsQuantity, onReplay}: Props) {
+  const navigate = useNavigate()
+
   const averageTimePerQuestion = totalTime / questionsQuantity
-  const numberOfWrongAnswers = Object.keys(wrongAnswers).length;
+  const numberOfWrongAnswers = wrongAnswers.length
   const errorPercentage = numberOfWrongAnswers / questionsQuantity * 100 
+
+  const [showErrors, setShowErrors] = useState(false)
 
   function reloadQuiz() {
     onReplay()
+  }
+
+  if (showErrors) {
+    return <WrongAnswerDisplay wrongAnswers={wrongAnswers} onBack={() => setShowErrors(false)} onReplay={onReplay} />
   }
 
   return (
@@ -63,8 +71,8 @@ function ScoreDisplay({ wrongAnswers,  totalTime, questionsQuantity, onReplay}: 
           </div>
         </div>
         <div className="buttons">
-          <button className='button-std' onClick={() => reloadQuiz()}>ERROS</button>
-          <button className='button-std' onClick={() => reloadQuiz()}>REPLAY</button>
+          <button className='button-std' onClick={() => setShowErrors(true)}>ERROS</button>
+          <button className='button-std' onClick={reloadQuiz}>REPLAY</button>
         </div>
       </div>
     </div>

@@ -1,19 +1,23 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './QuizPage.css';
-import { OperationType, QuestionTemplate, Question } from '../backend/backend';
+import { OperationType, Question } from '../backend/backend';
 import { generateQuestion } from '../backend/database';
 import ScoreDisplay  from './ScoreDisplay'
 import QuizDisplay  from './QuizDisplay'
 import ProgressBar from './QuizProgressBar'
 import { readSettings } from '../backend/storage'
-// import WrongAnswerDisplay  from './WrongAnswersDisplay'
+
+interface Props {
+  settings: Question;
+}
 
 function QuizPage() {
   let initialQuestion = generateQuestion([0], [OperationType.Sum]); //Generate question altered for testing purposes
   const [currentQuestion, setCurrentQuestion] = useState(initialQuestion)
-  const [questionQuantity, setQuestionQuantity] = useState(20);
   const [questionCounter, setQuestionCounter] = useState(0);
   const [wrongAnswers, setWrongAnswers] = useState<Array<{ question: Question, answer: number }>>([]);
+
+  const questionQuantity = readSettings().questionQuantity;
 
   const handleQuestionDone = (answer: number) => {
     if (answer != currentQuestion.result) {
@@ -27,7 +31,7 @@ function QuizPage() {
 
     const newQuestion = generateQuestion([0], [OperationType.Sum]);
     setCurrentQuestion(newQuestion)
-    setQuestionCounter(questionCounter + 1);
+    setQuestionCounter(questionCounter + 1)
   }
 
   const reset = () => {
@@ -37,14 +41,9 @@ function QuizPage() {
     setCurrentQuestion(newQuestion)
   }
 
-  useEffect(() => {
-    const settings = readSettings();
-    setQuestionQuantity(settings.questionQuantity);
-  }, []); //receber como parametro
-
   return (
     <>
-      {questionCounter >= questionQuantity ? ( 
+      {questionCounter >= questionQuantity ? (
         <ScoreDisplay wrongAnswers={wrongAnswers} totalTime={10} questionsQuantity={questionQuantity} onReplay={reset}/>
       ) : (
         <div className="container">
