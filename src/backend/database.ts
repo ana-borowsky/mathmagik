@@ -23,8 +23,7 @@ export const questionTemplates: QuestionTemplate[] = [
 export function generateQuestion(difficulty: number[], operations: OperationType[]): Question {
     // Temporary implementation for debug purposes, function NOT finished!
 
-    //SUPER GAMBIARRA PARA TESTES!!
-    // Passar como parametro
+    //TODO: Currently used for testing purposes, replace with actual implementation later.
     const storageQuestionTypes = readSettings().questionTypes
     //console.log(storageQuestionTypes);
 
