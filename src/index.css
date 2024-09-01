@@ -10,13 +10,8 @@
   --color-green: #88dd83;
 }
 
-#root {
-  min-height: 100%;
-}
-
 html, body {
   margin: 0;
-  height: 100%;
 }
 
 html {
@@ -28,35 +23,30 @@ html {
   font-optical-sizing: auto;
   font-weight: 800;
   font-style: normal;
+  box-sizing: border-box;
 }
 
 body {
   background-color: var(--color-medium-light-purple);
   background-image: url("../public/background_texture.svg");
-  background-repeat:repeat;
-  padding: 0rem;
-  margin: 0rem;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+  background-repeat: repeat;
+  padding: 0;
+  margin: 0;
 }
 
 .container {
-  box-sizing: border-box;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 20%;
-  min-width: 60rem;
   max-width: 70rem;
-  min-height: 100%;
   background-color: var(--color-medium-light-purple);
   padding-top: 6rem;
   padding-bottom: 6rem;
-  margin: 0%;
   color: white;
   gap: 6rem;
+  height: 100vh;
 }
 
 h1 {
@@ -94,11 +84,18 @@ button:active {
   filter: drop-shadow(0.6rem 0.6rem 0rem var(--color-dark-purple));
 }
 
+@media (max-width: 400px) {
+  .logo {
+    display: none;
+  }
+}
+
 .logo {
  margin: 0;
  cursor: pointer;
  height: 15rem;
 }
+
 
 .pink {
   color: var(--color-pink);
@@ -133,6 +130,7 @@ button:active {
 .buttons {
   display: flex;
   align-items: center;
+  flex-direction: column;
   gap: 3rem;
 }
 

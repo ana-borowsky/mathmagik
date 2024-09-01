@@ -46,9 +46,9 @@ function QuizPage() {
       {questionCounter >= questionQuantity ? (
         <ScoreDisplay wrongAnswers={wrongAnswers} totalTime={10} questionsQuantity={questionQuantity} onReplay={reset}/>
       ) : (
-        <div className="container quiz-progress-bar">
-          <QuizDisplay question={currentQuestion} onQuestionDone={handleQuestionDone} questionCounter={questionCounter} />
+        <div className="container">
           <ProgressBar questionCounter={questionCounter} questionQuantity={questionQuantity} />
+          <QuizDisplay question={currentQuestion} onQuestionDone={handleQuestionDone} questionCounter={questionCounter} />
         </div>
       )}
     </>
