@@ -11,7 +11,7 @@ function ProgressBar({ questionCounter, questionQuantity }: Props) {
         <div>{questionCounter}/{questionQuantity}</div>
       </div>
       <div className='progress-bar-background'>
-        <div className='progress-bar-background bar'></div>
+        <div className='progress-bar-background bar' style={{width: `${questionCounter/questionQuantity*100}%` }}></div>
       </div>
     </div>
   )
