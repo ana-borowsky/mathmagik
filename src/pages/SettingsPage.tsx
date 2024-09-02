@@ -85,65 +85,65 @@ function SettingsPage() {
 
   return (
     <>
-      <div className="container settings-containter">
+      <div className="container">
         <div className='settings'>
-          <a onClick={() => menu()}>
-            <img className='logo' src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
+          <a className='logo' onClick={() => menu()}>
+            <img src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
           </a>
-          <div className="settings-section">
           <div className='title'>
             <h1>Opções</h1>
           </div>
-            <div className='settings-title'>
-              <h2>Timer(s):</h2>
-              <div className='timer'>
-                <button className='round-btn minus dark-purple'>
-                  <div onClick={() => decreaseTime()} className='signal'>
-                    -
-                  </div>
-                </button>
-                <div className='settings-rectangle blue'>{timer == 0 ? "OFF" : timer}</div>
-                <button className='round-btn sum dark-purple'>
-                  <div onClick={() => increaseTime()} className='signal'>
-                    +
-                  </div>
-                </button>
-              </div>
+          <div className='settings-title'>
+            <h2>Tempo para responder:</h2>
+            <div className='timer'>
+              <button className='round-btn minus dark-purple'>
+                <div onClick={() => decreaseTime()} className='signal'>
+                  -
+                </div>
+              </button>
+              <div className='settings-rectangle blue'>{timer == 0 ? "OFF" : timer}</div>
+              <button className='round-btn sum dark-purple'>
+                <div onClick={() => increaseTime()} className='signal'>
+                  +
+                </div>
+              </button>
             </div>
-            <div className='settings-title'>
-              <h2>Dificuldade:</h2>
-              <div className="timer">
-                <button className='round-btn minus dark-purple'>
-                  <div onClick={() => decreaseDifficulty()} className='signal'>
-                    -
-                  </div>
-                </button>
-                <div className='settings-rectangle orange'>{difficulty}</div>
-                <button className='round-btn sum dark-purple'>
-                  <div onClick={() => increaseDifficulty()} className='signal'>
-                    +
-                  </div>
-                </button>
-              </div>
+          </div>
+          <div className='settings-title'>
+            <h2>Dificuldade:</h2>
+            <div className="timer">
+              <button className='round-btn minus dark-purple'>
+                <div onClick={() => decreaseDifficulty()} className='signal'>
+                  -
+                </div>
+              </button>
+              <div className='settings-rectangle orange'>{difficulty}</div>
+              <button className='round-btn sum dark-purple'>
+                <div onClick={() => increaseDifficulty()} className='signal'>
+                  +
+                </div>
+              </button>
             </div>
-            <div className='settings-title'>
-              <h2>Quantidade de questões:</h2>
-              <select
-                className="questionQuantity"
-                id="questionsQuantity"
-                name="questionsQuantity"
-                value={questionQuantity}
-                onChange={(e) => setQuestionQuantity(parseInt(e.target.value))}
-              >
-                {Array.from({ length: 20 }, (_, i) => (
-                  <option key={i} value={(i + 1) * 10}>
-                    {(i + 1) * 10}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className='settings-title'>
-              <h2>Questões:</h2>
+          </div>
+          <div className='settings-title'>
+            <h2>Quantidade de questões:</h2>
+            <select
+              className="questionQuantity"
+              id="questionsQuantity"
+              name="questionsQuantity"
+              value={questionQuantity}
+              onChange={(e) => setQuestionQuantity(parseInt(e.target.value))}
+            >
+              {Array.from({ length: 20 }, (_, i) => (
+                <option key={i} value={(i + 1) * 10}>
+                  {(i + 1) * 10}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className='settings-title'>
+            <h2>Tipos de questões:</h2>
+            <div className="timer">
               <button
                 className={`round-btn ${questionTypes.subtraction ? 'purple' : 'inactive'}`}
                 onClick={() => toggleButton('subtraction')}

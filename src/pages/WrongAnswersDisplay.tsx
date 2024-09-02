@@ -25,8 +25,8 @@ function WrongAnswerDisplay({ wrongAnswers, onBack, onReplay }: Props) {
 
   return (
     <div className='container wrong-answers-container'>
-      <a onClick={() => navigate('/main')}>
-        <img className='logo' src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
+      <a className='logo' onClick={() => navigate('/main')}>
+        <img src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
       </a>
       <div className='score-title'>
         <h1>Erros: {numberOfWrongAnswers}</h1>
@@ -39,8 +39,8 @@ function WrongAnswerDisplay({ wrongAnswers, onBack, onReplay }: Props) {
                 {formattedQuestion(answer.question)}
               </div>
               <div className='answer'>
-                <h2>Sua resposta: {wrongAnswers[key].answer}</h2>
-                <h2>Diferença: {Math.abs(answer.question.result - answer.answer)}</h2>
+                <h3>Sua resposta: {wrongAnswers[key].answer}</h3>
+                <h3>Diferença: {Math.abs(answer.question.result - answer.answer)}</h3>
               </div>
             </div>
           );

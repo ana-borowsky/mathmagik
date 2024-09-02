@@ -31,8 +31,8 @@ function ScoreDisplay({ wrongAnswers, totalTime, questionsQuantity, onReplay}: P
   return (
     <div className="container">
       <div className="score-container">
-        <a onClick={() => (navigate('/main'))}>
-          <img className='logo' src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
+        <a className='logo' onClick={() => (navigate('/main'))}>
+          <img src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
         </a>
         <div className='score-title'>
           <img src='star.svg' alt='Estrela' />

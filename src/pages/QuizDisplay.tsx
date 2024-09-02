@@ -49,10 +49,7 @@ function QuizDisplay({ question, onQuestionDone, questionCounter }: Props) {
   }
 
   return (
-    <div className="quiz-container">
-      <a onClick={() => navigate('/main')}>
-        <img className='logo' src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
-      </a>
+    <>
       <div className='rectangle question-rectangle'>
         <div className={questionCSS[0]}>{question.questionValues[0]}</div>
         <div className={questionCSS[1]}>{question.signal}</div>
@@ -68,7 +65,7 @@ function QuizDisplay({ question, onQuestionDone, questionCounter }: Props) {
           <button id='3' onClick={() => checkAnswer(question.options[3])} className={buttonCSS[3]}>{question.options[3]}</button>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -1,16 +1,17 @@
 :root {
-  --color-light-purple:#CDCDFF;
-  --color-medium-light-purple:#A5A4FF;
+  --color-light-purple: #CDCDFF;
+  --color-medium-light-purple: #A5A4FF;
   --color-purple: #918FFF;
   --color-dark-purple: #5F57E0;
-  --color-orange:#FFAF95;
+  --color-orange: #FFAF95;
   --color-blue: #58B2FF;
   --color-yellow: #FFD371;
   --color-pink: #F59CED;
   --color-green: #88dd83;
 }
 
-html, body {
+html,
+body {
   margin: 0;
 }
 
@@ -36,29 +37,30 @@ body {
 
 .container {
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   max-width: 70rem;
   background-color: var(--color-medium-light-purple);
-  padding-top: 6rem;
-  padding-bottom: 6rem;
+  padding: 4rem 0;
   color: white;
-  gap: 6rem;
-  height: 100vh;
+  min-height: 100vh;
 }
-
+  
 h1 {
-  font-size: 4rem;
+  font-size: 3.5rem;
   color: white;
   filter: drop-shadow(0.4rem 0.4rem 0rem var(--color-purple));
   margin: 0rem;
-  height:5rem;
+  height: 5rem;
 }
 
 h2 {
   font-size: 2.4rem;
+  color: white;
+  filter: drop-shadow(0.4rem 0.4rem 0rem var(--color-purple));
+  margin: 0rem;
+}
+
+h3 {
+  font-size: 2rem;
   color: white;
   filter: drop-shadow(0.4rem 0.4rem 0rem var(--color-purple));
   margin: 0rem;
@@ -72,7 +74,7 @@ button {
   margin: 0rem;
   background-color: white;
   color: var(--color-dark-purple);
-  border-radius: 2rem;
+  border-radius: 1.5rem;
   border-color: white;
   border-style: none;
   filter: drop-shadow(1.0rem 1.0rem 0rem var(--color-dark-purple));
@@ -86,16 +88,21 @@ button:active {
 
 @media (max-width: 400px) {
   .logo {
-    display: none;
+    display: none !important;
   }
 }
 
 .logo {
- margin: 0;
- cursor: pointer;
- height: 15rem;
+  cursor: pointer;
+  height: 15rem;
+  margin: 0 auto;
+  display: block;
+  text-align: center;
 }
 
+.logo-main {
+  display: block !important;
+}
 
 .pink {
   color: var(--color-pink);
@@ -130,15 +137,15 @@ button:active {
 .buttons {
   display: flex;
   align-items: center;
-  flex-direction: column;
   gap: 3rem;
 }
 
 .button-std {
   font-size: 2rem;
-  height: 9rem;
-  width: 19rem;
+  height: 8rem;
+  width: 14rem;
   margin: 0rem;
+  display: block;
 }
 
 .gap {
