@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './QuizPage.css';
 import { OperationType, Question } from '../backend/backend';
 import { generateQuestion } from '../backend/database';
@@ -12,20 +12,22 @@ interface Props {
   settings: Question;
 }
 
-function onTimerRunOut(){
-  console.log('The timer has ran out!');
-}
-
 function QuizPage() {
   //TODO: Implement timer settings from storage
   var defaultTimer = 30;
+  var totalTime = 0;
+
+  function onTimerRunOut(timeRemaining: number) {
+    totalTime += timeRemaining;
+    console.log('The timer has ran out!');
+  }
 
   useEffect(() => {
     const timer = setInterval(() => {
       setTimer(timer => {
         if (timer <= 0) {
           clearInterval(timer);
-          onTimerRunOut(); // Call onTimerRunOut function when timer runs out
+          onTimerRunOut(timer); // Call onTimerRunOut function when timer runs out
           return 0;
         }
         return timer - 1;
@@ -34,7 +36,6 @@ function QuizPage() {
 
     return () => clearInterval(timer);
   }, []);
-
   let initialQuestion = generateQuestion([0], [OperationType.Sum]); //Generate question altered for testing purposes
   const [currentQuestion, setCurrentQuestion] = useState(initialQuestion)
   const [questionCounter, setQuestionCounter] = useState(0);
