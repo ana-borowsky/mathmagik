@@ -1,3 +1,4 @@
+import { randomInRange } from "@tsparticles/engine";
 import { getRandomValue } from "./util";
 import { shuffle } from "./util";
 
@@ -40,7 +41,7 @@ export class QuestionTemplate {
 
         var options:number[] = [0, 0, 0, result];
         for(let i = 0; i < options.length - 1; i++){
-            var r = 0;
+            var r = randomInRange(this.questionOptions.length - 1);
             options[i] = this.questionOptions[r](result, options);
         }
 

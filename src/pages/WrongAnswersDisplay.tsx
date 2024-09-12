@@ -48,7 +48,7 @@ function WrongAnswerDisplay({ wrongAnswers, onBack, onReplay }: Props) {
       </div>
       <div className="buttons">
         <button className='button-std' onClick={onBack}>VOLTAR</button>
-        <button className='button-std' onClick={onReplay}>REPLAY</button>
+        <button className='button-std' onClick={onReplay}>REINICIAR</button>
       </div>
     </div>
   );
