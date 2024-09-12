@@ -38,11 +38,9 @@ export class QuestionTemplate {
 
         let result = this.questionOperation(choosenValues);
 
-        //console.log(this);
         var options:number[] = [0, 0, 0, result];
         for(let i = 0; i < options.length - 1; i++){
             var r = 0;
-            //console.log(this.questionOptions[r]);
             options[i] = this.questionOptions[r](result);
         }
 
@@ -50,9 +48,6 @@ export class QuestionTemplate {
         return temp;
     }
 
-    // generateOptions(result: number) {
-    //     return  shuffle<number>([result, getRandomValue(0.8 * result, result + 0.1 * result, 0), getRandomValue(0.9 * result, result + 0.3 * result, 0), getRandomValue(1.1 * result, result + 0.2 * result, 0)]);
-    // }
 
     getSinal(): String{
         switch(this.operations[0]){
