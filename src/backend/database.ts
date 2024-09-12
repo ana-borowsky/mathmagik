@@ -1,6 +1,7 @@
 import { QuestionTemplate, OperationType , Question} from "./backend";
-import { getRandomValue, GetValuesForSubtraction } from "./util";
+import { getRandomValue } from "./util";
 import { readSettings } from './storage'
+import { GenerateSubOptions, GenerateSumOptions } from "./generation";
 
 // Define the questionTemplates array
 export const questionTemplates: QuestionTemplate[] = [
@@ -9,14 +10,16 @@ export const questionTemplates: QuestionTemplate[] = [
         [OperationType.Sum],
         ()=> [getRandomValue(0, 250, 0), getRandomValue(0, 250, 0)],
         (values: number[]) => 
-        (values[0] + values[1]) // Sum operation
+        (values[0] + values[1]), // Sum operation
+        [(result: number, options: number[]) => GenerateSumOptions(result, options)] // Options generator
     ),
     new QuestionTemplate(
         0,
         [OperationType.Subtraction],
-        ()=> GetValuesForSubtraction(250),
+        ()=> [getRandomValue(0, 250, 0), getRandomValue(0, 250, 0)],
         (values: number[]) => 
-        (values[0] - values[1]) // Sum operation
+        (values[0] - values[1]), // Min operation
+        [(result: number, options: number[]) => GenerateSubOptions(result, options)] // Options generator
     )
 ];
 
