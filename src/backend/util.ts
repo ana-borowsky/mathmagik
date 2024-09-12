@@ -28,17 +28,4 @@ export function shuffle<T>(array: T[]): T[] {
 
   return array;
 };
-
-//LEGACY: Complex Question value generators
-export function GetValuesForSubtraction(range: number): number[] {
-  let value1 = getRandomValue(0, range, 0);
-  let value2 = getRandomValue(0, range, 0);
-  
-  while (value1 <= value2) {
-    value1 = getRandomValue(0, range, 0);
-    value2 = getRandomValue(0, range, 0);
-  }
-  
-  return [value1, value2];
-}
   

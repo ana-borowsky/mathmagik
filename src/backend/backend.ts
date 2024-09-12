@@ -14,14 +14,14 @@ export class QuestionTemplate {
     operations: OperationType[];
     valueGenerator: () => number[];
     questionOperation: (values: number[]) => number;
-    questionOptions: ((result: number) => number)[];
+    questionOptions: ((result: number, options: number[]) => number)[];
 
     constructor(
         difficulty: number,
         operations: OperationType[],
         valueGenerator: () => number[],
         questionOperation: (values: number[]) => number,
-        questionOptions: ((result: number) => number)[]
+        questionOptions: ((result: number, options: number[]) => number)[]
     ) {
         this.difficulty = difficulty;
         this.operations = operations;
@@ -41,7 +41,7 @@ export class QuestionTemplate {
         var options:number[] = [0, 0, 0, result];
         for(let i = 0; i < options.length - 1; i++){
             var r = 0;
-            options[i] = this.questionOptions[r](result);
+            options[i] = this.questionOptions[r](result, options);
         }
 
         let temp: Question = new Question(choosenValues, shuffle(options), result, this.getSinal());
