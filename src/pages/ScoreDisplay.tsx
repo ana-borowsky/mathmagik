@@ -72,7 +72,7 @@ function ScoreDisplay({ wrongAnswers, totalTime, questionsQuantity, onReplay}: P
         </div>
         <div className="buttons">
           <button className='button-std' onClick={() => setShowErrors(true)}>ERROS</button>
-          <button className='button-std' onClick={reloadQuiz}>REPLAY</button>
+          <button className='button-std' onClick={reloadQuiz}>REINICIAR</button>
         </div>
       </div>
     </div>
