@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './QuizPage.css';
 import { OperationType, Question } from '../backend/backend';
 import { generateQuestion } from '../backend/database';
@@ -13,12 +13,30 @@ interface Props {
 }
 
 function QuizPage() {
+  //TODO: Implement timer settings from storage
+  var defaultTimer = 10;
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimer(timer => {
+        if (timer <= 0) {
+          clearInterval(timer);
+          return 0;
+        }
+        return timer - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   let initialQuestion = generateQuestion([0], [OperationType.Sum]); //Generate question altered for testing purposes
   const [currentQuestion, setCurrentQuestion] = useState(initialQuestion)
   const [questionCounter, setQuestionCounter] = useState(0);
   const [wrongAnswers, setWrongAnswers] = useState<Array<{ question: Question, answer: number }>>([]);
   const questionQuantity = readSettings().questionQuantity;
   const navigate = useNavigate();
+  const [timer, setTimer] = useState<number>(defaultTimer);
 
   const handleQuestionDone = (answer: number) => {
     if (answer != currentQuestion.result) {
@@ -52,7 +70,7 @@ function QuizPage() {
             <img src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
           </a>
           <div className="quiz-container">
-            <ProgressBar questionCounter={questionCounter} questionQuantity={questionQuantity} />
+            <ProgressBar questionCounter={questionCounter} questionQuantity={questionQuantity} timer={timer} />
             <QuizDisplay question={currentQuestion} onQuestionDone={handleQuestionDone} questionCounter={questionCounter} />
           </div>
         </div>

@@ -13,6 +13,9 @@ interface Props {
 }
 
 function QuizDisplay({ question, onQuestionDone, questionCounter }: Props) {
+
+  var defaultTimer = 30;
+
   const navigate = useNavigate();
   const [buttonCSS, setButtonCSS] = useState<string[]>([]);
   const [questionCSS, setQuestionCSS] = useState<string[]>([]);
