@@ -9,14 +9,16 @@ export const questionTemplates: QuestionTemplate[] = [
         [OperationType.Sum],
         ()=> [getRandomValue(0, 250, 0), getRandomValue(0, 250, 0)],
         (values: number[]) => 
-        (values[0] + values[1]) // Sum operation
+        (values[0] + values[1]), // Sum operation
+        [(result: number) => result + getRandomValue(-25,40,0)] // Options generator
     ),
     new QuestionTemplate(
         0,
         [OperationType.Subtraction],
-        ()=> GetValuesForSubtraction(250),
+        ()=> [getRandomValue(0, 250, 0), getRandomValue(0, 250, 0)],
         (values: number[]) => 
-        (values[0] - values[1]) // Sum operation
+        (values[0] - values[1]), // Min operation
+        [(result: number) => result - getRandomValue(0,120,0)] // Options generator
     )
 ];
 
