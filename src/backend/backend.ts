@@ -46,7 +46,7 @@ export class QuestionTemplate {
             options[i] = this.questionOptions[r](result);
         }
 
-        let temp: Question = new Question(choosenValues, options, result, this.getSinal());
+        let temp: Question = new Question(choosenValues, shuffle(options), result, this.getSinal());
         return temp;
     }
 
