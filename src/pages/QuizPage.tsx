@@ -12,15 +12,20 @@ interface Props {
   settings: Question;
 }
 
+function onTimerRunOut(){
+  console.log('The timer has ran out!');
+}
+
 function QuizPage() {
   //TODO: Implement timer settings from storage
-  var defaultTimer = 10;
+  var defaultTimer = 30;
 
   useEffect(() => {
     const timer = setInterval(() => {
       setTimer(timer => {
         if (timer <= 0) {
           clearInterval(timer);
+          onTimerRunOut(); // Call onTimerRunOut function when timer runs out
           return 0;
         }
         return timer - 1;
