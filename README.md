@@ -5,9 +5,9 @@ Trata-se de um quiz de matemática, feito para ser fácil e intuitivo para que p
 ### Acesse o quiz e jogue agora mesmo! https://ana-borowsky.github.io
 
 <p align="center">
-<img width="450" src="src/to_readme/quiz"><br>
-<img width="450" src="src/to_readme/points"><br>
-<img width="450" src="src/to_readme/options"><br>
+<img width="450" src="src/to_readme/quiz.png"><br>
+<img width="450" src="src/to_readme/points.png"><br>
+<img width="450" src="src/to_readme/options.png"><br>
 </p>
 
 Esse projeto nasceu de um [trabalho](https://github.com/romm27/ProjetoEC) de uma das disciplinas do curso de Ciência da Computação, na qual tivemos que criar um aplicativo educacional, e optamos pela matemática por ser a matéria na qual tanto os professores, quanto os alunos, relataram ter maior dificuldade. 
