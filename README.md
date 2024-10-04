@@ -11,7 +11,7 @@ Trata-se de um quiz de matemática, feito para ser fácil e intuitivo para que p
 </p>
 
 Esse projeto nasceu de um [trabalho](https://github.com/romm27/ProjetoEC) de uma das disciplinas do curso de Ciência da Computação, na qual tivemos que criar um aplicativo educacional, e optamos pela matemática por ser a matéria na qual tanto os professores, quanto os alunos, relataram ter maior dificuldade. 
-O Mathmagik atualmente atualmente é uma versão web, mas também contará com um aplicativo mobile. 
+O Mathmagik atualmente é uma versão web, mas também contará com um aplicativo mobile. 
 
 ## Conteúdo
 
