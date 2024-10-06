@@ -1,7 +1,7 @@
 import { QuestionTemplate, OperationType , Question} from "./backend";
 import { getRandomValue } from "./util";
 import { readSettings } from './storage'
-import { GenerateSubOptions, GenerateSumOptions } from "./generation";
+import { GenerateMultiOptions, GenerateSubOptions, GenerateSumOptions } from "./generation";
 
 // Define the questionTemplates array
 export const questionTemplates: QuestionTemplate[] = [
@@ -20,6 +20,14 @@ export const questionTemplates: QuestionTemplate[] = [
         (values: number[]) => 
         (values[0] - values[1]), // Min operation
         [(result: number, options: number[]) => GenerateSubOptions(result, options)] // Options generator
+    ),
+    new QuestionTemplate(
+        0,
+        [OperationType.Multiplication],
+        ()=> [getRandomValue(1, 150, 0), getRandomValue(0, 150, 0)],
+        (values: number[]) => 
+        (values[0] * values[1]), // Min operation
+        [(result: number, options: number[]) => GenerateMultiOptions(result, options)] // Options generator
     )
 ];
 
