@@ -59,7 +59,7 @@ export class QuestionTemplate {
             case OperationType.Multiplication:
                 return "x";
             case OperationType.Division:
-                return "/";
+                return "÷";
         }
         return "";
     }
