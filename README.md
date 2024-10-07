@@ -18,7 +18,7 @@ O Mathmagik atualmente é uma versão web, mas também contará com um aplicativ
 - Página principal
 - Opções
   - Tempo para responder às questões (em desenvolvimento)
-  - Nível de dificuldade
+  - Nível de dificuldade (em desenvolvimento)
   - Quantidade de questões por jogada
   - Tipos de questões
     - Soma
