@@ -1,3 +1,4 @@
+import { randomInRange } from "@tsparticles/engine";
 import { getRandomValue } from "./util";
 
 //LEGACY: Complex Question value generators for subtraction
@@ -29,6 +30,40 @@ export function GenerateSubOptions(result: number, options: number[]): number {
   var temp = result;
   while(options.includes(temp)){
     temp = result + getRandomValue(-25,25,0);
+  }
+  return temp;
+}
+
+export function GenerateMultiOptions(result: number, options: number[]): number {
+  var temp = result;
+  while(options.includes(temp)){
+    temp = result * getRandomValue( 0.5, 2.5, 1);
+    temp = Math.round(temp);
+  }
+  return temp;
+}
+
+//Division
+
+export function GenerateDivValues(min1: number, max1: number, min2: number, max2: number): number[] {
+  let seed1 = getRandomValue(min1, max1, 0);
+  let seed2 = getRandomValue(min2, max2, 0);
+  
+  let value1 = seed1 * seed2;
+  let value2 = seed1 > seed2? seed1 : seed2;
+  
+  return [value1, value2];
+}
+
+export function GenerateDivOptions(result: number, options: number[]): number {
+  var temp = result;
+
+  while(options.includes(temp)){
+    let signal = getRandomValue(0, 1, 0);
+    signal = signal === 0? -1 : 1;
+
+    temp += getRandomValue(1, 5 , 0) * signal;
+    temp = Math.round(temp);
   }
   return temp;
 }
