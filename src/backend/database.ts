@@ -24,7 +24,7 @@ export const questionTemplates: QuestionTemplate[] = [
     new QuestionTemplate(
         0,
         [OperationType.Multiplication],
-        ()=> [getRandomValue(1, 25, 0), getRandomValue(2, 50, 0)],
+        ()=> [getRandomValue(1, 10, 0), getRandomValue(2, 15, 0)],
         (values: number[]) => 
         (values[0] * values[1]), 
         [(result: number, options: number[]) => GenerateMultiOptions(result, options)] // Options generator
