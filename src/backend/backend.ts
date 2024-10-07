@@ -61,7 +61,7 @@ export class QuestionTemplate {
             case OperationType.Division:
                 return "÷";
         }
-        return "";
+        return "ERROR";
     }
 }
 
