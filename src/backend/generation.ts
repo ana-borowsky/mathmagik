@@ -36,7 +36,8 @@ export function GenerateSubOptions(result: number, options: number[]): number {
 export function GenerateMultiOptions(result: number, options: number[]): number {
   var temp = result;
   while(options.includes(temp)){
-    temp = result * getRandomValue( 2, 5,0);
+    temp = result * getRandomValue( 0.5, 2.5, 1);
+    temp = Math.round(temp);
   }
   return temp;
 }

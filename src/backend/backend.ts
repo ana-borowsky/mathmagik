@@ -57,7 +57,7 @@ export class QuestionTemplate {
             case OperationType.Subtraction:
                 return "-";
             case OperationType.Multiplication:
-                return "*";
+                return "x";
             case OperationType.Division:
                 return "/";
         }

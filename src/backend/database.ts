@@ -24,7 +24,7 @@ export const questionTemplates: QuestionTemplate[] = [
     new QuestionTemplate(
         0,
         [OperationType.Multiplication],
-        ()=> [getRandomValue(1, 150, 0), getRandomValue(0, 150, 0)],
+        ()=> [getRandomValue(1, 25, 0), getRandomValue(2, 50, 0)],
         (values: number[]) => 
         (values[0] * values[1]), // Min operation
         [(result: number, options: number[]) => GenerateMultiOptions(result, options)] // Options generator
@@ -38,6 +38,7 @@ export function generateQuestion(difficulty: number[], operations: OperationType
     const storageQuestionTypes = readSettings().questionTypes
     //console.log(storageQuestionTypes);
 
+    //TODO: Not final implementation
     let pool: QuestionTemplate[] = [];
     let c = 0;
     if(storageQuestionTypes.sum){
@@ -45,6 +46,12 @@ export function generateQuestion(difficulty: number[], operations: OperationType
     }
     if(storageQuestionTypes.subtraction){
         c = pool.push(questionTemplates[1]);
+    }
+    if(storageQuestionTypes.multiplication){
+        c = pool.push(questionTemplates[2]);
+    }
+    if(storageQuestionTypes.division){
+        c = pool.push(questionTemplates[3]);
     }
 
     //console.log(pool.length);
