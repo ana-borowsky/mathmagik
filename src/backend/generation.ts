@@ -60,10 +60,12 @@ export function GenerateDivOptions(result: number, options: number[]): number {
 
   while(options.includes(temp)){
     let signal = getRandomValue(0, 1, 0);
-    signal = signal === 0? -1 : 1;
 
-    temp += getRandomValue(1, 5 , 0) * signal;
-    temp = Math.round(temp);
+    while(options.includes(temp)){
+      signal = signal === 0? -1 : 1;
+      temp += getRandomValue(1, 7 , 0) * signal;
+      temp = Math.abs(Math.round(temp));
+    }
   }
   return temp;
 }
