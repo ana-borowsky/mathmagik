@@ -7,7 +7,7 @@ function ProgressBar({ questionCounter, questionQuantity }: Props) {
   return (
     <div className='progress-bar-section'>
       <div className='progress-bar-text'>
-        <div>00:23</div>
+        <div>00:00</div>
         <div>{questionCounter}/{questionQuantity}</div>
       </div>
       <div className='progress-bar-background'>

@@ -16,7 +16,7 @@ function ScoreDisplay({ wrongAnswers, totalTime, questionsQuantity, onReplay}: P
 
   const averageTimePerQuestion = totalTime / questionsQuantity
   const numberOfWrongAnswers = wrongAnswers.length
-  const errorPercentage = numberOfWrongAnswers / questionsQuantity * 100 
+  const winRate = (questionsQuantity - numberOfWrongAnswers) / questionsQuantity * 100 
 
   const [showErrors, setShowErrors] = useState(false)
 
@@ -47,10 +47,10 @@ function ScoreDisplay({ wrongAnswers, totalTime, questionsQuantity, onReplay}: P
           </div>
           <div className='details'>
             <div className='rectangle small'>
-              <div className='text blue'>{Math.round(errorPercentage)}%</div>
+              <div className='text blue'>{Math.round(winRate)}%</div>
             </div>
             <div>
-              <h2>de erros</h2>
+              <h2>de acertos</h2>
             </div>
           </div>
           <div className='details'>
