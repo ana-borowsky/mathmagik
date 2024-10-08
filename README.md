@@ -23,7 +23,7 @@ O Mathmagik atualmente é uma versão web, mas também contará com um aplicativ
   - Tipos de questões
     - Soma
     - Subtração
-    - Divisão (em desenvolvimento)
-    - Multiplicação (em desenvolvimento)
+    - Divisão
+    - Multiplicação
   - Página com a pontuação e estatísticas da jogada
   - Página com as questões com respostas erradas, resposta do usuário e a resposta correta
