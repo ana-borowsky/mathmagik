@@ -34,25 +34,17 @@ function SettingsPage() {
 
   }, []);
 
-  function decreaseTime() {
-    if (timer > 0) {
-      setTimer(timer - 1);
+  function modifyTime(value: number) {
+    let newTime = timer + value;
+    if (newTime >= 1 ) {
+      setTimer(newTime);
     }
   }
 
-  function increaseTime() {
-    setTimer(timer + 1);
-  }
-
-  function decreaseDifficulty() {
-    if (difficulty > 1) {
-      setDifficulty(difficulty - 1);
-    }
-  }
-
-  function increaseDifficulty() {
-    if (difficulty < 3) {
-      setDifficulty(difficulty + 1);
+  function modifyDifficulty(value: number) {
+    let newDifficulty = difficulty + value;
+    if (newDifficulty >= 1 && newDifficulty <= 3) {
+      setDifficulty(newDifficulty);
     }
   }
 
@@ -96,14 +88,14 @@ function SettingsPage() {
           <div className='settings-title'>
             <h2>Tempo para responder:</h2>
             <div className='timer'>
-              <button className='round-btn minus dark-purple'>
-                <div onClick={() => decreaseTime()} className='signal'>
+              <button className='round-btn minus dark-purple' onClick={() => modifyTime(-1)}>
+                <div className='signal'>
                   -
                 </div>
               </button>
               <div className='settings-rectangle blue'>{timer == 0 ? "OFF" : timer}</div>
-              <button className='round-btn sum dark-purple'>
-                <div onClick={() => increaseTime()} className='signal'>
+              <button className='round-btn sum dark-purple' onClick={() => modifyTime(1)}>
+                <div className='signal'>
                   +
                 </div>
               </button>
@@ -112,14 +104,14 @@ function SettingsPage() {
           <div className='settings-title'>
             <h2>Dificuldade:</h2>
             <div className="timer">
-              <button className='round-btn minus dark-purple'>
-                <div onClick={() => decreaseDifficulty()} className='signal'>
+              <button className='round-btn minus dark-purple' onClick={() => modifyDifficulty(-1)}>
+                <div className='signal'>
                   -
                 </div>
               </button>
               <div className='settings-rectangle orange'>{difficulty}</div>
-              <button className='round-btn sum dark-purple'>
-                <div onClick={() => increaseDifficulty()} className='signal'>
+              <button className='round-btn sum dark-purple' onClick={() => modifyDifficulty(1)}>
+                <div className='signal'>
                   +
                 </div>
               </button>
