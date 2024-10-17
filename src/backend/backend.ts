@@ -1,5 +1,4 @@
 import { randomInRange } from "@tsparticles/engine";
-import { getRandomValue } from "./util";
 import { shuffle } from "./util";
 
 
@@ -11,14 +10,14 @@ export enum OperationType {
 }
 
 export class QuestionTemplate {
-    difficulty: number;
+    difficulty: number[];
     operations: OperationType[];
     valueGenerator: () => number[];
     questionOperation: (values: number[]) => number;
     questionOptions: ((result: number, options: number[]) => number)[];
 
     constructor(
-        difficulty: number,
+        difficulty: number[],
         operations: OperationType[],
         valueGenerator: () => number[],
         questionOperation: (values: number[]) => number,

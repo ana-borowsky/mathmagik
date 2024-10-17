@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './QuizPage.css';
-import { OperationType, QuestionTemplate, Question } from '../backend/backend';
+import { Question } from '../backend/backend';
 import { useNavigate } from 'react-router-dom';
 import { tsParticles } from '@tsparticles/engine';
 import { loadConfettiPreset } from '@tsparticles/preset-confetti';

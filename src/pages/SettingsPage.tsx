@@ -51,7 +51,7 @@ function SettingsPage() {
   }
 
   function increaseDifficulty() {
-    if (difficulty < 5) {
+    if (difficulty < 3) {
       setDifficulty(difficulty + 1);
     }
   }
