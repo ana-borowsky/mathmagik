@@ -8,9 +8,6 @@ import ProgressBar from './QuizProgressBar'
 import { readSettings } from '../backend/storage'
 import { useNavigate } from 'react-router-dom';
 
-interface Props {
-  settings: Question;
-}
 
 function generateQuestionsWrapper(){
   const storage = readSettings();
@@ -41,7 +38,7 @@ function QuizPage() {
   const questionQuantity = readSettings().questionQuantity;
   const navigate = useNavigate();
   const handleQuestionDone = (answer: number) => {
-    if (answer != currentQuestion.result) {
+    if (answer !== currentQuestion.result) {
       const newWrongAnswers = [...wrongAnswers, {
         question: currentQuestion,
         answer

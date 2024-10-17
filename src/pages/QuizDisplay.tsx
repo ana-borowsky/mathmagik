@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import './QuizPage.css';
 import { Question } from '../backend/backend';
-import { useNavigate } from 'react-router-dom';
 import { tsParticles } from '@tsparticles/engine';
 import { loadConfettiPreset } from '@tsparticles/preset-confetti';
 import { shuffle } from '../backend/util';
@@ -13,7 +12,6 @@ interface Props {
 }
 
 function QuizDisplay({ question, onQuestionDone, questionCounter }: Props) {
-  const navigate = useNavigate();
   const [buttonCSS, setButtonCSS] = useState<string[]>([]);
   const [questionCSS, setQuestionCSS] = useState<string[]>([]);
 
