@@ -8,20 +8,37 @@ import ProgressBar from './QuizProgressBar'
 import { readSettings } from '../backend/storage'
 import { useNavigate } from 'react-router-dom';
 
-interface Props {
-  settings: Question;
+
+function generateQuestionsWrapper(){
+  const storage = readSettings();
+
+  let operations = [];
+
+  //Temporary Implementation, replace with question builder later!
+  if(storage.questionTypes.sum){
+    operations.push(OperationType.Sum);
+  }
+  if(storage.questionTypes.subtraction){
+    operations.push(OperationType.Subtraction);
+  }
+  if(storage.questionTypes.multiplication){
+    operations.push(OperationType.Multiplication);
+  }
+  if(storage.questionTypes.division){
+    operations.push(OperationType.Division);
+  }
+
+  return generateQuestion([storage.difficulty], operations);
 }
 
 function QuizPage() {
-  let initialQuestion = generateQuestion([0], [OperationType.Sum]); //Generate question altered for testing purposes
-  const [currentQuestion, setCurrentQuestion] = useState(initialQuestion)
+  const [currentQuestion, setCurrentQuestion] = useState(generateQuestionsWrapper())
   const [questionCounter, setQuestionCounter] = useState(0);
   const [wrongAnswers, setWrongAnswers] = useState<Array<{ question: Question, answer: number }>>([]);
   const questionQuantity = readSettings().questionQuantity;
   const navigate = useNavigate();
-
   const handleQuestionDone = (answer: number) => {
-    if (answer != currentQuestion.result) {
+    if (answer !== currentQuestion.result) {
       const newWrongAnswers = [...wrongAnswers, {
         question: currentQuestion,
         answer
@@ -30,7 +47,7 @@ function QuizPage() {
       setWrongAnswers(newWrongAnswers);
     }
 
-    const newQuestion = generateQuestion([0], [OperationType.Sum]);
+    const newQuestion = generateQuestionsWrapper();
     setCurrentQuestion(newQuestion)
     setQuestionCounter(questionCounter + 1)
   }
@@ -38,7 +55,7 @@ function QuizPage() {
   const reset = () => {
     setQuestionCounter(0);
     setWrongAnswers([]);
-    const newQuestion = generateQuestion([0], [OperationType.Sum]);
+    const newQuestion = generateQuestionsWrapper();
     setCurrentQuestion(newQuestion)
   }
 
