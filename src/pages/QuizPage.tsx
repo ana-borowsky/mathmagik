@@ -2,29 +2,29 @@ import { useState } from 'react';
 import './QuizPage.css';
 import { OperationType, Question } from '../backend/backend';
 import { generateQuestion } from '../backend/database';
-import ScoreDisplay  from './ScoreDisplay'
-import QuizDisplay  from './QuizDisplay'
+import ScoreDisplay from './ScoreDisplay'
+import QuizDisplay from './QuizDisplay'
 import ProgressBar from './QuizProgressBar'
 import { readSettings } from '../backend/storage'
 import { useNavigate } from 'react-router-dom';
 
 
-function generateQuestionsWrapper(){
+function generateQuestionsWrapper() {
   const storage = readSettings();
 
   let operations = [];
 
   //Temporary Implementation, replace with question builder later!
-  if(storage.questionTypes.sum){
+  if (storage.questionTypes.sum) {
     operations.push(OperationType.Sum);
   }
-  if(storage.questionTypes.subtraction){
+  if (storage.questionTypes.subtraction) {
     operations.push(OperationType.Subtraction);
   }
-  if(storage.questionTypes.multiplication){
+  if (storage.questionTypes.multiplication) {
     operations.push(OperationType.Multiplication);
   }
-  if(storage.questionTypes.division){
+  if (storage.questionTypes.division) {
     operations.push(OperationType.Division);
   }
 
@@ -62,15 +62,17 @@ function QuizPage() {
   return (
     <>
       {questionCounter >= questionQuantity ? (
-        <ScoreDisplay wrongAnswers={wrongAnswers} totalTime={10} questionsQuantity={questionQuantity} onReplay={reset}/>
+        <ScoreDisplay wrongAnswers={wrongAnswers} totalTime={10} questionsQuantity={questionQuantity} onReplay={reset} />
       ) : (
         <div className="container">
-          <a className='logo' onClick={() => navigate('/main')}>
-            <img src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
-          </a>
-          <div className="quiz-container">
-            <ProgressBar questionCounter={questionCounter} questionQuantity={questionQuantity} />
-            <QuizDisplay question={currentQuestion} onQuestionDone={handleQuestionDone} questionCounter={questionCounter} />
+          <div className="content">
+            <a className='logo' onClick={() => navigate('/main')} >
+              <img src='mathmagik_logo.svg' alt='Logotipo Mathmagik' width='200rem' />
+            </a>
+            <div className="quiz-container">
+              <ProgressBar questionCounter={questionCounter} questionQuantity={questionQuantity} />
+              <QuizDisplay question={currentQuestion} onQuestionDone={handleQuestionDone} questionCounter={questionCounter} />
+            </div>
           </div>
         </div>
       )}
