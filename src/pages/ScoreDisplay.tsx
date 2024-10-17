@@ -33,7 +33,7 @@ function ScoreDisplay({ wrongAnswers, totalTime, questionsQuantity, onReplay }: 
       <div className="content">
         <div className="score-container">
           <a className='logo' onClick={() => (navigate('/main'))}>
-            <img src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
+            <img src='mathmagik_logo.svg' alt='Logotipo Mathmagik' width='200rem' />
           </a>
           <div className='score-title'>
             <img src='star.svg' alt='Estrela' />

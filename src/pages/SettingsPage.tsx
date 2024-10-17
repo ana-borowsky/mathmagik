@@ -80,7 +80,7 @@ function SettingsPage() {
       <div className="gap"></div>
         <div className='settings'>
           <a className='logo' onClick={() => menu()}>
-            <img src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
+            <img src='mathmagik_logo.svg' alt='Logotipo Mathmagik' width='200rem' />
           </a>
           <div className='title'>
             <h1>Opções</h1>
@@ -174,7 +174,6 @@ function SettingsPage() {
             <button className='button-std' onClick={save}>SALVAR</button>
           </div>
         </div>
-        <div className="gap"></div>
       </div>
     </>
   )

@@ -8,7 +8,7 @@ function MainPage() {
     <>
       <div className="container no-scroll">
         <div className="content">
-          <img className='logo logo-main' src="mathmagik_logo.svg" alt="Logotipo Mathmagik" />
+          <img className='logo logo-main' src="mathmagik_logo.svg" alt="Logotipo Mathmagik" width='200rem' />
           <div className='buttons-main'>
             <button className='button-main' onClick={() => (navigate("/settings"))}>OPÇÕES</button>
             <button className='button-main' onClick={() => (navigate("/quiz"))}>JOGAR</button>
