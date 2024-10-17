@@ -39,11 +39,18 @@ body {
   margin: 0 auto;
   max-width: 70rem;
   background-color: var(--color-medium-light-purple);
-  padding: 4rem 0;
   color: white;
   min-height: 100vh;
 }
-  
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 h1 {
   font-size: 3.5rem;
   color: white;
@@ -84,6 +91,10 @@ button {
 button:active {
   transform: translateY(0.4rem);
   filter: drop-shadow(0.6rem 0.6rem 0rem var(--color-dark-purple));
+}
+
+.no-scroll {
+  overflow: hidden;
 }
 
 @media (max-width: 400px) {
@@ -150,5 +161,4 @@ button:active {
 
 .gap {
   min-height: 4rem;
-  width: 100%;
 }

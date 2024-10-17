@@ -67,17 +67,17 @@ function SettingsPage() {
 
       writeSettings(settings)
 
-      alert("Configurações salvas!");
+      // alert("Configurações salvas!");
+      navigate('/main');
     } else {
       alert("Escolha pelo menos um tipo de quesão!");
     }
-
-    navigate('/main');
   }
 
   return (
     <>
       <div className="container">
+      <div className="gap"></div>
         <div className='settings'>
           <a className='logo' onClick={() => menu()}>
             <img src='mathmagik_logo.svg' alt='Logotipo Mathmagik' />
@@ -171,10 +171,10 @@ function SettingsPage() {
             </div>
           </div>
           <div className='buttons'>
-            <button className='button-std' onClick={menu}>MENU</button>
             <button className='button-std' onClick={save}>SALVAR</button>
           </div>
         </div>
+        <div className="gap"></div>
       </div>
     </>
   )

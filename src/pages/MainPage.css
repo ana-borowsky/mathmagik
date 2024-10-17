@@ -1,13 +1,12 @@
 .buttons-main {
   display: flex;
-  align-items: center;
-  flex-direction: column;
   gap: 3rem;
   margin-top: 5rem;
+  justify-content: center;
 }
 
 .button-main {
   font-size: 2rem;
-  height: 9rem;
-  width: 19rem;
+  height: 8rem;
+  width: 15rem;
 }

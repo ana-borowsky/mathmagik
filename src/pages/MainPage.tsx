@@ -6,11 +6,13 @@ function MainPage() {
 
   return (
     <>
-      <div className="container">
-        <img className='logo logo-main' src="mathmagik_logo.svg" alt="Logotipo Mathmagik"/>
-        <div className='buttons-main'>
-          <button className='button-main' onClick={()=>(navigate("/settings"))}>OPÇÕES</button>
-          <button className='button-main' onClick={()=>(navigate("/quiz"))}>JOGAR</button>
+      <div className="container no-scroll">
+        <div className="content">
+          <img className='logo logo-main' src="mathmagik_logo.svg" alt="Logotipo Mathmagik" />
+          <div className='buttons-main'>
+            <button className='button-main' onClick={() => (navigate("/settings"))}>OPÇÕES</button>
+            <button className='button-main' onClick={() => (navigate("/quiz"))}>JOGAR</button>
+          </div>
         </div>
       </div>
     </>
