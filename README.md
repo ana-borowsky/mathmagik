@@ -10,15 +10,15 @@ Trata-se de um quiz de matemática, feito para ser fácil e intuitivo para que p
 <img width="450" src="src/to_readme/options.png"><br>
 </p>
 
-Esse projeto nasceu de um [trabalho](https://github.com/romm27/ProjetoEC) de uma das disciplinas do curso de Ciência da Computação, na qual tivemos que criar um aplicativo educacional, e optamos pela matemática por ser a matéria na qual tanto os professores, quanto os alunos, relataram ter maior dificuldade. 
-O Mathmagik atualmente é uma versão web, mas também contará com um aplicativo mobile. 
+Esse projeto nasceu de um [trabalho](https://github.com/romm27/ProjetoEC) de uma das disciplinas do curso de Ciência da Computação, na qual tivemos que criar um aplicativo educacional, e optamos pela matemática por ser a matéria na qual tanto os professores, quanto os alunos, relataram ter maior dificuldade.
+O Mathmagik atualmente é uma versão web, mas também contará com um aplicativo mobile.
 
 ## Conteúdo
 
 - Página principal
 - Opções
   - Tempo para responder às questões (em desenvolvimento)
-  - Nível de dificuldade (em desenvolvimento)
+  - Nível de dificuldade
   - Quantidade de questões por jogada
   - Tipos de questões
     - Soma
@@ -27,3 +27,15 @@ O Mathmagik atualmente é uma versão web, mas também contará com um aplicativ
     - Multiplicação
   - Página com a pontuação e estatísticas da jogada
   - Página com as questões com respostas erradas, resposta do usuário e a resposta correta
+
+## Como rodar
+
+Para rodar o projeto é necessário ter o [npm](https://github.com/npm) instalado na máquina, em seguida:<br>
+```git clone git@github.com:ana-borowsky/mathmagik.git```
+
+Após, entre na pasta do projeto que acabou de clonar, e então rode o comando:<br>
+  ```npm install```
+
+E então, rode a aplicação:<br>
+```npm run start```
+
