@@ -17,8 +17,20 @@ export function GenerateResultForSubtraction(range: number): number[] {
 //This is not an ideal implemention, it can still be vastly improved.
 export function GenerateSumOptions(result: number, options: number[]): number {
   var temp = result;
-  while(options.includes(temp)){
-    temp = result + getRandomValue(-25,40,0);
+  while(options.includes(temp) || temp <= 0){
+    temp = result;
+    if(result < 10){
+      temp += getRandomValue(-4,4,0);
+    }
+    else if(result < 25){
+      temp += getRandomValue(-7,7,0);
+    }
+    else if(result < 50){
+      temp += getRandomValue(-12,12,0);
+    }
+    else{
+      temp += getRandomValue(-25,40,0);
+    }
   }
   return temp;
 }
