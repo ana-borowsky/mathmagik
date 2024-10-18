@@ -1,5 +1,5 @@
 import { QuestionTemplate, OperationType , Question} from "./backend";
-import { DefaultEasyQuestions, DefaultMediumQuestions } from "./questions/default";
+import { DefaultEasyQuestions, DefaultMediumQuestions, DefaultHardQuestions } from "./questions/default";
 
 // Define the questionTemplates array
 export let questionTemplates: QuestionTemplate[] = [];
@@ -8,6 +8,7 @@ function agregateTemplates(){
     let temp: QuestionTemplate[] = [];
     temp = temp.concat(DefaultEasyQuestions.GetQuestions());
     temp = temp.concat(DefaultMediumQuestions.GetQuestions());
+    temp = temp.concat(DefaultHardQuestions.GetQuestions())
     return temp;
 }
 

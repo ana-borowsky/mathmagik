@@ -145,3 +145,50 @@ export abstract class DefaultMediumQuestions {
     ]);
   }
 }
+  //Default questions at a mid level of difficulty
+export abstract class DefaultHardQuestions {
+  static GetQuestions() {
+    return ([
+      new QuestionTemplate(
+        [3],
+        [OperationType.Sum],
+        () => [getRandomValue(100, 10_000, 0), getRandomValue(30, 1000, 0)],
+        (values: number[]) => values[0] + values[1], // Sum operation
+        [
+          (result: number, options: number[]) =>
+            GenerateSumOptions(result, options),
+        ] // Options generator
+      ),
+      new QuestionTemplate(
+        [3],
+        [OperationType.Subtraction],
+        () => [getRandomValue(0, 350, 0), getRandomValue(50, 350, 0)],
+        (values: number[]) => values[0] - values[1], // Min operation
+        [
+          (result: number, options: number[]) =>
+            GenerateSubOptions(result, options),
+        ] // Options generator
+      ),
+      new QuestionTemplate(
+        [3],
+        [OperationType.Multiplication],
+        () => [getRandomValue(5, 20, 0), getRandomValue(6, 40, 0)],
+        (values: number[]) => values[0] * values[1],
+        [
+          (result: number, options: number[]) =>
+            GenerateMultiOptions(result, options),
+        ] // Options generator
+      ),
+      new QuestionTemplate(
+        [3],
+        [OperationType.Division],
+        () => GenerateDivValues(11, 25, 11, 35),
+        (values: number[]) => values[0] / values[1],
+        [
+          (result: number, options: number[]) =>
+            GenerateDivOptions(result, options),
+        ] // Options generator
+      )
+    ]);
+  }
+}

@@ -12,7 +12,7 @@ export interface Settings {
 
 let defaultSettings = {
   timer: 20,
-  difficulty: 3,
+  difficulty: 2,
   questionQuantity: 20,
   questionTypes: {
     sum: true,
