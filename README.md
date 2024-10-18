@@ -28,6 +28,13 @@ O Mathmagik atualmente é uma versão web, mas também contará com um aplicativ
   - Página com a pontuação e estatísticas da jogada
   - Página com as questões com respostas erradas, resposta do usuário e a resposta correta
 
+# Niveis de dificuldade
+Atualmente, a build conta com três níveis de dificuldade, está pode ser altera em opções.
+
+- 1: Muito fácil
+- 2: Médio
+- 3: Difícil
+
 ## Como rodar
 
 Para rodar o projeto é necessário ter o [npm](https://github.com/npm) instalado na máquina, em seguida:<br>
