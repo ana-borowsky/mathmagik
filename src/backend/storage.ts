@@ -16,9 +16,9 @@ let defaultSettings = {
   questionQuantity: 20,
   questionTypes: {
     sum: true,
-    subtraction: false,
-    division: false,
-    multiplication: false
+    subtraction: true,
+    division: true,
+    multiplication: true
   }
 };
 
