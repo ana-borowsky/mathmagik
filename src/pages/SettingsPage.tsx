@@ -36,7 +36,7 @@ function SettingsPage() {
 
   function modifyTime(value: number) {
     let newTime = timer + value;
-    if (newTime >= 1 ) {
+    if (newTime >= 1) {
       setTimer(newTime);
     }
   }
@@ -77,10 +77,10 @@ function SettingsPage() {
   return (
     <>
       <div className="container">
-      <div className="gap"></div>
+        <div className="gap"></div>
         <div className='settings'>
           <a className='logo' onClick={() => menu()}>
-            <img src='mathmagik_logo.svg' alt='Logotipo Mathmagik' width='200rem' />
+            <img src='./mathmagik_logo.svg' alt='Logotipo Mathmagik' width='200rem' />
           </a>
           <div className='title'>
             <h1>Opções</h1>

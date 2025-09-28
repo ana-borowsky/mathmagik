@@ -1,17 +1,17 @@
-import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import { Route, HashRouter, Routes } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import SettingsPage from './pages/SettingsPage';
 import QuizPage from './pages/QuizPage';
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
-        <Route path='*' element={<MainPage/>}></Route>
-        <Route path='/settings' element={<SettingsPage/>}></Route>
-        <Route path='/quiz' element={<QuizPage/>}></Route>
+        <Route path='*' element={<MainPage />}></Route>
+        <Route path='/settings' element={<SettingsPage />}></Route>
+        <Route path='/quiz' element={<QuizPage />}></Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

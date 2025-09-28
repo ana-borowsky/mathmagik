@@ -27,7 +27,7 @@ function WrongAnswerDisplay({ wrongAnswers, onBack, onReplay }: Props) {
     <div className='container wrong-answers-container'>
 
       <a className='logo' onClick={() => navigate('/main')}>
-        <img src='mathmagik_logo.svg' alt='Logotipo Mathmagik' width='200rem' />
+        <img src='./mathmagik_logo.svg' alt='Logotipo Mathmagik' width='200rem' />
       </a>
       <div className='score-title'>
         <h1>Erros: {numberOfWrongAnswers}</h1>

@@ -67,7 +67,7 @@ function QuizPage() {
         <div className="container">
           <div className="content">
             <a className='logo' onClick={() => navigate('/main')} >
-              <img src='mathmagik_logo.svg' alt='Logotipo Mathmagik' width='200rem' />
+              <img src='./mathmagik_logo.svg' alt='Logotipo Mathmagik' width='200rem' />
             </a>
             <div className="quiz-container">
               <ProgressBar questionCounter={questionCounter} questionQuantity={questionQuantity} />
